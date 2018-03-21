@@ -5,8 +5,20 @@ using UnityEngine;
 
 namespace CCG
 {
-	public class GameManager : MonoBehaviour
+	public static class GameManager
 	{
-		public UserData UserData { get; private set; }
+		public static UserData UserData { get; private set; }
+
+		public static void StartGame()
+		{
+			Debug.Log("Game Started.");
+
+			LoadUserData();
+		}
+
+		private static void LoadUserData()
+		{
+			UserData = UserData.LoadUserData();
+		}
 	}
 }
