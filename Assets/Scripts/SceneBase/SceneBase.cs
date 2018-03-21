@@ -1,0 +1,65 @@
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+
+using UnityEngine;
+using UnityEngine.Assertions;
+
+namespace CCG
+{
+	public class SceneBase : MonoBehaviour, IDispatchEventHandler
+	{
+		private Dictionary<string, object> _dispatchEvents = new Dictionary<string, object>();
+
+		public void AddDispatchEvent(string key, Action action)
+		{
+			if (_dispatchEvents == null) return;
+			if (_dispatchEvents.ContainsKey(key)) return;
+
+			_dispatchEvents.Add(key, action);
+		}
+
+		public void AddDispatchEvent<T>(string key, Action<T> action)
+		{
+			if (_dispatchEvents == null) return;
+			if (_dispatchEvents.ContainsKey(key)) return;
+
+			_dispatchEvents.Add(key, action);
+		}
+
+		public void AddDispatchEvent<T1, T2>(string key, Action<T1, T2> action)
+		{
+			if (_dispatchEvents == null) return;
+			if (_dispatchEvents.ContainsKey(key)) return;
+
+			_dispatchEvents.Add(key, action);
+		}
+
+		public void DispatchEvent(string key)
+		{
+			if (_dispatchEvents == null) return;
+			if (!_dispatchEvents.ContainsKey(key)) return;
+
+			var action = _dispatchEvents[key] as Action;
+			action();
+		}
+
+		public void DispatchEvent<T>(string key, T param)
+		{
+			if (_dispatchEvents == null) return;
+			if (!_dispatchEvents.ContainsKey(key)) return;
+
+			var action = _dispatchEvents[key] as Action<T>;
+			action(param);
+		}
+
+		public void DispatchEvent<T1, T2>(string key, T1 param1, T2 param2)
+		{
+			if (_dispatchEvents == null) return;
+			if (!_dispatchEvents.ContainsKey(key)) return;
+
+			var action = _dispatchEvents[key] as Action<T1, T2>;
+			action(param1, param2);
+		}
+	}
+}
