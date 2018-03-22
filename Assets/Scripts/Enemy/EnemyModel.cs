@@ -8,6 +8,15 @@ namespace CCG
 {
 	public class EnemyModel
 	{
+		public EnemyModel(EnemyMaster master)
+		{
+			Name = master.Name;
+			Health = master.Health;
+		}
+
+		public string Name { get; set; }
+		public int Health { get; set; }
+
 		public EnemyAIType AIType { get; private set; } = EnemyAIType.None;
 
 		public ItemID[] DropItemIDs { get; private set; } = new ItemID[0];
