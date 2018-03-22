@@ -29,5 +29,9 @@ namespace CCG
 		{
 			_enemyModel = new EnemyModel(master);
 		}
+
+		private void OnTriggerEnter2D(Collider2D collision)
+		{
+		}
 	}
 }
