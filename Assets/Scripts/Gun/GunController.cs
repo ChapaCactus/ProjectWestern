@@ -8,7 +8,7 @@ namespace CCG
 {
 	public class GunController : MonoBehaviour
 	{
-		public Bullet Bullet { get; private set; }
+		public BulletController Bullet { get; private set; }
 
 		public GunID ID => _model.ID;
 		public GunShootType ShootType => _model.ShootType;
@@ -35,7 +35,7 @@ namespace CCG
 			if (Bullet == null) return;
 		}
 
-		private void SetBullet(Bullet bullet)
+		private void SetBullet(BulletController bullet)
 		{
 			Bullet = bullet;
 		}

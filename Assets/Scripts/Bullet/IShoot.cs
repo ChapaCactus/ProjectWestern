@@ -4,6 +4,6 @@ namespace CCG
 {
 	public interface IShoot
 	{
-		void Shoot(Bullet bullet, Vector2 shootDir);
+		void Shoot(BulletController bullet, Vector2 shootDir);
 	}
 }

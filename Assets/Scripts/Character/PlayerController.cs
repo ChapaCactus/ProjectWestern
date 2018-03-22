@@ -30,7 +30,7 @@ namespace CCG
 			Move(normalizedH * MoveBuff, normalizedV * MoveBuff);
 		}
 
-		public void Shoot(Bullet bullet, Vector2 shootDir)
+		public void Shoot(BulletController bullet, Vector2 shootDir)
 		{
 			bullet.Play(shootDir);
 		}

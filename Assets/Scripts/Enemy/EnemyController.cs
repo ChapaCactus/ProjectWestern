@@ -10,6 +10,8 @@ namespace CCG
 	{
 		private EnemyModel _enemyModel;
 
+		private Action _onDead;
+
 		private static readonly string PrefabName = "Enemy";
 		private static readonly string PrefabDirPath = "Prefabs/Enemy";
 
@@ -32,6 +34,17 @@ namespace CCG
 
 		private void OnTriggerEnter2D(Collider2D collision)
 		{
+			if(collision.CompareTag("Bullet"))
+			{
+				var bullet = collision.GetComponent<BulletController>();
+				var power = bullet.Power;
+				Damage(power);
+			}
+		}
+
+		private void Damage(int power)
+		{
+			_onDead.SafeCall();
 		}
 	}
 }

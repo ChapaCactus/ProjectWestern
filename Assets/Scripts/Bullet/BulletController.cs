@@ -7,10 +7,15 @@ using UnityEngine.Assertions;
 
 namespace CCG
 {
-	public class Bullet : MonoBehaviour
+	public class BulletController : MonoBehaviour
 	{
 		[SerializeField]
+		private int _power = 1;
+
+		[SerializeField]
 		private float _speed = 1.0f;
+
+		public int Power => _power;
 
 		public Vector3 ShootDir { get; private set; } = Vector3.zero;
 		// Cached Transform
@@ -37,12 +42,12 @@ namespace CCG
 			}
 		}
 
-		public static void Create(Transform parent, Action<Bullet> onCreate)
+		public static void Create(Transform parent, Action<BulletController> onCreate)
 		{
 			var prefab = Resources.Load("") as GameObject;
 			var go = Instantiate(prefab, parent);
 
-			var bullet = go.GetComponent<Bullet>();
+			var bullet = go.GetComponent<BulletController>();
 
 			onCreate.SafeCall(bullet);
 		}
