@@ -11,6 +11,11 @@ namespace CCG
 	{
 		private Dictionary<string, object> _dispatchEvents = new Dictionary<string, object>();
 
+		private void Awake()
+		{
+			PrepareScene();
+		}
+
 		public void AddDispatchEvent(string key, Action action)
 		{
 			if (_dispatchEvents == null) return;
@@ -61,5 +66,7 @@ namespace CCG
 			var action = _dispatchEvents[key] as Action<T1, T2>;
 			action(param1, param2);
 		}
+
+		protected virtual void PrepareScene() { }
 	}
 }
