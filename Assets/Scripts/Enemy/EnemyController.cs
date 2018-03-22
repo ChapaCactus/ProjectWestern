@@ -7,6 +7,5 @@ namespace CCG
 {
 	public class EnemyController : CharacterController
 	{
-		public AI AI { get; private set; }
 	}
 }

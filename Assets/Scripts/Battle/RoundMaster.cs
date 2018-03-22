@@ -9,6 +9,9 @@ namespace CCG
 	public class RoundMaster : ScriptableObject
 	{
 		[SerializeField]
+		private List<EnemyMaster> _popEnemies = new List<EnemyMaster>();
+
+		[SerializeField]
 		private Sprite _backgroundSprite;
 
 		[SerializeField]
