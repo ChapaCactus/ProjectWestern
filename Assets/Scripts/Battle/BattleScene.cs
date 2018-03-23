@@ -8,6 +8,9 @@ namespace CCG
 {
 	public class BattleScene : SceneBase
 	{
+		[SerializeField]
+		private StageMaster _debugStageMaster;
+
 		private StageController _stage { get; set; }
 
 		public void SetupStage(StageMaster master)
@@ -18,6 +21,11 @@ namespace CCG
 		protected override void PrepareScene()
 		{
 			AddDispatchEvents();
+
+			if(_debugStageMaster != null)
+			{
+				CreateStageController(stage => _stage = stage);
+			}
 		}
 
 		private void AddDispatchEvents()
