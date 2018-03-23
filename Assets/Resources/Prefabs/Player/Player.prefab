@@ -128,6 +128,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8686f7e7982a420b9164cc781dc8b6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _bulletPrefab: {fileID: 114138907940571394, guid: bf055936410fb4893a776a7f65010dc6,
+    type: 2}
 --- !u!212 &212674383578655448
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -24,7 +24,7 @@ namespace CCG
 
 			if(_debugStageMaster != null)
 			{
-				CreateStageController(stage => _stage = stage);
+				SetupStage(_debugStageMaster);
 			}
 		}
 

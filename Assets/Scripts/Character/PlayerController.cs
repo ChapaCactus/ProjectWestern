@@ -8,6 +8,9 @@ namespace CCG
 {
 	public class PlayerController : CharacterController, IShoot
 	{
+		[SerializeField]
+		private BulletController _bulletPrefab;
+
 		private PlayerModel _model { get; set; }
 
 		private readonly float MoveBuff = 100f;
@@ -33,6 +36,13 @@ namespace CCG
 			}
 
 			Move(normalizedH * MoveBuff, normalizedV * MoveBuff);
+
+			if(Input.GetButtonDown("Jump"))
+			{
+				var bullet = Instantiate(_bulletPrefab, transform).GetComponent<BulletController>();
+				bullet.transform.localPosition = Vector3.zero;
+				Shoot(bullet, Vector2.up);
+			}
 		}
 
 		public static void Create(Transform parent, Action<PlayerController> onCreate)
@@ -46,7 +56,6 @@ namespace CCG
 
 		public void Setup(UserData userData)
 		{
-			_model = userData.PlayerModel;
 		}
 
 		public void Shoot(BulletController bullet, Vector2 shootDir)

@@ -81,7 +81,7 @@ namespace CCG
 
 		private void ClearEnemies()
 		{
-			Enemies.ForEach(enemy => Destroy(enemy.gameObject));
+			Enemies?.ForEach(enemy => Destroy(enemy.gameObject));
 			Enemies = new List<EnemyController>();
 		}
 
