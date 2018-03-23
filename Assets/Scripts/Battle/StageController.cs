@@ -11,6 +11,9 @@ namespace CCG
 		public int Round { get; private set; } = 0;
 		public RoundMaster CurrentRoundData => _stageMaster.Rounds[Round];
 
+		public PlayerController Player { get; private set; }
+		public List<EnemyController> Enemies { get; private set; }
+
 		private StageMaster _stageMaster;
 
 		private static readonly string PrefabPath = "Prefabs/Stage/Stage";
@@ -27,6 +30,10 @@ namespace CCG
 		public void Setup(StageMaster master)
 		{
 			_stageMaster = master;
+
+			ClearEnemies();
+
+			CreateNewPlayer();
 		}
 
 		private void CreateNewPlayer()
@@ -43,7 +50,10 @@ namespace CCG
 
 		private void OnCreatePlayer(PlayerController player)
 		{
-			GetPlayerData(data => player.Setup(data));
+			var playerData = GetPlayerData();
+			player.Setup(playerData);
+
+			Player = player;
 		}
 
 		private void OnCreateEnemy(EnemyController enemy, EnemyMaster master)
@@ -51,10 +61,16 @@ namespace CCG
 			enemy.Setup(master);
 		}
 
-		private void GetPlayerData(Action<PlayerData> resfunc)
+		private PlayerData GetPlayerData()
 		{
 			var data = new PlayerData();
-			resfunc.SafeCall(data);
+			return data;
+		}
+
+		private void ClearEnemies()
+		{
+			Enemies.ForEach(enemy => Destroy(enemy.gameObject));
+			Enemies = new List<EnemyController>();
 		}
 	}
 }

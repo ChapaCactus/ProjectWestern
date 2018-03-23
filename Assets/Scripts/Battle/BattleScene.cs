@@ -8,8 +8,6 @@ namespace CCG
 {
 	public class BattleScene : SceneBase
 	{
-		private List<EnemyController> _enemyList { get; set; } = new List<EnemyController>();
-
 		private StageController _stage { get; set; }
 
 		public void SetupStage(StageMaster master)
