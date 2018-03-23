@@ -8,13 +8,19 @@ namespace CCG
 {
 	public class StageController : MonoBehaviour
 	{
+		[SerializeField]
+		private Transform _playerParent;
+
+		[SerializeField]
+		private Transform _enemiesParent;
+
+		private StageMaster _stageMaster;
+
 		public int Round { get; private set; } = 0;
 		public RoundMaster CurrentRoundData => _stageMaster.Rounds[Round];
 
 		public PlayerController Player { get; private set; }
 		public List<EnemyController> Enemies { get; private set; }
-
-		private StageMaster _stageMaster;
 
 		private static readonly string PrefabPath = "Prefabs/Stage/Stage";
 
