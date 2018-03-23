@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 using UnityEngine;
 
@@ -19,5 +21,13 @@ namespace CCG
 
 		public Sprite BackgroundSprite => _backgroundSprite;
 		public Sprite WallSprite => _wallSprite;
+
+		public void GetEnemyMasterAtRandom(Action<EnemyMaster> resfunc)
+		{
+			if (_popEnemies == null) return;
+
+			var enemyMaster = _popEnemies.OrderBy(enemy => System.Guid.NewGuid()) as EnemyMaster;
+			resfunc.SafeCall(enemyMaster);
+		}
 	}
 }
