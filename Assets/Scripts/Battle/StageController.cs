@@ -56,8 +56,8 @@ namespace CCG
 
 		private void OnCreatePlayer(PlayerController player)
 		{
-			var playerData = GetPlayerData();
-			player.Setup(playerData);
+			var userData = GetUserData();
+			player.Setup(userData);
 
 			Player = player;
 		}
@@ -67,9 +67,9 @@ namespace CCG
 			enemy.Setup(master);
 		}
 
-		private PlayerData GetPlayerData()
+		private UserData GetUserData()
 		{
-			var data = new PlayerData();
+			var data = GameManager.UserData;
 			return data;
 		}
 

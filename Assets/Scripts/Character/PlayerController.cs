@@ -8,7 +8,7 @@ namespace CCG
 {
 	public class PlayerController : CharacterController, IShoot
 	{
-		private PlayerData _playerData { get; set; }
+		private UserData _userData { get; set; }
 
 		private readonly float MoveBuff = 100f;
 
@@ -44,9 +44,9 @@ namespace CCG
 			onCreate(player);
 		}
 
-		public void Setup(PlayerData playerData)
+		public void Setup(UserData userData)
 		{
-			_playerData = playerData;
+			_userData = userData;
 		}
 
 		public void Shoot(BulletController bullet, Vector2 shootDir)

@@ -13,14 +13,14 @@ namespace CCG
 		{
 			Debug.Log("Game Started.");
 
-			LoadUserData();
+			UserData = LoadUserData();
 
 			UIManager.I.UpdateTotalCoinText($"{UserData.TotalCoin}");
 		}
 
-		private static void LoadUserData()
+		private static UserData LoadUserData()
 		{
-			UserData = UserData.LoadUserData();
+			return UserData.LoadUserData();
 		}
 	}
 }
