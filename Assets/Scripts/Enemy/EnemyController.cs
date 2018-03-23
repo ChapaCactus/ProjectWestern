@@ -8,9 +8,11 @@ namespace CCG
 {
 	public class EnemyController : CharacterController
 	{
-		private EnemyModel _enemyModel;
+		public bool IsSleep { get; private set; } = false;
 
-		private Action _onDead;
+		private EnemyModel _model;
+
+		private Action<EnemyModel> _onDead;
 
 		private static readonly string PrefabName = "Enemy";
 		private static readonly string PrefabDirPath = "Prefabs/Enemy";
@@ -26,9 +28,11 @@ namespace CCG
 			onCreate.SafeCall(enemy);
 		}
 
-		public void Setup(EnemyMaster master)
+		public void Setup(EnemyMaster master, Action<EnemyModel> onDead)
 		{
-			_enemyModel = new EnemyModel(master);
+			_model = new EnemyModel(master);
+
+			_onDead = onDead;
 		}
 
 		private void OnTriggerEnter2D(Collider2D collision)
@@ -43,11 +47,13 @@ namespace CCG
 
 		private void Damage(int power)
 		{
-			_enemyModel.Health -= power;
+			_model.Health -= power;
 
-			if (_enemyModel.IsDead)
+			if (_model.IsDead)
 			{
-				_onDead.SafeCall();
+				IsSleep = true;
+
+				_onDead.SafeCall(_model);
 			}
 		}
 	}

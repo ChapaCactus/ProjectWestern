@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace CCG
 {
-	public class StageController : MonoBehaviour
+	public class StageController : SceneContentBase
 	{
 		[SerializeField]
 		private Transform _playerParent;
@@ -37,9 +37,15 @@ namespace CCG
 		{
 			_stageMaster = master;
 
+			AddDispatchEvents();
+
 			ClearEnemies();
 
 			CreateNewPlayer();
+		}
+
+		private void AddDispatchEvents()
+		{
 		}
 
 		private void CreateNewPlayer()
@@ -64,7 +70,7 @@ namespace CCG
 
 		private void OnCreateEnemy(EnemyController enemy, EnemyMaster master)
 		{
-			enemy.Setup(master);
+			enemy.Setup(master, OnDeadEnemy);
 		}
 
 		private UserData GetUserData()
@@ -77,6 +83,10 @@ namespace CCG
 		{
 			Enemies.ForEach(enemy => Destroy(enemy.gameObject));
 			Enemies = new List<EnemyController>();
+		}
+
+		private void OnDeadEnemy(EnemyModel model)
+		{
 		}
 	}
 }

@@ -37,6 +37,27 @@ namespace CCG
 			_sceneBase = sceneParent;
 		}
 
+		protected void AddDispatchEvent(string key, Action action)
+		{
+			if (_sceneBase == null) return;
+
+			_sceneBase.AddDispatchEvent(key, action);
+		}
+
+		protected void AddDispatchEvent<T>(string key, Action<T> action)
+		{
+			if (_sceneBase == null) return;
+
+			_sceneBase.AddDispatchEvent(key, action);
+		}
+
+		protected void AddDispatchEvent<T1, T2>(string key, Action<T1, T2> action)
+		{
+			if (_sceneBase == null) return;
+
+			_sceneBase.AddDispatchEvent(key, action);
+		}
+
 		protected void DispatchEvent(string key)
 		{
 			if (_sceneBase == null) return;
