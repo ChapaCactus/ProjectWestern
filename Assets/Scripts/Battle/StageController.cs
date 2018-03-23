@@ -44,13 +44,13 @@ namespace CCG
 
 		private void CreateNewPlayer()
 		{
-			PlayerController.Create(transform, OnCreatePlayer);
+			PlayerController.Create(_playerParent, OnCreatePlayer);
 		}
 
 		private void CreateNewEnemy()
 		{
 			CurrentRoundData.GetEnemyMasterAtRandom(master => {
-				EnemyController.Create(transform, enemy => OnCreateEnemy(enemy, master));
+				EnemyController.Create(_enemiesParent, enemy => OnCreateEnemy(enemy, master));
 			});
 		}
 
