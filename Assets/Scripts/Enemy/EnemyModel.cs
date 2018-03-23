@@ -17,6 +17,8 @@ namespace CCG
 		public string Name { get; set; }
 		public int Health { get; set; }
 
+		public bool IsDead => Health <= 0;
+
 		public EnemyAIType AIType { get; private set; } = EnemyAIType.None;
 
 		public ItemID[] DropItemIDs { get; private set; } = new ItemID[0];

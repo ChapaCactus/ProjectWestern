@@ -44,7 +44,12 @@ namespace CCG
 
 		private void Damage(int power)
 		{
-			_onDead.SafeCall();
+			_enemyModel.Health -= power;
+
+			if (_enemyModel.IsDead)
+			{
+				_onDead.SafeCall();
+			}
 		}
 	}
 }
