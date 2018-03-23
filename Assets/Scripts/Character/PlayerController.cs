@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 
 using UnityEngine;
@@ -7,7 +8,11 @@ namespace CCG
 {
 	public class PlayerController : CharacterController, IShoot
 	{
+		private PlayerData _playerData { get; set; }
+
 		private readonly float MoveBuff = 100f;
+
+		private static readonly string PrefabPath = "Prefabs/Player/Player";
 
 		private void Update()
 		{
@@ -28,6 +33,20 @@ namespace CCG
 			}
 
 			Move(normalizedH * MoveBuff, normalizedV * MoveBuff);
+		}
+
+		public static void Create(Transform parent, Action<PlayerController> onCreate)
+		{
+			var prefab = Resources.Load(PrefabPath) as GameObject;
+			var go = Instantiate(prefab, parent);
+
+			var player = go.GetComponent<PlayerController>();
+			onCreate(player);
+		}
+
+		public void Setup(PlayerData playerData)
+		{
+			_playerData = playerData;
 		}
 
 		public void Shoot(BulletController bullet, Vector2 shootDir)
