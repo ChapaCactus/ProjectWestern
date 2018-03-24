@@ -56,16 +56,20 @@ namespace CCG
 
 		private void Damage(int power)
 		{
-			Debug.Log("Damaged: " + power);
-
 			_model.Health -= power;
 
 			if (_model.IsDead)
 			{
-				IsSleep = true;
-
-				_onDead.SafeCall(_model);
+				Dead();
 			}
+		}
+
+		private void Dead()
+		{
+			IsSleep = true;
+			_onDead.SafeCall(_model);
+
+			Destroy(gameObject);
 		}
 	}
 }
