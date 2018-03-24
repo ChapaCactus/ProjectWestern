@@ -19,23 +19,19 @@ namespace CCG
 
 		private void Update()
 		{
-			var h = Input.GetAxis("Horizontal");
-			var v = Input.GetAxis("Vertical");
+			var h = 0;
+			if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
+				h = 1;
+			if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
+				h = -1;
 
-			var normalizedH = 0;
-			var normalizedV = 0;
+			var v = 0;
+			if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W))
+				v = 1;
+			if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S))
+				v = -1;
 
-			if(h != 0)
-			{
-				normalizedH = h < 0 ? -1 : 1;
-			}
-
-			if (v != 0)
-			{
-				normalizedV = v < 0 ? -1 : 1;
-			}
-
-			Move(normalizedH * MoveBuff, normalizedV * MoveBuff);
+			Move(h * MoveBuff, v * MoveBuff);
 
 			if(Input.GetButtonDown("Jump"))
 			{
