@@ -42,6 +42,7 @@ namespace CCG
 			ClearEnemies();
 
 			CreateNewPlayer();
+			CreateNewEnemy();
 		}
 
 		private void AddDispatchEvents()
@@ -87,6 +88,7 @@ namespace CCG
 
 		private void OnDeadEnemy(EnemyModel model)
 		{
+			Debug.Log($"{model.Name} is Dead.");
 		}
 	}
 }

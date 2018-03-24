@@ -26,7 +26,7 @@ namespace CCG
 		{
 			if (_popEnemies == null) return;
 
-			var enemyMaster = _popEnemies.OrderBy(enemy => System.Guid.NewGuid()) as EnemyMaster;
+			EnemyMaster enemyMaster = _popEnemies[0];
 			resfunc.SafeCall(enemyMaster);
 		}
 	}

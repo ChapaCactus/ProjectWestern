@@ -6,16 +6,23 @@ using UnityEngine;
 
 namespace CCG
 {
+	[RequireComponent(typeof(EnemyView))]
 	public class EnemyController : CharacterController
 	{
 		public bool IsSleep { get; private set; } = false;
 
 		private EnemyModel _model;
+		private EnemyView _view;
 
 		private Action<EnemyModel> _onDead;
 
 		private static readonly string PrefabName = "Enemy";
 		private static readonly string PrefabDirPath = "Prefabs/Enemy";
+
+		private void Awake()
+		{
+			_view = GetComponent<EnemyView>();
+		}
 
 		public static void Create(Transform parent, Action<EnemyController> onCreate)
 		{
@@ -30,6 +37,8 @@ namespace CCG
 
 		public void Setup(EnemyMaster master, Action<EnemyModel> onDead)
 		{
+			_view.SetSprite(master.Sprites[0]);
+
 			_model = new EnemyModel(master);
 
 			_onDead = onDead;
@@ -47,6 +56,8 @@ namespace CCG
 
 		private void Damage(int power)
 		{
+			Debug.Log("Damaged: " + power);
+
 			_model.Health -= power;
 
 			if (_model.IsDead)
