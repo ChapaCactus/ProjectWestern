@@ -46,6 +46,8 @@ namespace CCG
 
 		private void OnTriggerEnter2D(Collider2D collision)
 		{
+			Debug.Log("Hit!");
+
 			if(collision.CompareTag("Bullet"))
 			{
 				var bullet = collision.GetComponent<BulletController>();

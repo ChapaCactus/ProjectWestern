@@ -13,7 +13,7 @@ namespace CCG
 		private int _power = 1;
 
 		[SerializeField]
-		private float _speed = 1.0f;
+		private float _speed = 0.6f;
 
 		public int Power => _power;
 
