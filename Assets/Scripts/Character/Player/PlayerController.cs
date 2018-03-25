@@ -35,9 +35,7 @@ namespace CCG
 
 			if(Input.GetButtonDown("Jump"))
 			{
-				var bullet = Instantiate(_bulletPrefab, transform).GetComponent<BulletController>();
-				bullet.transform.localPosition = Vector3.zero;
-				Shoot(bullet, Vector2.up);
+				CreateNewBullet(bullet => Shot(bullet, Vector2.up));
 			}
 		}
 
@@ -54,9 +52,15 @@ namespace CCG
 		{
 		}
 
-		public void Shoot(BulletController bullet, Vector2 shootDir)
+		public void Shot(BulletController bullet, Vector2 shootDir)
 		{
+			bullet.transform.position = transform.position;
 			bullet.Play(shootDir);
+		}
+
+		private void CreateNewBullet(Action<BulletController> onCreate)
+		{
+			BulletManager.I.CreateNewBullet(onCreate);
 		}
 	}
 }

@@ -14,6 +14,8 @@ namespace CCG
 		private void Awake()
 		{
 			FindSceneParent();
+
+			Prepare();
 		}
 
 		public Transform GetSceneParent(Transform parent)
@@ -28,6 +30,10 @@ namespace CCG
 			{
 				return parent;
 			}
+		}
+
+		protected virtual void Prepare()
+		{
 		}
 
 		private void FindSceneParent()

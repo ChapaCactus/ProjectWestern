@@ -14,6 +14,9 @@ namespace CCG
 		[SerializeField]
 		private Transform _enemiesParent;
 
+		[SerializeField]
+		private Transform _bulletParent;
+
 		private StageMaster _stageMaster;
 
 		public int Round { get; private set; } = 0;
@@ -37,16 +40,20 @@ namespace CCG
 		{
 			_stageMaster = master;
 
-			AddDispatchEvents();
-
 			ClearEnemies();
 
 			CreateNewPlayer();
 			CreateNewEnemy();
 		}
 
+		protected override void Prepare()
+		{
+			AddDispatchEvents();
+		}
+
 		private void AddDispatchEvents()
 		{
+			AddDispatchEvent<Action<Transform>>(BattleEvents.RequestGetBulletParent, RequestGetBulletParent);
 		}
 
 		private void CreateNewPlayer()
@@ -89,6 +96,11 @@ namespace CCG
 		private void OnDeadEnemy(EnemyModel model)
 		{
 			Debug.Log($"{model.Name} is Dead.");
+		}
+
+		private void RequestGetBulletParent(Action<Transform> resfunc)
+		{
+			resfunc.SafeCall(_bulletParent);
 		}
 	}
 }
