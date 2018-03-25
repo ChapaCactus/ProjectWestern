@@ -9,6 +9,8 @@ namespace CCG
 	[RequireComponent(typeof(EnemyView))]
 	public class EnemyController : CharacterController
 	{
+		public string Name => _model.Name;
+
 		public bool IsSleep { get; private set; } = false;
 
 		private EnemyModel _model;
