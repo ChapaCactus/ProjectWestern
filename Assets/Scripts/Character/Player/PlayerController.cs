@@ -8,6 +8,8 @@ namespace CCG
 {
 	public class PlayerController : CharacterController, IShoot
 	{
+		public CharacterDirection Direction { get; private set; } = new CharacterDirection();
+
 		[SerializeField]
 		private BulletController _bulletPrefab;
 
@@ -19,23 +21,28 @@ namespace CCG
 
 		private void Update()
 		{
-			var h = 0;
+			var x = 0;
 			if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
-				h = 1;
-			if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
-				h = -1;
+			{
+				x = 1;
+			} else if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
+				x = -1;
 
-			var v = 0;
+			var y = 0;
 			if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W))
-				v = 1;
-			if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S))
-				v = -1;
+			{
+				y = 1;
+			} else if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S))
+				y = -1;
 
-			Move(h * MoveBuff, v * MoveBuff);
+			var moveDir = new Vector2(x, y);
+			Direction.SetDirection(moveDir);
+
+			Move(Direction.Vector2 * MoveBuff);
 
 			if(Input.GetButtonDown("Jump"))
 			{
-				CreateNewBullet(bullet => Shot(bullet, Vector2.up));
+				CreateNewBullet(bullet => Shot(bullet, Direction.Vector2));
 			}
 		}
 
@@ -61,6 +68,10 @@ namespace CCG
 		private void CreateNewBullet(Action<BulletController> onCreate)
 		{
 			BulletManager.I.CreateNewBullet(onCreate);
+		}
+
+		private void GetDirection(int x, int y)
+		{
 		}
 	}
 }

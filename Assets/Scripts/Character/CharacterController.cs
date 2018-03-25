@@ -22,9 +22,9 @@ namespace CCG
 			Model = model;
 		}
 
-		protected void Move(float x, float y)
+		protected void Move(Vector2 moveDir)
 		{
-			Rigid2D.velocity = new Vector2(x, y);
+			Rigid2D.velocity = new Vector2(moveDir.x, moveDir.y);
 		}
 	}
 }
