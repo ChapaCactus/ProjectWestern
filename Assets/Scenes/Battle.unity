@@ -824,6 +824,7 @@ GameObject:
   m_Component:
   - component: {fileID: 987595832}
   - component: {fileID: 987595831}
+  - component: {fileID: 987595833}
   m_Layer: 0
   m_Name: Ground
   m_TagString: Untagged
@@ -892,6 +893,19 @@ Transform:
   m_Father: {fileID: 466459266}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &987595833
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 987595830}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 363cbff1d7d8148938d3008433293f60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _enemyBornPosGroup:
+    _bornPosList: []
 --- !u!1 &1242528850
 GameObject:
   m_ObjectHideFlags: 0
