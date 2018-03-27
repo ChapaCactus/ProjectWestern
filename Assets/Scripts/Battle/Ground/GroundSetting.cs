@@ -13,9 +13,9 @@ namespace CCG
 		[SerializeField]
 		private List<PopPoint> _popPoints = new List<PopPoint>();
 
-		public Vector3 GetRandomPos()
+		public Vector3 GetRandomPosition()
 		{
-			var point = _popPoints.OrderBy(p => Guid.NewGuid()) as PopPoint;
+			var point = _popPoints.Where(p => p.IsRunning).OrderBy(p => Guid.NewGuid()) as PopPoint;
 			return point.GetPosition();
 		}
 	}
