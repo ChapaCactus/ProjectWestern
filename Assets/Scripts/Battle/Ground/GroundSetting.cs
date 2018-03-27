@@ -13,6 +13,11 @@ namespace CCG
 		[SerializeField]
 		private List<PopPoint> _popPoints = new List<PopPoint>();
 
+		private void Awake()
+		{
+			Assert.IsNotNull(_popPoints);
+		}
+
 		public Vector3 GetRandomPosition()
 		{
 			var point = _popPoints.Where(p => p.IsRunning).OrderBy(p => Guid.NewGuid()) as PopPoint;
