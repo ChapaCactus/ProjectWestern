@@ -14,11 +14,15 @@ namespace CCG
 		private List<EnemyMaster> _popEnemies = new List<EnemyMaster>();
 
 		[SerializeField]
+		private GroundSetting _groundSettingPrefab;
+
+		[SerializeField]
 		private Sprite _backgroundSprite;
 
 		[SerializeField]
 		private Sprite _wallSprite;
 
+		public GroundSetting GroundSettingPrefab => _groundSettingPrefab;
 		public Sprite BackgroundSprite => _backgroundSprite;
 		public Sprite WallSprite => _wallSprite;
 
@@ -26,7 +30,8 @@ namespace CCG
 		{
 			if (_popEnemies == null) return;
 
-			EnemyMaster enemyMaster = _popEnemies[0];
+			var random = UnityEngine.Random.Range(0, _popEnemies.Count);
+			EnemyMaster enemyMaster = _popEnemies[random];
 			resfunc.SafeCall(enemyMaster);
 		}
 	}

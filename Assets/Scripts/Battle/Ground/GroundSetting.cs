@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -16,11 +15,13 @@ namespace CCG
 		private void Awake()
 		{
 			Assert.IsNotNull(_popPoints);
+			Assert.AreNotEqual(_popPoints.Count, 0);
 		}
 
 		public Vector3 GetRandomPosition()
 		{
-			var point = _popPoints.Where(p => p.IsRunning).OrderBy(p => Guid.NewGuid()) as PopPoint;
+			var random = Random.Range(0, _popPoints.Count);
+			var point = _popPoints[random];
 			return point.GetPosition();
 		}
 	}

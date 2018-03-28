@@ -13,5 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _popEnemies:
   - {fileID: 11400000, guid: f3a73e9e1d560444f95e3d076c713e92, type: 2}
+  _groundSettingPrefab: {fileID: 114155808469343550, guid: 233402776a0624e71983c49e3cc21604,
+    type: 2}
   _backgroundSprite: {fileID: 0}
   _wallSprite: {fileID: 0}

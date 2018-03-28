@@ -7,11 +7,13 @@ namespace CCG
 {
 	public class PopPoint : MonoBehaviour
 	{
-		public bool IsRunning { get; private set; } = false;
+		public bool IsRunning { get; private set; } = true;
 
 		private void Awake()
 		{
 			Reset();
+
+			Run();
 		}
 
 		public void Reset()
