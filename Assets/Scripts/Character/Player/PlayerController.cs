@@ -65,10 +65,10 @@ namespace CCG
 		{
 		}
 
-		public void Shot(BulletController bullet, Vector2 shootDir)
+		public void Shot(BulletController bullet, Vector2 moveDir)
 		{
-			bullet.transform.position = transform.position;
-			bullet.Play(shootDir);
+			var startPos = transform.position;
+			bullet.Move(startPos, moveDir);
 		}
 
 		private void CreateNewBullet(Action<BulletController> onCreate)

@@ -8,7 +8,7 @@ namespace CCG
 	public class BulletMaster : ScriptableObject
 	{
 		public int Power => _power;
-		public int Speed => _speed;
+		public int BaseSpeed => _baseSpeed;
 
 		public Sprite Sprite => _sprite;
 
@@ -16,7 +16,7 @@ namespace CCG
 		private int _power = 1;
 
 		[SerializeField]
-		private int _speed = 100;
+		private int _baseSpeed = 100;
 
 		[SerializeField]
 		private Sprite _sprite;
