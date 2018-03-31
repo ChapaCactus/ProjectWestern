@@ -9,13 +9,8 @@ namespace CCG
 {
 	public class BulletController : MonoBehaviour
 	{
-		[SerializeField]
-		private int _power = 1;
-
-		[SerializeField]
-		private float _speed = 0.6f;
-
-		public int Power => _power;
+		public int Power => _master.Power;
+		public int Speed => _master.Speed;
 
 		public Vector3 ShootDir { get; private set; } = Vector3.zero;
 		// Cached Transform
@@ -24,6 +19,14 @@ namespace CCG
 		public bool IsPlaying { get; private set; } = false;
 
 		public Vector3 MoveSpeed => ShootDir * (_speed * BaseSpeedBuff);
+
+		[SerializeField]
+		private int _power = 1;
+
+		[SerializeField]
+		private float _speed = 0.6f;
+
+		private BulletMaster _master;
 
 		private const float BaseSpeedBuff = 13.0f;
 
@@ -50,6 +53,11 @@ namespace CCG
 			var bullet = go.GetComponent<BulletController>();
 
 			onCreate.SafeCall(bullet);
+		}
+
+		public void SetMaster(BulletMaster master)
+		{
+			_master = master;
 		}
 
 		public void Play(Vector2 shootDir)
