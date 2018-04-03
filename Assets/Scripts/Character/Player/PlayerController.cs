@@ -73,7 +73,8 @@ namespace CCG
 
 		private void CreateNewBullet(Action<BulletController> onCreate)
 		{
-			BulletManager.I.CreateNewBullet(onCreate);
+			var bulletID = BulletID.Bullet001;
+			BulletManager.I.CreateBullet(bulletID, transform, onCreate);
 		}
 
 		private void GetDirection(int x, int y)

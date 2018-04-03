@@ -7,10 +7,13 @@ namespace CCG
 	[CreateAssetMenu(menuName = "CreateMaster/BulletMaster")]
 	public class BulletMaster : ScriptableObject
 	{
+		public BulletID ID => _id;
 		public int Power => _power;
 		public int BaseSpeed => _baseSpeed;
-
 		public Sprite Sprite => _sprite;
+
+		[SerializeField]
+		private BulletID _id = BulletID.None;
 
 		[SerializeField]
 		private int _power = 1;
