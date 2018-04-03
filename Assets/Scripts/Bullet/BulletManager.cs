@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.IO;
 using UnityEngine;
 
 namespace CCG
@@ -14,7 +15,7 @@ namespace CCG
 		private List<BulletMaster> _bulletMasters;
 		private EntityContainers<BulletID, BulletController> _pooledBullets;
 
-		private const string BulletMasterDirectoryPath = "Master/Bullet";
+		private const string MasterDirPath = "Resources/Master/Bullet";
 
 		private void Awake()
 		{
@@ -42,7 +43,7 @@ namespace CCG
 
 		private void Init()
 		{
-			_bulletMasters = new List<BulletMaster>();
+			_bulletMasters = CollectMasters();
 			_pooledBullets = new EntityContainers<BulletID, BulletController>();
 		}
 
@@ -53,17 +54,22 @@ namespace CCG
 			return _bulletMasters.FirstOrDefault(master => master.ID == id);
 		}
 
-		private List<BulletMaster> CollectBulletMaster()
-		{
-			return null;
-		}
-
 		private BulletController TryGetPooledBullet(EntityContainer<BulletController> container)
 		{
 			if (container == null) return null;
 			if (container.IsEmpty) return null;
 
 			return container.Pick();
+		}
+
+		private List<BulletMaster> CollectMasters()
+		{
+			var dir = new DirectoryInfo($"{Application.dataPath}/{MasterDirPath}");
+			FileInfo[] files = dir.GetFiles("*.asset");
+			var names = files.Select(file => file.Name.Replace(file.Extension, ""));
+			var masters = names.Select(name => Resources.Load($"Master/Bullet/{name}") as BulletMaster).ToList();
+
+			return masters;
 		}
 	}
 }

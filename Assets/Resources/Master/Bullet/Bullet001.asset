@@ -9,8 +9,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 485e2801db4294db6ac46a3e294eaaf1, type: 3}
-  m_Name: Common
+  m_Name: Bullet001
   m_EditorClassIdentifier: 
+  _id: 0
   _power: 1
-  _speed: 100
+  _baseSpeed: 100
   _sprite: {fileID: 21300000, guid: a359148c927524fe98d2b3759fa1f0db, type: 3}
