@@ -20,11 +20,15 @@ namespace CCG
 
 		public EntityContainer<T2> GetContainer(T1 key)
 		{
+			if (!_containers.ContainsKey(key)) return null;
+
 			return _containers[key];
 		}
 
 		public void CreateNewContainer(T1 key)
 		{
+			if (_containers.ContainsKey(key)) return;
+
 			var container = new EntityContainer<T2>();
 			_containers.Add(key, container);
 		}
