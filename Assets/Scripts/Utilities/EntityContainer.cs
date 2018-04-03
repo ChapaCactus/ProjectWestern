@@ -26,10 +26,9 @@ namespace CCG
 			Entities.Enqueue(arg);
 		}
 
-		public void Pick(Action<T> resFunc)
+		public T Pick()
 		{
-			T picked = Entities.Dequeue();
-			resFunc.SafeCall(picked);
+			return Entities.Dequeue();
 		}
 	}
 }
