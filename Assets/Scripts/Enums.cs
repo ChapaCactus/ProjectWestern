@@ -35,6 +35,7 @@
 	public enum GunID
 	{
 		None = -1,
+
 		Gun001 = 0,
 	}
 
@@ -42,5 +43,16 @@
 	{
 		None = -1,
 		OneWay = 0,
+	}
+
+	public enum BulletID
+	{
+		None = -1,
+
+		Bullet001,
+		Bullet002,
+		Bullet003,
+		Bullet004,
+		Bullet005,
 	}
 }
