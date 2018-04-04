@@ -8,11 +8,6 @@ namespace CCG
 	[CreateAssetMenu(menuName = "CreateMaster/GunMaster")]
 	public class GunMaster : ScriptableObject
 	{
-		public int Power => _power;
-		public int ShotSpeed => _shotSpeed;
-		public float ShotSpan => _shotSpan;
-		public float MinShotSpanTime => _minShotSpanTime;
-
 		[SerializeField]
 		private string _id;
 
@@ -35,13 +30,13 @@ namespace CCG
 		private int _oneshotBullets;
 
 		[SerializeField]
-		private List<GunPoint> _gunPoints;
-	}
+		private Sprite _thumbnail;
 
-	[Serializable]
-	public class GunPoint
-	{
-		[SerializeField]
-		private Vector2 _shotDir;
+		public int Power => _power;
+		public int ShotSpeed => _shotSpeed;
+		public float ShotSpan => _shotSpan;
+		public float MinShotSpanTime => _minShotSpanTime;
+
+		public Sprite Thumbnail => _thumbnail;
 	}
 }
