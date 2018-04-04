@@ -22,14 +22,14 @@ namespace CCG
 			Init();
 		}
 
-		public void CreateBullet(BulletID id, Transform parent,  Action<BulletController> onCreate)
+		public void CreateBullet(BulletID id, Transform parent, Action<BulletController> onCreate)
 		{
 			BulletMaster master = SearchBulletMaster(id);
 
 			EntityContainer<BulletController> container = _pooledBullets.GetContainer(id);
 			BulletController bullet = TryGetPooledBullet(container);
 
-			if(bullet == null)
+			if (bullet == null)
 			{
 				var go = Instantiate(_bulletPrefab, parent);
 				bullet = go.GetComponent<BulletController>();
@@ -39,6 +39,11 @@ namespace CCG
 			container.Set(bullet);
 
 			onCreate.SafeCall(bullet);
+		}
+
+		public void CreateBullet(BulletMaster master, Transform parent, Action<BulletController> onCreate)
+		{
+			CreateBullet(master.ID, parent, onCreate);
 		}
 
 		private void Init()
