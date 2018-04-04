@@ -6,24 +6,31 @@ using UnityEngine.Assertions;
 
 namespace CCG
 {
-	public class GunController : MonoBehaviour
+	public class Gun
 	{
+		#region Variables
 		private GunMaster _gunMaster;
 		private BulletMaster _bulletMaster;
 		private float _shotSpanTimer = 0;
+		#endregion
 
+		#region Properties
 		public int Power => _gunMaster.Power;
 		public int ShotSpeed => _gunMaster.ShotSpeed;
 		public float ShotSpan => _gunMaster.ShotSpan;
+		#endregion
 
+		#region UnityCallbacks
 		private void Update()
 		{
-			if(_shotSpanTimer > 0)
+			if (_shotSpanTimer > 0)
 			{
 				_shotSpanTimer -= Time.deltaTime;
 			}
 		}
+		#endregion
 
+		#region PublicMethods
 		public void Setup(GunMaster master)
 		{
 			Assert.IsNotNull(master);
@@ -37,7 +44,9 @@ namespace CCG
 
 			SetTimer(ShotSpan);
 		}
+		#endregion
 
+		#region PrivateMethods
 		private void SetBullet(BulletMaster master)
 		{
 			Assert.IsNotNull(master);
@@ -49,10 +58,11 @@ namespace CCG
 		{
 			_shotSpanTimer = time;
 
-			if(_shotSpanTimer <= _gunMaster.MinShotSpanTime)
+			if (_shotSpanTimer <= _gunMaster.MinShotSpanTime)
 			{
 				_shotSpanTimer = _gunMaster.MinShotSpanTime;
 			}
 		}
+		#endregion
 	}
 }
