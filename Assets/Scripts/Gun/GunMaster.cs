@@ -32,11 +32,13 @@ namespace CCG
 		[SerializeField]
 		private Sprite _thumbnail;
 
+		#region Properties
 		public int Power => _power;
 		public int ShotSpeed => _shotSpeed;
 		public float ShotSpan => _shotSpan;
 		public float MinShotSpanTime => _minShotSpanTime;
 
 		public Sprite Thumbnail => _thumbnail;
+		#endregion
 	}
 }
