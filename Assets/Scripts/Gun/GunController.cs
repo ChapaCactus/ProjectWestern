@@ -8,36 +8,51 @@ namespace CCG
 {
 	public class GunController : MonoBehaviour
 	{
-		public BulletController Bullet { get; private set; }
+		private GunMaster _gunMaster;
+		private BulletMaster _bulletMaster;
+		private float _shotSpanTimer = 0;
 
-		public GunID ID => _model.ID;
-		public GunShootType ShootType => _model.ShootType;
-
-		private GunModel _model { get; set; }
-
-		private float _shotInterval;
-		private bool CanShot => _shotInterval <= 0;
+		public int Power => _gunMaster.Power;
+		public int ShotSpeed => _gunMaster.ShotSpeed;
+		public float ShotSpan => _gunMaster.ShotSpan;
 
 		private void Update()
 		{
-			
+			if(_shotSpanTimer > 0)
+			{
+				_shotSpanTimer -= Time.deltaTime;
+			}
 		}
 
-		public void Setup(GunModel model)
+		public void Setup(GunMaster master)
 		{
-			_model = model;
+			Assert.IsNotNull(master);
+
+			_gunMaster = master;
 		}
 
 		public void Shoot()
 		{
-			Assert.IsNotNull(Bullet);
+			if (_bulletMaster == null) return;
 
-			if (Bullet == null) return;
+			SetTimer(ShotSpan);
 		}
 
-		private void SetBullet(BulletController bullet)
+		private void SetBullet(BulletMaster master)
 		{
-			Bullet = bullet;
+			Assert.IsNotNull(master);
+
+			_bulletMaster = master;
+		}
+
+		private void SetTimer(float time)
+		{
+			_shotSpanTimer = time;
+
+			if(_shotSpanTimer <= _gunMaster.MinShotSpanTime)
+			{
+				_shotSpanTimer = _gunMaster.MinShotSpanTime;
+			}
 		}
 	}
 }
