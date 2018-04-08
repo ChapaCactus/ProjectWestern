@@ -45,6 +45,9 @@ namespace CCG
 
 			CreateNewPlayer();
 			CreateNewEnemy();
+			CreateNewEnemy();
+			CreateNewEnemy();
+			CreateNewEnemy();
 		}
 
 		protected override void Prepare()

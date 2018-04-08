@@ -14,5 +14,6 @@ MonoBehaviour:
   _name: "\u30B9\u30E9\u30A4\u30E0"
   _sprites:
   - {fileID: 21300000, guid: 2de2e8e5878cd4b3a85af64ed4d9c3ce, type: 3}
+  _characterAnimation: {fileID: 0}
   _health: 1
-  _moveSpeed: 100
+  _moveSpeed: 200

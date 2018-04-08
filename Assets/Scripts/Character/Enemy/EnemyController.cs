@@ -25,7 +25,7 @@ namespace CCG
 			_view = GetComponent<EnemyView>();
 		}
 
-		private void Update()
+		private void LateUpdate()
 		{
 			if(_target != null)
 			{
