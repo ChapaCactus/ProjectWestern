@@ -14,8 +14,6 @@ namespace CCG
 
 		public ItemID DropItemID { get; private set; } = ItemID.None;
 
-		private Action _onDead;
-
 		public CharacterModel(bool isPlayer, int maxHealth)
 		{
 			IsPlayer = isPlayer;
@@ -24,19 +22,14 @@ namespace CCG
 			Health = maxHealth;
 		}
 
-		public void Damage(int point, Action<int> takenDamage)
+		public void Damage(int point, Action onDead)
 		{
 			Health -= point;
 
 			if (IsDead)
 			{
-				OnDead();
+				onDead.SafeCall();
 			}
-		}
-
-		private void OnDead()
-		{
-			_onDead();
 		}
 	}
 }

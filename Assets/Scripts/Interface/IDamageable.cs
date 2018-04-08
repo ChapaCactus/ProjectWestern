@@ -1,4 +1,6 @@
-﻿namespace CCG
+﻿using System;
+
+namespace CCG
 {
 	public interface IDamageable
 	{
