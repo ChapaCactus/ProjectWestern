@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace CCG
 {
-	public class CharacterController : MonoBehaviour
+	public class CharacterController : MonoBehaviour, IDamageable, IKillable
 	{
 		public CharacterModel Model { get; private set; }
 
@@ -20,6 +20,14 @@ namespace CCG
 		public void Setup(CharacterModel model)
 		{
 			Model = model;
+		}
+
+		public void Damage(int taken)
+		{
+		}
+
+		public void Kill()
+		{
 		}
 
 		protected void Move(Vector2 moveDir)
