@@ -9,21 +9,28 @@ namespace CCG
 	[RequireComponent(typeof(EnemyView))]
 	public class EnemyController : CharacterController
 	{
-		public string Name => _model.Name;
-
-		public bool IsSleep { get; private set; } = false;
-
-		private EnemyModel _model;
-		private EnemyView _view;
-
-		private Action<EnemyModel> _onDead;
-
 		private static readonly string PrefabName = "Enemy";
 		private static readonly string PrefabDirPath = "Prefabs/Enemy";
+
+		public string Name => _model.Name;
+		public bool IsSleep { get; private set; } = false;
+
+		private EnemyModel _model { get; set; }
+		private EnemyView _view { get; set; }
+
+		private PlayerController _target { get; set; }
 
 		private void Awake()
 		{
 			_view = GetComponent<EnemyView>();
+		}
+
+		private void Update()
+		{
+			if(_target != null)
+			{
+				Move(_target.transform.position);
+			}
 		}
 
 		public static void Create(Transform parent, Action<EnemyController> onCreate)
@@ -37,13 +44,22 @@ namespace CCG
 			onCreate.SafeCall(enemy);
 		}
 
-		public void Setup(EnemyMaster master, Action<EnemyModel> onDead)
+		public void Setup(EnemyMaster master)
 		{
 			_view.SetSprite(master.Sprites[0]);
 
 			_model = new EnemyModel(master);
+		}
 
-			_onDead = onDead;
+		public void SetTarget(PlayerController player)
+		{
+			_target = player;
+		}
+
+		private void Move(Vector3 targetPos)
+		{
+			var dir = (targetPos - transform.position).normalized;
+			transform.position += dir * (_model.MoveSpeed / 100);
 		}
 
 		private void OnTriggerEnter2D(Collider2D collision)
@@ -54,24 +70,6 @@ namespace CCG
 				var power = bullet.Power;
 				Damage(power);
 			}
-		}
-
-		private void Damage(int power)
-		{
-			_model.Health -= power;
-
-			if (_model.IsDead)
-			{
-				Dead();
-			}
-		}
-
-		private void Dead()
-		{
-			IsSleep = true;
-			_onDead.SafeCall(_model);
-
-			Destroy(gameObject);
 		}
 	}
 }

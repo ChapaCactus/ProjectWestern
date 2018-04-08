@@ -12,10 +12,12 @@ namespace CCG
 		{
 			Name = master.Name;
 			Health = master.Health;
+			MoveSpeed = master.MoveSpeed;
 		}
 
 		public string Name { get; set; }
 		public int Health { get; set; }
+		public float MoveSpeed { get; set; } 
 
 		public bool IsDead => Health <= 0;
 

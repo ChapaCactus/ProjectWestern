@@ -89,7 +89,8 @@ namespace CCG
 		{
 			var startPos = _currentGround.GetRandomPosition();
 			enemy.transform.localPosition = startPos;
-			enemy.Setup(master, OnDeadEnemy);
+			enemy.Setup(master);
+			enemy.SetTarget(Player);
 		}
 
 		private UserData GetUserData()
