@@ -77,8 +77,12 @@ namespace CCG
 			BulletManager.I.CreateBullet(bulletID, transform, onCreate);
 		}
 
-		private void GetDirection(int x, int y)
+		private void OnTriggerEnter2D(Collider2D collision)
 		{
+			if(collision.CompareTag("Enemy"))
+			{
+				Kill();
+			}
 		}
 	}
 }
