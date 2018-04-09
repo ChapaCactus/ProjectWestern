@@ -50,6 +50,17 @@ namespace CCG
 			CreateNewEnemy();
 		}
 
+		public void Restart()
+		{
+			Player.Kill();
+			Enemies.ForEach(enemy => enemy.Kill());
+
+			Player = null;
+			Enemies = null;
+
+			Setup(_stageMaster);
+		}
+
 		protected override void Prepare()
 		{
 			AddDispatchEvents();
@@ -84,6 +95,7 @@ namespace CCG
 		{
 			var userData = GetUserData();
 			player.Setup(userData);
+			player.SetCallRestart(Restart);
 
 			Player = player;
 		}
@@ -94,6 +106,8 @@ namespace CCG
 			enemy.transform.localPosition = startPos;
 			enemy.Setup(master);
 			enemy.SetTarget(Player);
+
+			Enemies.Add(enemy);
 		}
 
 		private UserData GetUserData()

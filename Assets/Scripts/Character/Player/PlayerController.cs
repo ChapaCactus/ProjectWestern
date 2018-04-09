@@ -13,6 +13,8 @@ namespace CCG
 		[SerializeField]
 		private BulletController _bulletPrefab;
 
+		private Action _callRestart;
+
 		private PlayerModel _model { get; set; }
 
 		private readonly float MoveBuff = 100f;
@@ -65,6 +67,11 @@ namespace CCG
 		{
 		}
 
+		public void SetCallRestart(Action callRestart)
+		{
+			_callRestart = callRestart;
+		}
+
 		public void Shot(BulletController bullet, Vector2 moveDir)
 		{
 			var startPos = transform.position;
@@ -81,7 +88,7 @@ namespace CCG
 		{
 			if (collision.gameObject.CompareTag("Enemy"))
 			{
-				Kill();
+				_callRestart.SafeCall();
 			}
 		}
 	}
