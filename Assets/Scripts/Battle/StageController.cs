@@ -8,12 +8,6 @@ namespace CCG
 {
 	public class StageController : SceneContentBase
 	{
-		public int Round { get; private set; } = 0;
-		public RoundMaster CurrentRoundData => _stageMaster.Rounds[Round];
-
-		public PlayerController Player { get; private set; }
-		public List<EnemyController> Enemies { get; private set; }
-
 		[SerializeField]
 		private Transform _playerParent;
 
@@ -23,6 +17,16 @@ namespace CCG
 		private StageMaster _stageMaster;
 
 		private GroundSetting _currentGround;
+
+		private Coroutine _bornEnemyLoopCoroutine;
+
+		public int Round { get; private set; } = 0;
+		public RoundMaster CurrentRoundData => _stageMaster.Rounds[Round];
+
+		public PlayerController Player { get; private set; }
+		public List<EnemyController> Enemies { get; private set; }
+
+		public bool IsRunning { get; private set; } = false;
 
 		private static readonly string PrefabPath = "Prefabs/Stage/Stage";
 
@@ -41,6 +45,13 @@ namespace CCG
 
 			CreateGround();
 
+			StartStage();
+		}
+
+		public void StartStage()
+		{
+			IsRunning = true;
+
 			ClearEnemies();
 
 			CreateNewPlayer();
@@ -48,6 +59,12 @@ namespace CCG
 			CreateNewEnemy();
 			CreateNewEnemy();
 			CreateNewEnemy();
+
+			if(_bornEnemyLoopCoroutine != null)
+			{
+				StopCoroutine(_bornEnemyLoopCoroutine);
+			}
+			_bornEnemyLoopCoroutine = StartCoroutine(BornEnemyLoop());
 		}
 
 		public void Restart()
@@ -70,8 +87,24 @@ namespace CCG
 		{
 		}
 
+		private IEnumerator BornEnemyLoop()
+		{
+			while(IsRunning)
+			{
+				var random = UnityEngine.Random.Range(1.0f, 5.0f);
+				var wait = new WaitForSeconds(random);
+				yield return wait;
+
+				CreateNewEnemy();
+			}
+
+			yield break;
+		}
+
 		private void CreateGround()
 		{
+			if (_currentGround != null) Destroy(_currentGround.gameObject);
+
 			var prefab = CurrentRoundData.GroundSettingPrefab;
 			var go = Instantiate(prefab, transform);
 
