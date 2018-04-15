@@ -23,28 +23,11 @@ namespace CCG
 
 		private void Update()
 		{
-			var x = 0;
-			if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
-			{
-				x = 1;
-			}
-			else if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
-			{
-				x = -1;
-			}
+            var h = Input.GetAxisRaw("Horizontal");
+            var v = Input.GetAxisRaw("Vertical");
 
-			var y = 0;
-			if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W))
-			{
-				y = 1;
-			}
-			else if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S))
-			{
-				y = -1;
-			}
-
-			var moveDir = new Vector2(x, y);
-			Direction.SetDirection(moveDir);
+			var movement = new Vector2(h, v);
+			Direction.SetDirection(movement);
 
 			Move(Direction.Vector2 * MoveBuff);
 
