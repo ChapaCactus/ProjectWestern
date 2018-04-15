@@ -6,10 +6,14 @@ namespace CCG
 {
 	public class CharacterController : MonoBehaviour, IDamageable, IKillable
 	{
+        public CharacterDirection Direction { get; private set; } = new CharacterDirection();
+
 		public Transform Transform { get; private set; }
 		public Rigidbody2D Rigid2D { get; private set; }
 
 		private CharacterModel _model { get; set; }
+
+        private readonly float MoveBuff = 100f;
 
 		private void Awake()
 		{
@@ -32,9 +36,10 @@ namespace CCG
 			Destroy(gameObject);
 		}
 
-		protected void Move(Vector2 moveDir)
+		protected void Move(Vector2 movement)
 		{
-			Rigid2D.velocity = new Vector2(moveDir.x, moveDir.y);
+            Rigid2D.velocity = new Vector2(movement.x, movement.y) * MoveBuff;
+            Direction.SetDirection(movement);
 		}
 	}
 }

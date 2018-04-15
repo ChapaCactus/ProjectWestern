@@ -8,8 +8,6 @@ namespace CCG
 {
 	public class PlayerController : CharacterController, IShoot
 	{
-		public CharacterDirection Direction { get; private set; } = new CharacterDirection();
-
 		[SerializeField]
 		private BulletController _bulletPrefab;
 
@@ -17,19 +15,14 @@ namespace CCG
 
 		private PlayerModel _model { get; set; }
 
-		private readonly float MoveBuff = 100f;
-
 		private static readonly string PrefabPath = "Prefabs/Player/Player";
 
 		private void Update()
 		{
             var h = Input.GetAxisRaw("Horizontal");
             var v = Input.GetAxisRaw("Vertical");
-
 			var movement = new Vector2(h, v);
-			Direction.SetDirection(movement);
-
-			Move(Direction.Vector2 * MoveBuff);
+            Move(movement);
 
 			if(Input.GetButtonDown("Jump"))
 			{
