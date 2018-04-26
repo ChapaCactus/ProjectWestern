@@ -5,10 +5,10 @@ using UnityEngine;
 
 namespace CCG
 {
-	public class CharacterView : MonoBehaviour
-	{
-		public void PlayDamageEffect()
-		{
-		}
-	}
+    public class CharacterView : MonoBehaviour
+    {
+        public void PlayDamageEffect()
+        {
+        }
+    }
 }

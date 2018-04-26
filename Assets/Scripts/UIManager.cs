@@ -7,24 +7,24 @@ using UnityEngine.Assertions;
 
 namespace CCG
 {
-	public class UIManager : SingletonMonoBehaviour<UIManager>
-	{
-		[SerializeField]
-		private Text _totalCoinText;
+    public class UIManager : SingletonMonoBehaviour<UIManager>
+    {
+        [SerializeField]
+        private Text _totalCoinText;
 
-		private void Awake()
-		{
-			Assert.IsNotNull(_totalCoinText);
-		}
+        private void Awake()
+        {
+            Assert.IsNotNull(_totalCoinText);
+        }
 
-		public void Init()
-		{
-			Debug.Log("Start Initializing UI Manager.");
-		}
+        public void Init()
+        {
+            Debug.Log("Start Initializing UI Manager.");
+        }
 
-		public void UpdateTotalCoinText(string text)
-		{
-			_totalCoinText.text = text;
-		}
-	}
+        public void UpdateTotalCoinText(string text)
+        {
+            _totalCoinText.text = text;
+        }
+    }
 }

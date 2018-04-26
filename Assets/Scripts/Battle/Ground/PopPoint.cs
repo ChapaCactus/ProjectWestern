@@ -5,40 +5,40 @@ using UnityEngine;
 
 namespace CCG
 {
-	public class PopPoint : MonoBehaviour
-	{
-		public bool IsRunning { get; private set; } = true;
+    public class PopPoint : MonoBehaviour
+    {
+        public bool IsRunning { get; private set; } = true;
 
-		private void Awake()
-		{
-			Reset();
+        private void Awake()
+        {
+            Reset();
 
-			Run();
-		}
+            Run();
+        }
 
-		public void Reset()
-		{
-			Stop();
-		}
+        public void Reset()
+        {
+            Stop();
+        }
 
-		public void Run()
-		{
-			SetIsRunning(true);
-		}
+        public void Run()
+        {
+            SetIsRunning(true);
+        }
 
-		public void Stop()
-		{
-			SetIsRunning(false);
-		}
+        public void Stop()
+        {
+            SetIsRunning(false);
+        }
 
-		public Vector2 GetPosition()
-		{
-			return transform.localPosition;
-		}
+        public Vector2 GetPosition()
+        {
+            return transform.localPosition;
+        }
 
-		private void SetIsRunning(bool isRunning)
-		{
-			IsRunning = isRunning;
-		}
-	}
+        private void SetIsRunning(bool isRunning)
+        {
+            IsRunning = isRunning;
+        }
+    }
 }

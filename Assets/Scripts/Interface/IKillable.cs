@@ -1,7 +1,7 @@
 ﻿namespace CCG
 {
-	public interface IKillable
-	{
-		void Kill();
-	}
+    public interface IKillable
+    {
+        void Kill();
+    }
 }

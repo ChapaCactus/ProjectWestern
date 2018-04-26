@@ -4,33 +4,33 @@ using UnityEngine;
 
 namespace CCG
 {
-	public class EntityContainers<T1, T2>
-	{
-		public EntityContainers()
-		{
-			Init();
-		}
+    public class EntityContainers<T1, T2>
+    {
+        public EntityContainers()
+        {
+            Init();
+        }
 
-		private Dictionary<T1, EntityContainer<T2>> _containers { get; set; }
+        private Dictionary<T1, EntityContainer<T2>> _containers { get; set; }
 
-		public void Init()
-		{
-			_containers = new Dictionary<T1, EntityContainer<T2>>();
-		}
+        public void Init()
+        {
+            _containers = new Dictionary<T1, EntityContainer<T2>>();
+        }
 
-		public EntityContainer<T2> GetContainer(T1 key)
-		{
-			if (!_containers.ContainsKey(key)) return null;
+        public EntityContainer<T2> GetContainer(T1 key)
+        {
+            if (!_containers.ContainsKey(key)) return null;
 
-			return _containers[key];
-		}
+            return _containers[key];
+        }
 
-		public void CreateNewContainer(T1 key)
-		{
-			if (_containers.ContainsKey(key)) return;
+        public void CreateNewContainer(T1 key)
+        {
+            if (_containers.ContainsKey(key)) return;
 
-			var container = new EntityContainer<T2>();
-			_containers.Add(key, container);
-		}
-	}
+            var container = new EntityContainer<T2>();
+            _containers.Add(key, container);
+        }
+    }
 }

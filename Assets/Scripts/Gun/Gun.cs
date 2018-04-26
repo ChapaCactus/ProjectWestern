@@ -6,63 +6,53 @@ using UnityEngine.Assertions;
 
 namespace CCG
 {
-	public class Gun
-	{
-		#region Variables
-		private GunMaster _gunMaster;
-		private BulletMaster _bulletMaster;
-		private float _shotSpanTimer = 0;
-		#endregion
+    public class Gun
+    {
+        private GunMaster _gunMaster;
+        private BulletMaster _bulletMaster;
+        private float _shotSpanTimer = 0;
 
-		#region Properties
-		public int Power => _gunMaster.Power;
-		public int ShotSpeed => _gunMaster.ShotSpeed;
-		public float ShotSpan => _gunMaster.ShotSpan;
-		#endregion
+        public int Power => _gunMaster.Power;
+        public int ShotSpeed => _gunMaster.ShotSpeed;
+        public float ShotSpan => _gunMaster.ShotSpan;
 
-		#region UnityCallbacks
-		private void Update()
-		{
-			if (_shotSpanTimer > 0)
-			{
-				_shotSpanTimer -= Time.deltaTime;
-			}
-		}
-		#endregion
+        private void Update()
+        {
+            if (_shotSpanTimer > 0)
+            {
+                _shotSpanTimer -= Time.deltaTime;
+            }
+        }
 
-		#region PublicMethods
-		public void Setup(GunMaster master)
-		{
-			Assert.IsNotNull(master);
+        public void Setup(GunMaster master)
+        {
+            Assert.IsNotNull(master);
 
-			_gunMaster = master;
-		}
+            _gunMaster = master;
+        }
 
-		public void Shoot()
-		{
-			if (_bulletMaster == null) return;
+        public void Shoot()
+        {
+            if (_bulletMaster == null) return;
 
-			SetTimer(ShotSpan);
-		}
-		#endregion
+            SetTimer(ShotSpan);
+        }
 
-		#region PrivateMethods
-		private void SetBullet(BulletMaster master)
-		{
-			Assert.IsNotNull(master);
+        private void SetBullet(BulletMaster master)
+        {
+            Assert.IsNotNull(master);
 
-			_bulletMaster = master;
-		}
+            _bulletMaster = master;
+        }
 
-		private void SetTimer(float time)
-		{
-			_shotSpanTimer = time;
+        private void SetTimer(float time)
+        {
+            _shotSpanTimer = time;
 
-			if (_shotSpanTimer <= _gunMaster.MinShotSpanTime)
-			{
-				_shotSpanTimer = _gunMaster.MinShotSpanTime;
-			}
-		}
-		#endregion
-	}
+            if (_shotSpanTimer <= _gunMaster.MinShotSpanTime)
+            {
+                _shotSpanTimer = _gunMaster.MinShotSpanTime;
+            }
+        }
+    }
 }

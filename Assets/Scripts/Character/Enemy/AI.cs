@@ -5,8 +5,8 @@ using UnityEngine;
 
 namespace CCG
 {
-	public abstract class AI : ScriptableObject
-	{
-		public abstract void NextMove();
-	}
+    public abstract class AI : ScriptableObject
+    {
+        public abstract void NextMove();
+    }
 }

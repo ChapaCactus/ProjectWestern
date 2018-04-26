@@ -6,20 +6,20 @@ using UnityEngine;
 
 namespace CCG
 {
-	public abstract class RoundTargetBase : ScriptableObject
-	{
-		private Action _onClear;
+    public abstract class RoundTargetBase : ScriptableObject
+    {
+        private Action _onClear;
 
-		public void SetClearCallback(Action onClear)
-		{
-			_onClear = onClear;
-		}
+        public void SetClearCallback(Action onClear)
+        {
+            _onClear = onClear;
+        }
 
-		protected abstract void CheckClear();
+        protected abstract void CheckClear();
 
-		protected void OnClear()
-		{
-			_onClear.SafeCall();
-		}
-	}
+        protected void OnClear()
+        {
+            _onClear.SafeCall();
+        }
+    }
 }

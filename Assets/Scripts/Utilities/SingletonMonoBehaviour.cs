@@ -2,23 +2,23 @@
 
 public class SingletonMonoBehaviour<T> : MonoBehaviour where T : MonoBehaviour
 {
-	private static T instance;
-	public static T I
-	{
-		get
-		{
-			if (instance == null)
-			{
-				instance = (T)FindObjectOfType(typeof(T));
+    private static T instance;
+    public static T I
+    {
+        get
+        {
+            if (instance == null)
+            {
+                instance = (T)FindObjectOfType(typeof(T));
 
-				if (instance == null)
-				{
-					Debug.LogError(typeof(T) + "is nothing");
-				}
-			}
+                if (instance == null)
+                {
+                    Debug.LogError(typeof(T) + "is nothing");
+                }
+            }
 
-			return instance;
-		}
-	}
+            return instance;
+        }
+    }
 
 }

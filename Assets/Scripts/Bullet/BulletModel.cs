@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace CCG
 {
-	public class BulletModel : MonoBehaviour
-	{
-	}
+    public class BulletModel : MonoBehaviour
+    {
+    }
 }

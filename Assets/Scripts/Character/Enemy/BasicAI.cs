@@ -5,11 +5,11 @@ using UnityEngine;
 
 namespace CCG
 {
-	[CreateAssetMenu]
-	public class BasicAI : AI
-	{
-		public override void NextMove()
-		{
-		}
-	}
+    [CreateAssetMenu]
+    public class BasicAI : AI
+    {
+        public override void NextMove()
+        {
+        }
+    }
 }

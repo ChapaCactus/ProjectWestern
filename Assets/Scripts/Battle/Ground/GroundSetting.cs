@@ -7,22 +7,22 @@ using UnityEngine.Assertions;
 
 namespace CCG
 {
-	public class GroundSetting : MonoBehaviour
-	{
-		[SerializeField]
-		private List<PopPoint> _popPoints = new List<PopPoint>();
+    public class GroundSetting : MonoBehaviour
+    {
+        [SerializeField]
+        private List<PopPoint> _popPoints = new List<PopPoint>();
 
-		private void Awake()
-		{
-			Assert.IsNotNull(_popPoints);
-			Assert.AreNotEqual(_popPoints.Count, 0);
-		}
+        private void Awake()
+        {
+            Assert.IsNotNull(_popPoints);
+            Assert.AreNotEqual(_popPoints.Count, 0);
+        }
 
-		public Vector3 GetRandomPosition()
-		{
-			var random = Random.Range(0, _popPoints.Count);
-			var point = _popPoints[random];
-			return point.GetPosition();
-		}
-	}
+        public Vector3 GetRandomPosition()
+        {
+            var random = Random.Range(0, _popPoints.Count);
+            var point = _popPoints[random];
+            return point.GetPosition();
+        }
+    }
 }

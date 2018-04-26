@@ -5,30 +5,30 @@ using UnityEngine;
 
 namespace CCG
 {
-	public class EntityContainer<T>
-	{
-		public EntityContainer()
-		{
-			Init();
-		}
+    public class EntityContainer<T>
+    {
+        public EntityContainer()
+        {
+            Init();
+        }
 
-		public Queue<T> Entities { get; private set; }
+        public Queue<T> Entities { get; private set; }
 
-		public bool IsEmpty => (Entities.Count == 0);
+        public bool IsEmpty => (Entities.Count == 0);
 
-		public void Init()
-		{
-			Entities = new Queue<T>();
-		}
+        public void Init()
+        {
+            Entities = new Queue<T>();
+        }
 
-		public void Set(T arg)
-		{
-			Entities.Enqueue(arg);
-		}
+        public void Set(T arg)
+        {
+            Entities.Enqueue(arg);
+        }
 
-		public T Pick()
-		{
-			return Entities.Dequeue();
-		}
-	}
+        public T Pick()
+        {
+            return Entities.Dequeue();
+        }
+    }
 }

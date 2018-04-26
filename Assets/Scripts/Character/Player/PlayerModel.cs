@@ -5,10 +5,10 @@ using UnityEngine;
 
 namespace CCG
 {
-	public class PlayerModel
-	{
-		public int Health { get; set; }
+    public class PlayerModel
+    {
+        public int Health { get; set; }
 
-		public bool IsDead => (Health <= 0);
-	}
+        public bool IsDead => (Health <= 0);
+    }
 }

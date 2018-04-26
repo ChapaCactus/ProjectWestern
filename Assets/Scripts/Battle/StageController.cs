@@ -6,158 +6,159 @@ using UnityEngine;
 
 namespace CCG
 {
-	public class StageController : SceneContentBase
-	{
-		[SerializeField]
-		private Transform _playerParent;
+    public class StageController : SceneContentBase
+    {
+        [SerializeField]
+        private Transform _playerParent;
 
-		[SerializeField]
-		private Transform _enemiesParent;
+        [SerializeField]
+        private Transform _enemiesParent;
 
-		private StageMaster _stageMaster;
+        private StageMaster _stageMaster;
 
-		private GroundSetting _currentGround;
+        private GroundSetting _currentGround;
 
-		private Coroutine _bornEnemyLoopCoroutine;
+        private Coroutine _bornEnemyLoopCoroutine;
 
-		public int Round { get; private set; } = 0;
-		public RoundMaster CurrentRoundData => _stageMaster.Rounds[Round];
+        public int Round { get; private set; } = 0;
+        public RoundMaster CurrentRoundData => _stageMaster.Rounds[Round];
 
-		public PlayerController Player { get; private set; }
-		public List<EnemyController> Enemies { get; private set; }
+        public PlayerController Player { get; private set; }
+        public List<EnemyController> Enemies { get; private set; }
 
-		public bool IsRunning { get; private set; } = false;
+        public bool IsRunning { get; private set; } = false;
 
-		private static readonly string PrefabPath = "Prefabs/Stage/Stage";
+        private static readonly string PrefabPath = "Prefabs/Stage/Stage";
 
-		public static void Create(Transform parent, Action<StageController> onCreate)
-		{
-			var prefab = Resources.Load(PrefabPath) as GameObject;
-			var go = Instantiate(prefab, parent);
+        public static void Create(Transform parent, Action<StageController> onCreate)
+        {
+            var prefab = Resources.Load(PrefabPath) as GameObject;
+            var go = Instantiate(prefab, parent);
 
-			var controller = go.GetComponent<StageController>();
-			onCreate.SafeCall(controller);
-		}
+            var controller = go.GetComponent<StageController>();
+            onCreate.SafeCall(controller);
+        }
 
-		public void Setup(StageMaster master)
-		{
-			_stageMaster = master;
+        public void Setup(StageMaster master)
+        {
+            _stageMaster = master;
 
-			CreateGround();
+            CreateGround();
 
-			StartStage();
-		}
+            StartStage();
+        }
 
-		public void StartStage()
-		{
-			IsRunning = true;
+        public void StartStage()
+        {
+            IsRunning = true;
 
-			ClearEnemies();
+            ClearEnemies();
 
-			CreateNewPlayer();
-			CreateNewEnemy();
-			CreateNewEnemy();
-			CreateNewEnemy();
-			CreateNewEnemy();
+            CreateNewPlayer();
+            CreateNewEnemy();
+            CreateNewEnemy();
+            CreateNewEnemy();
+            CreateNewEnemy();
 
-			if(_bornEnemyLoopCoroutine != null)
-			{
-				StopCoroutine(_bornEnemyLoopCoroutine);
-			}
-			_bornEnemyLoopCoroutine = StartCoroutine(BornEnemyLoop());
-		}
+            if (_bornEnemyLoopCoroutine != null)
+            {
+                StopCoroutine(_bornEnemyLoopCoroutine);
+            }
+            _bornEnemyLoopCoroutine = StartCoroutine(BornEnemyLoop());
+        }
 
-		public void Restart()
-		{
-			Player.Kill();
-			Enemies.ForEach(enemy => enemy.Kill());
+        public void Restart()
+        {
+            Player.Kill();
+            Enemies.ForEach(enemy => enemy.Kill());
 
-			Player = null;
-			Enemies = null;
+            Player = null;
+            Enemies = null;
 
-			Setup(_stageMaster);
-		}
+            Setup(_stageMaster);
+        }
 
-		protected override void Prepare()
-		{
-			AddDispatchEvents();
-		}
+        protected override void Prepare()
+        {
+            AddDispatchEvents();
+        }
 
-		private void AddDispatchEvents()
-		{
-		}
+        private void AddDispatchEvents()
+        {
+        }
 
-		private IEnumerator BornEnemyLoop()
-		{
-			while(IsRunning)
-			{
-				var random = UnityEngine.Random.Range(1.0f, 5.0f);
-				var wait = new WaitForSeconds(random);
-				yield return wait;
+        private IEnumerator BornEnemyLoop()
+        {
+            while (IsRunning)
+            {
+                var random = UnityEngine.Random.Range(1.0f, 5.0f);
+                var wait = new WaitForSeconds(random);
+                yield return wait;
 
-				CreateNewEnemy();
-			}
+                CreateNewEnemy();
+            }
 
-			yield break;
-		}
+            yield break;
+        }
 
-		private void CreateGround()
-		{
-			if (_currentGround != null) Destroy(_currentGround.gameObject);
+        private void CreateGround()
+        {
+            if (_currentGround != null) Destroy(_currentGround.gameObject);
 
-			var prefab = CurrentRoundData.GroundSettingPrefab;
-			var go = Instantiate(prefab, transform);
+            var prefab = CurrentRoundData.GroundSettingPrefab;
+            var go = Instantiate(prefab, transform);
 
-			var ground = go.GetComponent<GroundSetting>();
-			_currentGround = ground;
-		}
+            var ground = go.GetComponent<GroundSetting>();
+            _currentGround = ground;
+        }
 
-		private void CreateNewPlayer()
-		{
-			PlayerController.Create(_playerParent, OnCreatePlayer);
-		}
+        private void CreateNewPlayer()
+        {
+            PlayerController.Create(_playerParent, OnCreatePlayer);
+        }
 
-		private void CreateNewEnemy()
-		{
-			CurrentRoundData.GetEnemyMasterAtRandom(master => {
-				EnemyController.Create(_enemiesParent, enemy => OnCreateEnemy(enemy, master));
-			});
-		}
+        private void CreateNewEnemy()
+        {
+            CurrentRoundData.GetEnemyMasterAtRandom(master =>
+            {
+                EnemyController.Create(_enemiesParent, enemy => OnCreateEnemy(enemy, master));
+            });
+        }
 
-		private void OnCreatePlayer(PlayerController player)
-		{
-			var userData = GetUserData();
-			player.Setup(userData);
-			player.SetCallRestart(Restart);
+        private void OnCreatePlayer(PlayerController player)
+        {
+            var userData = GetUserData();
+            player.Setup(userData);
+            player.SetCallRestart(Restart);
 
-			Player = player;
-		}
+            Player = player;
+        }
 
-		private void OnCreateEnemy(EnemyController enemy, EnemyMaster master)
-		{
-			var startPos = _currentGround.GetRandomPosition();
-			enemy.transform.localPosition = startPos;
-			enemy.Setup(master);
-			enemy.SetTarget(Player);
+        private void OnCreateEnemy(EnemyController enemy, EnemyMaster master)
+        {
+            var startPos = _currentGround.GetRandomPosition();
+            enemy.transform.localPosition = startPos;
+            enemy.Setup(master);
+            enemy.SetTarget(Player);
 
-			Enemies.Add(enemy);
-		}
+            Enemies.Add(enemy);
+        }
 
-		private UserData GetUserData()
-		{
-			var data = GameManager.UserData;
-			return data;
-		}
+        private UserData GetUserData()
+        {
+            var data = GameManager.UserData;
+            return data;
+        }
 
-		private void ClearEnemies()
-		{
-			Enemies?.ForEach(enemy => Destroy(enemy.gameObject));
-			Enemies = new List<EnemyController>();
-		}
+        private void ClearEnemies()
+        {
+            Enemies?.ForEach(enemy => Destroy(enemy.gameObject));
+            Enemies = new List<EnemyController>();
+        }
 
-		private void OnDeadEnemy(EnemyModel model)
-		{
-			Debug.Log($"{model.Name} is Dead.");
-		}
-	}
+        private void OnDeadEnemy(EnemyModel model)
+        {
+            Debug.Log($"{model.Name} is Dead.");
+        }
+    }
 }

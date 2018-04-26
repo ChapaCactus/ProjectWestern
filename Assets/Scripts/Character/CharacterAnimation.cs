@@ -4,17 +4,17 @@ using UnityEngine;
 
 namespace CCG
 {
-	public class CharacterAnimation : MonoBehaviour
-	{
-		[SerializeField]
-		private SpriteRenderer _renderer;
+    public class CharacterAnimation : MonoBehaviour
+    {
+        [SerializeField]
+        private SpriteRenderer _renderer;
 
-		[SerializeField]
-		private Animator _animator;
+        [SerializeField]
+        private Animator _animator;
 
-		public void Play(string stateName)
-		{
-			_animator.Play(stateName);
-		}
-	}
+        public void Play(string stateName)
+        {
+            _animator.Play(stateName);
+        }
+    }
 }

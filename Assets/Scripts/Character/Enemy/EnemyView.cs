@@ -4,14 +4,14 @@ using UnityEngine;
 
 namespace CCG
 {
-	public class EnemyView : MonoBehaviour
-	{
-		[SerializeField]
-		private SpriteRenderer _renderer;
+    public class EnemyView : MonoBehaviour
+    {
+        [SerializeField]
+        private SpriteRenderer _renderer;
 
-		public void SetSprite(Sprite sprite)
-		{
-			_renderer.sprite = sprite;
-		}
-	}
+        public void SetSprite(Sprite sprite)
+        {
+            _renderer.sprite = sprite;
+        }
+    }
 }
