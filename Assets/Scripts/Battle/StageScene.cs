@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace CCG
 {
-    public class BattleScene : SceneBase
+    public class StageScene : SceneBase
     {
         [SerializeField]
         private StageMaster _debugStageMaster;
