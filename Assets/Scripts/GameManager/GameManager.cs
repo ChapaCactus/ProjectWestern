@@ -8,6 +8,7 @@ namespace CCG
     public static class GameManager
     {
         public static UserData UserData { get; private set; }
+        public static StageMaster SelectedStageMaster { get; private set; }
 
         public static void StartGame()
         {
@@ -16,6 +17,11 @@ namespace CCG
             UserData = LoadUserData();
 
             UIManager.I.UpdateTotalCoinText($"{UserData.TotalCoin}");
+        }
+
+        public static void SetStageMaster(StageMaster master)
+        {
+            SelectedStageMaster = master;
         }
 
         private static UserData LoadUserData()
