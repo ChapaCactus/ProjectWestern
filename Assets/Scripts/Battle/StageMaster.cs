@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 using UnityEngine;
 
-namespace CCG
+namespace CCG.Master
 {
     [CreateAssetMenu]
     public class StageMaster : ScriptableObject
