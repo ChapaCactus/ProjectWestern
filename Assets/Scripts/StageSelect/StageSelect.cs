@@ -2,6 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StageSelect : MonoBehaviour
+namespace CCG
 {
+    public class StageSelect : MonoBehaviour
+    {
+        public void OnSelectStage(StageMaster selected)
+        {
+        }
+    }
 }
