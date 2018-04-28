@@ -16,7 +16,7 @@ namespace CCG
 
         private StageMaster _stageMaster;
 
-        private GroundSetting _currentGround;
+        private Ground _currentGround;
 
         private Coroutine _bornEnemyLoopCoroutine;
 
@@ -108,7 +108,7 @@ namespace CCG
             var prefab = CurrentRoundData.GroundSettingPrefab;
             var go = Instantiate(prefab, transform);
 
-            var ground = go.GetComponent<GroundSetting>();
+            var ground = go.GetComponent<Ground>();
             _currentGround = ground;
         }
 

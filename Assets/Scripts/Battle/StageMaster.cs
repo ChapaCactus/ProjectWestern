@@ -24,9 +24,12 @@ namespace CCG.Master
         [SerializeField]
         private RoundMaster _roundMaster;
         [SerializeField]
+        private Ground _groundPrefab;
+        [SerializeField]
         private Direction2D _nextRoundDirection = Direction2D.None;
 
         public RoundMaster RoundMaster => _roundMaster;
+        public Ground GroundPrefab => _groundPrefab;
         public Direction2D NextRoundDirection => _nextRoundDirection;
     }
 }

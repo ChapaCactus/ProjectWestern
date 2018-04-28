@@ -13,5 +13,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _title: "\u30E2\u30E4\u30E2\u30E4\u5E73\u539F"
   _roundSettings:
-  - _nextRoundDirection: 2
-    _roundMaster: {fileID: 0}
+  - _roundMaster: {fileID: 0}
+    _groundPrefab: {fileID: 0}
+    _nextRoundDirection: 2
+  - _roundMaster: {fileID: 0}
+    _groundPrefab: {fileID: 0}
+    _nextRoundDirection: 2
+  - _roundMaster: {fileID: 0}
+    _groundPrefab: {fileID: 0}
+    _nextRoundDirection: 2

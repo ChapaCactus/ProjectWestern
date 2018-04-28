@@ -7,7 +7,7 @@ using UnityEngine.Assertions;
 
 namespace CCG
 {
-    public class GroundSetting : MonoBehaviour
+    public class Ground : MonoBehaviour
     {
         [SerializeField]
         private List<PopPoint> _popPoints = new List<PopPoint>();
