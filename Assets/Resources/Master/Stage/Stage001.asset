@@ -11,7 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a21569e37bc1b4392ac8466126a1c896, type: 3}
   m_Name: Stage001
   m_EditorClassIdentifier: 
-  _stageName: "\u30E2\u30E4\u30E2\u30E4\u8349\u539F"
+  _title: "\u30E2\u30E4\u30E2\u30E4\u5E73\u539F"
   _roundMasters:
   - {fileID: 11400000, guid: d6b7691e76d984956b0f0c235f4eafe7, type: 2}
   - {fileID: 11400000, guid: d6b7691e76d984956b0f0c235f4eafe7, type: 2}

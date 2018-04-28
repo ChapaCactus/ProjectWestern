@@ -160,6 +160,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _stageID: 1
+  _button: {fileID: 1069125883}
   _stageNumText: {fileID: 1626806946}
 --- !u!1 &438092912
 GameObject:

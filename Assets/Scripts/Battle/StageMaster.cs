@@ -9,12 +9,12 @@ namespace CCG.Master
     public class StageMaster : ScriptableObject
     {
         [SerializeField]
-        private string _stageName = "";
+        private string _title = "";
 
         [SerializeField]
         private List<RoundMaster> _roundMasters;
 
-        public string StageName => _stageName;
+        public string Title => _title;
         public List<RoundMaster> Rounds => _roundMasters;
     }
 }
