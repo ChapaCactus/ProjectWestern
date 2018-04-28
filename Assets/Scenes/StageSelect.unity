@@ -123,7 +123,7 @@ GameObject:
   - component: {fileID: 173805962}
   - component: {fileID: 173805963}
   m_Layer: 5
-  m_Name: StageSelectButton (ID:001)
+  m_Name: StageSelectButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -160,8 +160,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _stageID: 1
-  _isDebugMode: 0
-  _debugStageNumText: {fileID: 1626806946}
 --- !u!1 &438092912
 GameObject:
   m_ObjectHideFlags: 0
@@ -597,7 +595,7 @@ GameObject:
   - component: {fileID: 1626806947}
   - component: {fileID: 1626806946}
   m_Layer: 5
-  m_Name: Text
+  m_Name: DebugText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
