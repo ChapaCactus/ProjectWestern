@@ -11,7 +11,6 @@ namespace CCG.Master
     {
         [SerializeField]
         private string _title = "";
-
         [SerializeField]
         private List<RoundSetting> _roundSettings;
 
@@ -23,12 +22,11 @@ namespace CCG.Master
     public class RoundSetting
     {
         [SerializeField]
+        private RoundMaster _roundMaster;
+        [SerializeField]
         private Direction2D _nextRoundDirection = Direction2D.None;
 
-        [SerializeField]
-        private RoundMaster _roundMaster;
-
-        public Direction2D NextRoundDirection => _nextRoundDirection;
         public RoundMaster RoundMaster => _roundMaster;
+        public Direction2D NextRoundDirection => _nextRoundDirection;
     }
 }
