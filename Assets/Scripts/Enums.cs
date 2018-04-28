@@ -17,6 +17,7 @@
 
     public enum StageID
     {
+        None = -1,
         Stage001 = 1,
     }
 
