@@ -21,6 +21,12 @@
         Stage001 = 1,
     }
 
+    public enum SceneName
+    {
+        StageSelect,
+        Stage,
+    }
+
     public enum ItemID
     {
         None = -1,
