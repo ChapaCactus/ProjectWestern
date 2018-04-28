@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using CCG.Master;
+using CCG.Enums;
+using UnityEngine.SceneManagement;
 
 namespace CCG
 {
@@ -22,6 +24,11 @@ namespace CCG
         public static void SetStageMaster(StageMaster master)
         {
             SelectedStageMaster = master;
+        }
+
+        public static void ChangeScene(SceneName stageName)
+        {
+            SceneManager.LoadScene($"{stageName}");
         }
 
         private static UserData LoadUserData()
