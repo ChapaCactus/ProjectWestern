@@ -9,10 +9,20 @@ namespace CCG
 {
     public class StageSelect : SingletonMonoBehaviour<StageSelect>
     {
+        private bool _isStageChanging = false;
+
         private static readonly string MasterDirPath = "Master/Stage";
 
-        public void OnSelectedStage(StageMaster selected)
+		private void Awake()
+		{
+            _isStageChanging = false;
+		}
+
+		public void OnSelectedStage(StageMaster selected)
         {
+            if (_isStageChanging) return;
+
+            _isStageChanging = true;
             GameManager.ChangeScene(SceneName.Stage);
         }
 
