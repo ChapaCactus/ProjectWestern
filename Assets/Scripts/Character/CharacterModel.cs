@@ -1,6 +1,6 @@
 ﻿using System;
-
 using UnityEngine;
+using CCG.Enums;
 
 namespace CCG
 {

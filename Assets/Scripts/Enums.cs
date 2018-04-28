@@ -1,4 +1,4 @@
-﻿namespace CCG
+﻿namespace CCG.Enums
 {
     public enum Direction2D
     {
@@ -13,6 +13,11 @@
         UpLeft = 7,
         Up = 8,
         UpRight = 9,
+    }
+
+    public enum StageID
+    {
+        Stage001 = 1,
     }
 
     public enum ItemID
