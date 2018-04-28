@@ -21,7 +21,7 @@ namespace CCG
         private Coroutine _bornEnemyLoopCoroutine;
 
         public int Round { get; private set; } = 0;
-        public RoundMaster CurrentRoundData => _stageMaster.Rounds[Round];
+        public RoundMaster CurrentRoundData => _stageMaster.RoundSettings[Round].RoundMaster;
 
         public PlayerController Player { get; private set; }
         public List<EnemyController> Enemies { get; private set; }

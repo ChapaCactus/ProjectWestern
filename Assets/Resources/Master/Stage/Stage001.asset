@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Name: Stage001
   m_EditorClassIdentifier: 
   _title: "\u30E2\u30E4\u30E2\u30E4\u5E73\u539F"
-  _roundMasters:
-  - {fileID: 11400000, guid: d6b7691e76d984956b0f0c235f4eafe7, type: 2}
-  - {fileID: 11400000, guid: d6b7691e76d984956b0f0c235f4eafe7, type: 2}
-  - {fileID: 11400000, guid: d6b7691e76d984956b0f0c235f4eafe7, type: 2}
+  _roundSettings:
+  - _nextRoundDirection: 2
+    _roundMaster: {fileID: 0}
