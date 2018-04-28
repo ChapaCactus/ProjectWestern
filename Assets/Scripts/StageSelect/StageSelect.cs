@@ -7,7 +7,7 @@ namespace CCG
 {
     public class StageSelect : MonoBehaviour
     {
-        public void OnSelectStage(StageMaster selected)
+        public void OnSelectedStage(StageMaster selected)
         {
         }
     }
