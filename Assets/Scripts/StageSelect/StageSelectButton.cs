@@ -10,7 +10,11 @@ public class StageSelectButton : MonoBehaviour
     [SerializeField]
     private StageID _stageID = StageID.None;
 
+    [SerializeField]
+    private Text _stageNumText;
+
 	private void Awake()
 	{
+        _stageNumText.text = $"{(int)_stageID}";
 	}
 }
