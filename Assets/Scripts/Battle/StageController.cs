@@ -44,7 +44,6 @@ namespace CCG
             _stageMaster = master;
 
             CreateGround(master.RoundSettings, () => CurrentGround.ActivationColliders(true));
-            Debug.Log("check: " + CurrentGround.gameObject.name);
 
             StartStage();
         }
