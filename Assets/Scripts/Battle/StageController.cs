@@ -18,9 +18,9 @@ namespace CCG
         private Coroutine _bornEnemyLoopCoroutine;
         private List<Ground> _grounds;
 
-        public int Round { get; private set; } = 0;
-        public RoundMaster CurrentRoundData => _stageMaster.RoundSettings[Round].RoundMaster;
-        public Ground CurrentGround => _grounds[Round];
+        public int RoundNum { get; private set; } = 0;
+        public RoundMaster CurrentRoundData => _stageMaster.RoundSettings[RoundNum].RoundMaster;
+        public Ground CurrentGround => _grounds[RoundNum];
 
         public PlayerController Player { get; private set; }
         public List<EnemyController> Enemies { get; private set; }
@@ -84,6 +84,15 @@ namespace CCG
         }
 
         private void AddDispatchEvents()
+        {
+        }
+
+        private void CompleteRound()
+        {
+            RoundNum++;
+        }
+
+        private void CompleteStage()
         {
         }
 
