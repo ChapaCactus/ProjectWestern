@@ -3,7 +3,7 @@ using CCG.Enums;
 
 namespace CCG
 {
-    public static class Vector2ToDirection2D
+    public static class DirectionConverter
     {
         public static Direction2D ToDirection2D(this Vector2 vector)
         {

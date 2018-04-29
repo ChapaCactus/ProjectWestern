@@ -12,17 +12,11 @@ namespace CCG
     {
         [SerializeField]
         private List<EnemyMaster> _popEnemies = new List<EnemyMaster>();
-
-        [SerializeField]
-        private Ground _groundSettingPrefab;
-
         [SerializeField]
         private Sprite _backgroundSprite;
-
         [SerializeField]
         private Sprite _wallSprite;
 
-        public Ground GroundSettingPrefab => _groundSettingPrefab;
         public Sprite BackgroundSprite => _backgroundSprite;
         public Sprite WallSprite => _wallSprite;
 

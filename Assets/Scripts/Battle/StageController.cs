@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,24 +11,23 @@ namespace CCG
     {
         [SerializeField]
         private Transform _playerParent;
-
         [SerializeField]
         private Transform _enemiesParent;
 
         private StageMaster _stageMaster;
-
-        private Ground _currentGround;
-
         private Coroutine _bornEnemyLoopCoroutine;
+        private List<Ground> _grounds;
 
         public int Round { get; private set; } = 0;
         public RoundMaster CurrentRoundData => _stageMaster.RoundSettings[Round].RoundMaster;
+        public Ground CurrentGround => _grounds[Round];
 
         public PlayerController Player { get; private set; }
         public List<EnemyController> Enemies { get; private set; }
 
         public bool IsRunning { get; private set; } = false;
 
+        private static readonly Vector2 GroundSizeVector2 = new Vector2(100, 100);
         private static readonly string PrefabPath = "Prefabs/Stage/Stage";
 
         public static void Create(Transform parent, Action<StageController> onCreate)
@@ -43,7 +43,7 @@ namespace CCG
         {
             _stageMaster = master;
 
-            CreateGround();
+            CreateGround(master.RoundSettings);
 
             StartStage();
         }
@@ -101,15 +101,15 @@ namespace CCG
             yield break;
         }
 
-        private void CreateGround()
+        private void CreateGround(List<RoundSetting> rounds)
         {
-            if (_currentGround != null) Destroy(_currentGround.gameObject);
+            _grounds = new List<Ground>();
 
-            var prefab = CurrentRoundData.GroundSettingPrefab;
-            var go = Instantiate(prefab, transform);
-
-            var ground = go.GetComponent<Ground>();
-            _currentGround = ground;
+            foreach (var round in rounds)
+            {
+                var ground = Instantiate(round.GroundPrefab, transform).GetComponent<Ground>();
+                _grounds.Add(ground);
+            }
         }
 
         private void CreateNewPlayer()
@@ -136,7 +136,7 @@ namespace CCG
 
         private void OnCreateEnemy(EnemyController enemy, EnemyMaster master)
         {
-            var startPos = _currentGround.GetRandomPosition();
+            var startPos = CurrentGround.GetRandomPosition();
             enemy.transform.localPosition = startPos;
             enemy.Setup(master);
             enemy.SetTarget(Player);
