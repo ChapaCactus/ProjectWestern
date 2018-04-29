@@ -27,7 +27,7 @@ namespace CCG
 
         public bool IsRunning { get; private set; } = false;
 
-        private static readonly Vector2 GroundSizeVector2 = new Vector2(100, 100);
+        private static readonly float GroundSizeBase = 700;
         private static readonly string PrefabPath = "Prefabs/Stage/Stage";
 
         public static void Create(Transform parent, Action<StageController> onCreate)
@@ -103,13 +103,26 @@ namespace CCG
 
         private void CreateGround(List<RoundSetting> rounds)
         {
+            DestroyAllGrounds();
             _grounds = new List<Ground>();
 
+            var tempPos = Vector2.zero;
             foreach (var round in rounds)
             {
                 var ground = Instantiate(round.GroundPrefab, transform).GetComponent<Ground>();
+                var offset = DirectionConverter.ToVector2(round.NextRoundDirection) * GroundSizeBase;
+                tempPos += offset;
+                ground.transform.localPosition = tempPos;
                 _grounds.Add(ground);
             }
+        }
+
+        private void DestroyAllGrounds()
+        {
+            if (_grounds == null) return;
+            if (_grounds.Count == 0) return;
+
+            _grounds.ForEach(ground => Destroy(ground.gameObject));
         }
 
         private void CreateNewPlayer()
