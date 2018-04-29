@@ -87,6 +87,10 @@ namespace CCG
         {
         }
 
+        private void OnMoveToNextGround()
+        {
+        }
+
         private void CompleteRound()
         {
             RoundNum++;
