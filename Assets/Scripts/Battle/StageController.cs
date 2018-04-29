@@ -43,7 +43,8 @@ namespace CCG
         {
             _stageMaster = master;
 
-            CreateGround(master.RoundSettings);
+            CreateGround(master.RoundSettings, () => CurrentGround.ActivationColliders(true));
+            Debug.Log("check: " + CurrentGround.gameObject.name);
 
             StartStage();
         }
@@ -101,7 +102,7 @@ namespace CCG
             yield break;
         }
 
-        private void CreateGround(List<RoundSetting> rounds)
+        private void CreateGround(List<RoundSetting> rounds, Action onComplete)
         {
             DestroyAllGrounds();
             _grounds = new List<Ground>();
@@ -110,11 +111,15 @@ namespace CCG
             foreach (var round in rounds)
             {
                 var ground = Instantiate(round.GroundPrefab, transform).GetComponent<Ground>();
+                ground.transform.localPosition = tempPos;
                 var offset = DirectionConverter.ToVector2(round.NextRoundDirection) * GroundSizeBase;
                 tempPos += offset;
-                ground.transform.localPosition = tempPos;
+                ground.ActivationColliders(false);
+
                 _grounds.Add(ground);
             }
+
+            onComplete.SafeCall();
         }
 
         private void DestroyAllGrounds()
