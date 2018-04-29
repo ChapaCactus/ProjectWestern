@@ -65,6 +65,8 @@ namespace CCG
                 StopCoroutine(_bornEnemyLoopCoroutine);
             }
             _bornEnemyLoopCoroutine = StartCoroutine(BornEnemyLoop());
+
+            Player.SetCanMove(true);
         }
 
         public void Restart()
@@ -89,6 +91,11 @@ namespace CCG
 
         private void OnMoveToNextGround()
         {
+            Player.SetCanMove(false);
+
+            // 画面移動処理
+
+            Player.SetCanMove(true);
         }
 
         private void CompleteRound()
