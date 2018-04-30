@@ -52,21 +52,7 @@ namespace CCG
         {
             IsRunning = true;
 
-            ClearEnemies();
-
-            CreateNewPlayer();
-            CreateNewEnemy();
-            CreateNewEnemy();
-            CreateNewEnemy();
-            CreateNewEnemy();
-
-            if (_bornEnemyLoopCoroutine != null)
-            {
-                StopCoroutine(_bornEnemyLoopCoroutine);
-            }
-            _bornEnemyLoopCoroutine = StartCoroutine(BornEnemyLoop());
-
-            Player.SetCanMove(true);
+            StartRound();
         }
 
         public void Restart()
@@ -96,6 +82,27 @@ namespace CCG
             // 画面移動処理
 
             Player.SetCanMove(true);
+        }
+
+        private void StartRound()
+        {
+            ClearEnemies();
+
+            CreateNewPlayer();
+            CreateNewEnemy();
+            CreateNewEnemy();
+            CreateNewEnemy();
+            CreateNewEnemy();
+
+            if (_bornEnemyLoopCoroutine != null)
+            {
+                StopCoroutine(_bornEnemyLoopCoroutine);
+            }
+            _bornEnemyLoopCoroutine = StartCoroutine(BornEnemyLoop());
+
+            Player.SetCanMove(true);
+
+            UIManager.I.RoundTimer.StartTimer(99);
         }
 
         private void CompleteRound()
