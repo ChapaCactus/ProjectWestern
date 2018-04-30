@@ -6,15 +6,16 @@ using UnityEngine.Assertions;
 
 namespace CCG
 {
+    [RequireComponent(typeof(Slider))]
     public class RoundTimer : MonoBehaviour
     {
-        [SerializeField]
         private Slider _slider;
 
         private float _timer = 0;
 
 		private void Awake()
 		{
+            _slider = GetComponent<Slider>();
             Assert.IsNotNull(_slider);
 		}
 
