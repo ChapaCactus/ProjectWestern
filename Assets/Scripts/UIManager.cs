@@ -12,9 +12,15 @@ namespace CCG
         [SerializeField]
         private Text _totalCoinText;
 
+        [SerializeField]
+        private RoundTimer _roundTimer;
+
+        public RoundTimer RoundTimer => _roundTimer;
+
         private void Awake()
         {
             Assert.IsNotNull(_totalCoinText);
+            Assert.IsNotNull(_roundTimer);
         }
 
         public void Init()
