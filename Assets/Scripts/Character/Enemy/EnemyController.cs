@@ -7,7 +7,7 @@ using UnityEngine;
 namespace CCG
 {
     [RequireComponent(typeof(EnemyView))]
-    public class EnemyController : CharacterController
+    public class EnemyController : CharacterController, IDamageable
     {
         private static readonly string PrefabName = "Enemy";
         private static readonly string PrefabDirPath = "Prefabs/Enemy";
@@ -43,6 +43,11 @@ namespace CCG
             _view.SetSprite(master.Sprites[0]);
 
             _model = new EnemyModel(master);
+        }
+
+        public void Damage(int taken)
+        {
+            _model.Damage(taken, Kill);
         }
 
         public void SetTarget(PlayerController player)

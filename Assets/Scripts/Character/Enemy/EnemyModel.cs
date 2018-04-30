@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -32,6 +33,16 @@ namespace CCG
 
             var random = UnityEngine.Random.Range(0, DropItemIDs.Length);
             return DropItemIDs[random];
+        }
+
+        public void Damage(int point, Action onDead)
+        {
+            Health -= point;
+
+            if (IsDead)
+            {
+                onDead.SafeCall();
+            }
         }
     }
 }

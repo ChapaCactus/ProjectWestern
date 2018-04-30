@@ -7,7 +7,7 @@ using CCG.Enums;
 
 namespace CCG
 {
-    public class PlayerController : CharacterController, IShoot
+    public class PlayerController : CharacterController, IDamageable, IShoot
     {
         [SerializeField]
         private BulletController _bulletPrefab;
@@ -40,6 +40,11 @@ namespace CCG
 
         public void Setup(UserData userData)
         {
+        }
+
+        public void Damage(int taken)
+        {
+            _model.Damage(taken, Kill);
         }
 
         public void SetInvincible(bool isInvincible)

@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace CCG
 {
-    public class CharacterController : MonoBehaviour, IDamageable, IKillable
+    public class CharacterController : MonoBehaviour, IKillable
     {
         public CharacterDirection Direction { get; private set; } = new CharacterDirection();
 
@@ -13,24 +13,12 @@ namespace CCG
 
         public bool CanMove { get; protected set; } = false;
 
-        private CharacterModel _model { get; set; }
-
         private readonly float MoveBuff = 100f;
 
         private void Awake()
         {
             Transform = transform;
             Rigid2D = GetComponent<Rigidbody2D>();
-        }
-
-        public void Setup(CharacterModel model)
-        {
-            _model = model;
-        }
-
-        public void Damage(int taken)
-        {
-            _model.Damage(taken, Kill);
         }
 
         public void Kill()
