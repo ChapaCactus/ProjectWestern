@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions;
 using CCG.Enums;
 
 namespace CCG
@@ -13,9 +14,10 @@ namespace CCG
 
         private Action _callRestart;
 
-        private PlayerModel _model { get; set; }
-
         private static readonly string PrefabPath = "Prefabs/Player/Player";
+
+        public bool IsInvincible { get; private set; }
+        private PlayerModel _model { get; set; }
 
         private void Update()
         {
@@ -40,6 +42,12 @@ namespace CCG
         {
         }
 
+        public void SetInvincible(bool isInvincible)
+        {
+            IsInvincible = isInvincible;
+            Assert.IsTrue(IsInvincible, $"{gameObject.name}は無敵状態です");
+        }
+
         public void SetCallRestart(Action callRestart)
         {
             _callRestart = callRestart;
@@ -61,7 +69,14 @@ namespace CCG
         {
             if (collision.gameObject.CompareTag("Enemy"))
             {
-                _callRestart.SafeCall();
+                if (IsInvincible)
+                {
+                    var enemy = collision.gameObject.GetComponent<EnemyController>();
+                    enemy.Damage(10000);
+                } else
+                {
+                    _callRestart.SafeCall();
+                }
             }
         }
 

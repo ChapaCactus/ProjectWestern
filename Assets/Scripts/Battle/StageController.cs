@@ -167,6 +167,7 @@ namespace CCG
             var userData = GetUserData();
             player.Setup(userData);
             player.SetCallRestart(Restart);
+            player.SetInvincible(true);
 
             Player = player;
         }
