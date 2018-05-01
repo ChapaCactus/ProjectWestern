@@ -22,8 +22,8 @@ namespace CCG
         public RoundMaster CurrentRoundData => _stageMaster.RoundSettings[RoundNum].RoundMaster;
         public Ground CurrentGround => _grounds[RoundNum];
 
-        public PlayerController Player { get; private set; }
-        public List<EnemyController> Enemies { get; private set; }
+        public PlayerController Player => CharacterManager.I.Player;
+        public List<EnemyController> Enemies => CharacterManager.I.Enemies;
 
         public bool IsRunning { get; private set; } = false;
         public bool IsRoundTimerRunning => UIManager.I.RoundTimer.IsRunning;
@@ -61,8 +61,7 @@ namespace CCG
             Player.Kill();
             Enemies.ForEach(enemy => enemy.Kill());
 
-            Player = null;
-            Enemies = null;
+            CharacterManager.I.Reset();
 
             Setup(_stageMaster);
         }
@@ -87,7 +86,7 @@ namespace CCG
 
         private void StartRound()
         {
-            ClearEnemies();
+            CharacterManager.I.ClearEnemies();
 
             CreateNewPlayer();
             CreateNewEnemy();
@@ -182,7 +181,7 @@ namespace CCG
             player.SetCallRestart(Restart);
             player.SetInvincible(true);
 
-            Player = player;
+            CharacterManager.I.SetPlayer(player);
         }
 
         private void OnCreateEnemy(EnemyController enemy, EnemyMaster master)
@@ -199,12 +198,6 @@ namespace CCG
         {
             var data = GameManager.UserData;
             return data;
-        }
-
-        private void ClearEnemies()
-        {
-            Enemies?.ForEach(enemy => Destroy(enemy.gameObject));
-            Enemies = new List<EnemyController>();
         }
 
         private void OnDeadEnemy(EnemyModel model)
