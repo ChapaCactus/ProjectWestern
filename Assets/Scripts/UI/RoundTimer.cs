@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,8 +11,10 @@ namespace CCG
     public class RoundTimer : MonoBehaviour
     {
         private Slider _slider;
-
         private float _timer = 0;
+        private Action _onEndTimer;
+
+        public bool IsRunning => _timer > 0;
 
 		private void Awake()
 		{
@@ -34,16 +37,19 @@ namespace CCG
             }
         }
 
-        public void StartTimer(float time)
+        public void StartTimer(float time, Action onEndTimer)
         {
             _timer = time;
             _slider.maxValue = time;
             _slider.minValue = 0;
             _slider.value = time;
+
+            _onEndTimer = onEndTimer;
         }
 
         private void OnEndTimer()
         {
+            _onEndTimer.SafeCall();
         }
     }
 }

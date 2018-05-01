@@ -26,6 +26,7 @@ namespace CCG
         public List<EnemyController> Enemies { get; private set; }
 
         public bool IsRunning { get; private set; } = false;
+        public bool IsRoundTimerRunning => UIManager.I.RoundTimer.IsRunning;
 
         private static readonly float GroundSizeBase = 700;
         private static readonly string PrefabPath = "Prefabs/Stage/Stage";
@@ -94,15 +95,20 @@ namespace CCG
             CreateNewEnemy();
             CreateNewEnemy();
 
-            if (_bornEnemyLoopCoroutine != null)
-            {
-                StopCoroutine(_bornEnemyLoopCoroutine);
-            }
+            StopBornEnemyCoroutine();
             _bornEnemyLoopCoroutine = StartCoroutine(BornEnemyLoop());
 
             Player.SetCanMove(true);
 
-            UIManager.I.RoundTimer.StartTimer(99);
+            UIManager.I.RoundTimer.StartTimer(10, StopBornEnemyCoroutine);
+        }
+
+        private void StopBornEnemyCoroutine()
+        {
+            if (_bornEnemyLoopCoroutine == null) return;
+
+            StopCoroutine(_bornEnemyLoopCoroutine);
+            _bornEnemyLoopCoroutine = null;
         }
 
         private void CompleteRound()
