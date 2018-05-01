@@ -58,10 +58,7 @@ namespace CCG
 
         public void Restart()
         {
-            Player.Kill();
-            Enemies.ForEach(enemy => enemy.Kill());
-
-            CharacterManager.I.Reset();
+            CharacterManager.I.ResetCharacters();
 
             Setup(_stageMaster);
         }

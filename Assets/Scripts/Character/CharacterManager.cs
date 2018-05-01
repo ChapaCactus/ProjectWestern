@@ -12,7 +12,7 @@ namespace CCG
 
 		private void Awake()
 		{
-            Reset();
+            ResetCharacters();
 		}
 
         public void CreateNewPlayer(Transform parent, Action<PlayerController> onCreate)
@@ -38,15 +38,21 @@ namespace CCG
             Enemies.Add(enemy);
         }
 
-        public void Reset()
+        public void ResetCharacters()
         {
-            Player = null;
+            ClearPlayer();
             ClearEnemies();
+        }
+
+        public void ClearPlayer()
+        {
+            Player?.Kill();
+            Player = null;
         }
 
         public void ClearEnemies()
         {
-            Enemies?.ForEach(enemy => Destroy(enemy.gameObject));
+            Enemies?.ForEach(enemy => enemy.Kill());
             Enemies = new List<EnemyController>();
         }
 	}
