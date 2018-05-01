@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,6 +14,19 @@ namespace CCG
 		{
             Reset();
 		}
+
+        public void CreateNewPlayer(Transform parent, Action<PlayerController> onCreate)
+        {
+            PlayerController.Create(parent, onCreate);
+        }
+
+        public void CreateNewEnemy(Transform parent, RoundMaster round, Action<EnemyController, EnemyMaster> onCreate)
+        {
+            round.GetEnemyMasterAtRandom(master =>
+            {
+                EnemyController.Create(parent, enemy => onCreate(enemy, master));
+            });
+        }
 
 		public void SetPlayer(PlayerController player)
         {

@@ -88,11 +88,11 @@ namespace CCG
         {
             CharacterManager.I.ClearEnemies();
 
-            CreateNewPlayer();
-            CreateNewEnemy();
-            CreateNewEnemy();
-            CreateNewEnemy();
-            CreateNewEnemy();
+            CharacterManager.I.CreateNewPlayer(_playerParent, OnCreatePlayer);
+            CharacterManager.I.CreateNewEnemy(_enemiesParent, CurrentRoundData, OnCreateEnemy);
+            CharacterManager.I.CreateNewEnemy(_enemiesParent, CurrentRoundData, OnCreateEnemy);
+            CharacterManager.I.CreateNewEnemy(_enemiesParent, CurrentRoundData, OnCreateEnemy);
+            CharacterManager.I.CreateNewEnemy(_enemiesParent, CurrentRoundData, OnCreateEnemy);
 
             StopBornEnemyCoroutine();
             _bornEnemyLoopCoroutine = StartCoroutine(BornEnemyLoop());
@@ -127,7 +127,7 @@ namespace CCG
                 var wait = new WaitForSeconds(random);
                 yield return wait;
 
-                CreateNewEnemy();
+                CharacterManager.I.CreateNewEnemy(_enemiesParent, CurrentRoundData, OnCreateEnemy);
             }
 
             yield break;
@@ -159,19 +159,6 @@ namespace CCG
             if (_grounds.Count == 0) return;
 
             _grounds.ForEach(ground => Destroy(ground.gameObject));
-        }
-
-        private void CreateNewPlayer()
-        {
-            PlayerController.Create(_playerParent, OnCreatePlayer);
-        }
-
-        private void CreateNewEnemy()
-        {
-            CurrentRoundData.GetEnemyMasterAtRandom(master =>
-            {
-                EnemyController.Create(_enemiesParent, enemy => OnCreateEnemy(enemy, master));
-            });
         }
 
         private void OnCreatePlayer(PlayerController player)
