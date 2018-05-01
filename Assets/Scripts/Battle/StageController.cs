@@ -21,7 +21,6 @@ namespace CCG
         public int RoundNum { get; private set; } = 0;
         public RoundMaster CurrentRoundData => _stageMaster.RoundSettings[RoundNum].RoundMaster;
         public Ground CurrentGround => _grounds[RoundNum];
-
         public PlayerController Player => CharacterManager.I.Player;
         public List<EnemyController> Enemies => CharacterManager.I.Enemies;
 
