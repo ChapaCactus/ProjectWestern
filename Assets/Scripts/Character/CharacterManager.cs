@@ -16,11 +16,6 @@ namespace CCG
 
         private static readonly string PrefabPath = "Prefabs/Manager/CharacterManager";
 
-		private void Awake()
-		{
-            ResetCharacters();
-		}
-
         public static void Create(Transform parent, Action<CharacterManager> onCreate)
         {
             var prefab = Resources.Load(PrefabPath) as GameObject;
@@ -29,10 +24,9 @@ namespace CCG
             onCreate.SafeCall(manager);
         }
 
-        public void Init()
+		public void Init()
         {
             DispatchEvent<Action<StageCanvas>>(StageEvents.RequestStageCanvas, c => _stageCanvas = c);
-            ResetCharacters();
         }
 
         public void ResetCharacters()

@@ -112,9 +112,9 @@ namespace CCG
 
         private void RoundComplete()
         {
-            RoundNum++;
-
             Debug.Log($"Round [{RoundNum}] Complete!!");
+
+            RoundNum++;
         }
 
         private void CompleteStage()

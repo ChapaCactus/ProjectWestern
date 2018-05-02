@@ -11,7 +11,7 @@ namespace CCG
     {
         private SceneBase _sceneBase = null;
 
-        private void Awake()
+        protected void Awake()
         {
             FindSceneParent();
 
@@ -74,6 +74,7 @@ namespace CCG
 
         protected void DispatchEvent<T>(string key, T param)
         {
+            Assert.IsNotNull(_sceneBase);
             if (_sceneBase == null) return;
 
             _sceneBase.DispatchEvent(key, param);
@@ -81,6 +82,7 @@ namespace CCG
 
         protected void DispatchEvent<T1, T2>(string key, T1 param1, T2 param2)
         {
+            Assert.IsNotNull(_sceneBase);
             if (_sceneBase == null) return;
 
             _sceneBase.DispatchEvent(key, param1, param2);

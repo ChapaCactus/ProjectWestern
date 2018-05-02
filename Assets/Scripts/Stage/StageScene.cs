@@ -19,6 +19,7 @@ namespace CCG
 		public void SetupStage(StageMaster master)
         {
             _stageMaster = master;
+
             StageController.Create(transform, stage => stage.Setup(_stageMaster));
         }
 
@@ -28,7 +29,7 @@ namespace CCG
             AddDispatchEvents();
 
             UIManager.CreateStageCanvas(transform, c => _stageCanvas = c);
-            CharacterManager.Create(transform, OnCreateCharacterManager);
+            CharacterManager.Create(transform, c => _characterManager = c);
 
             if (_debugStageMaster != null)
             {
@@ -36,13 +37,12 @@ namespace CCG
             }
         }
 
-        private void OnCreateCharacterManager(CharacterManager manager)
-        {
-            _characterManager = manager;
-            manager.Init();
-        }
+		protected override void StartScene()
+		{
+            _characterManager.Init();
+		}
 
-        private void AddDispatchEvents()
+		private void AddDispatchEvents()
         {
             AddDispatchEvent<Action<StageCanvas>>(StageEvents.RequestStageCanvas, RequestStageCanvas);
             AddDispatchEvent<Action<CharacterManager>>(StageEvents.RequestCharacterManager, RequestCharacterManager);

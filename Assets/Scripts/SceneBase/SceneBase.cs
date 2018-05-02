@@ -16,7 +16,12 @@ namespace CCG
             PrepareScene();
         }
 
-        public void AddDispatchEvent(string key, Action action)
+		private void Start()
+		{
+            StartScene();
+		}
+
+		public void AddDispatchEvent(string key, Action action)
         {
             if (_dispatchEvents == null) return;
             if (_dispatchEvents.ContainsKey(key)) return;
@@ -68,5 +73,6 @@ namespace CCG
         }
 
         protected virtual void PrepareScene() { }
+        protected virtual void StartScene() { }
     }
 }
