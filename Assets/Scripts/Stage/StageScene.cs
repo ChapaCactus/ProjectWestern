@@ -14,13 +14,15 @@ namespace CCG
         private StageMaster _stageMaster;
         private StageController _stageController;
         private StageCanvas _stageCanvas;
+        private CharacterManager _characterManager;
 
 		public void SetupStage(StageMaster master)
         {
             _stageMaster = master;
 
-            UIManager.CreateStageCanvas(transform, OnCreateCanvas);
-            CharacterManager.Create(transform, manager => manager.Init());
+            UIManager.CreateStageCanvas(transform, c => _stageCanvas = c);
+            StageController.Create(transform, stage => stage.Setup(_stageMaster));
+            CharacterManager.Create(transform, OnCreateCharacterManager);
         }
 
         protected override void PrepareScene()
@@ -35,19 +37,26 @@ namespace CCG
             }
         }
 
-        private void OnCreateCanvas(StageCanvas stageCanvas)
+        private void OnCreateCharacterManager(CharacterManager manager)
         {
-            StageController.Create(transform, stage => stage.Setup(_stageMaster, stageCanvas));
+            _characterManager = manager;
+            manager.Init();
         }
 
         private void AddDispatchEvents()
         {
-            AddDispatchEvent<Action<StageCanvas>>("", GetStageCanvas);
+            AddDispatchEvent<Action<StageCanvas>>(StageEvents.RequestStageCanvas, RequestStageCanvas);
+            AddDispatchEvent<Action<CharacterManager>>(StageEvents.RequestCharacterManager, RequestCharacterManager);
         }
 
-        private void GetStageCanvas(Action<StageCanvas> resfunc)
+        private void RequestStageCanvas(Action<StageCanvas> resfunc)
         {
             resfunc.SafeCall(_stageCanvas);
+        }
+
+        private void RequestCharacterManager(Action<CharacterManager> resfunc)
+        {
+            resfunc.SafeCall(_characterManager);
         }
     }
 }

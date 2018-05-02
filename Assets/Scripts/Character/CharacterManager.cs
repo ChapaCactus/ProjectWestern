@@ -6,12 +6,13 @@ using UnityEngine;
 
 namespace CCG
 {
-    public class CharacterManager : SingletonMonoBehaviour<CharacterManager>
+    public class CharacterManager : SceneContentBase
     {
         public PlayerController Player { get; private set; }
         public List<EnemyController> Enemies { get; private set; }
 
-        public Action _onKilledAllEnemies;
+        private Action _onKilledAllEnemies;
+        private StageCanvas _stageCanvas;
 
         private static readonly string PrefabPath = "Prefabs/Manager/CharacterManager";
 
@@ -30,6 +31,7 @@ namespace CCG
 
         public void Init()
         {
+            DispatchEvent<Action<StageCanvas>>(StageEvents.RequestStageCanvas, c => _stageCanvas = c);
             ResetCharacters();
         }
 
@@ -65,7 +67,7 @@ namespace CCG
         public void OnKilledEnemy()
         {
             // タイマー停止状態かつ、生存している敵が見つからなければラウンドクリア
-            if (!UIManager.I.RoundTimer.IsRunning && Enemies.All(enemy => enemy.IsDead))
+            if (!_stageCanvas.RoundTimer.IsRunning && Enemies.All(enemy => enemy.IsDead))
             {
             }
         }

@@ -9,27 +9,13 @@ namespace CCG
 {
     public class UIManager : SingletonMonoBehaviour<UIManager>
     {
-        [SerializeField]
-        private Text _totalCoinText;
-
-        [SerializeField]
-        private RoundTimer _roundTimer;
-
-        public RoundTimer RoundTimer => _roundTimer;
-
         private static readonly string CanvasPathHeader = "Prefabs/UI";
         private static readonly string StageCanvasPrefabName = "StageCanvas";
 
-        private void Awake()
-        {
-            Assert.IsNotNull(_totalCoinText);
-            Assert.IsNotNull(_roundTimer);
-        }
-
-        public static void CreateStageCanvas(Transform parent, Action<Canvas> onCreate)
+        public static void CreateStageCanvas(Transform parent, Action<StageCanvas> onCreate)
         {
             var prefab = Resources.Load($"{CanvasPathHeader}/{StageCanvasPrefabName}") as GameObject;
-            var canvas = Instantiate(prefab, parent).GetComponent<Canvas>();
+            var canvas = Instantiate(prefab, parent).GetComponent<StageCanvas>();
 
             onCreate.SafeCall(canvas);
         }
@@ -41,7 +27,6 @@ namespace CCG
 
         public void UpdateTotalCoinText(string text)
         {
-            _totalCoinText.text = text;
         }
     }
 }

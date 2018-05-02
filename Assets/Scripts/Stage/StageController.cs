@@ -16,14 +16,15 @@ namespace CCG
 
         private StageMaster _stageMaster;
         private StageCanvas _stageCanvas;
+        private CharacterManager _characterManager;
         private Coroutine _bornEnemyLoopCoroutine;
         private List<Ground> _grounds;
 
         public int RoundNum { get; private set; } = 0;
         public RoundMaster CurrentRoundData => _stageMaster.RoundSettings[RoundNum].RoundMaster;
         public Ground CurrentGround => _grounds[RoundNum];
-        public PlayerController Player => CharacterManager.I.Player;
-        public List<EnemyController> Enemies => CharacterManager.I.Enemies;
+        public PlayerController Player => _characterManager.Player;
+        public List<EnemyController> Enemies => _characterManager.Enemies;
 
         public bool IsRunning { get; private set; } = false;
 
@@ -39,10 +40,11 @@ namespace CCG
             onCreate.SafeCall(controller);
         }
 
-        public void Setup(StageMaster master, StageCanvas stageCanvas)
+        public void Setup(StageMaster master)
         {
             _stageMaster = master;
-            _stageCanvas = stageCanvas;
+            DispatchEvent<Action<StageCanvas>>(StageEvents.RequestStageCanvas, c => _stageCanvas = c);
+            DispatchEvent<Action<CharacterManager>>(StageEvents.RequestCharacterManager, c => _characterManager = c);
 
             CreateGround(master.RoundSettings, () => CurrentGround.ActivationColliders(true));
 
@@ -58,9 +60,9 @@ namespace CCG
 
         public void Restart()
         {
-            CharacterManager.I.ResetCharacters();
+            _characterManager.ResetCharacters();
 
-            Setup(_stageMaster, _stageCanvas);
+            Setup(_stageMaster);
         }
 
         protected override void Prepare()
@@ -83,13 +85,13 @@ namespace CCG
 
         private void StartRound()
         {
-            CharacterManager.I.ClearEnemies();
+            _characterManager.ClearEnemies();
 
-            CharacterManager.I.CreateNewPlayer(_playerParent, OnCreatePlayer);
-            CharacterManager.I.CreateNewEnemy(_enemiesParent, CurrentRoundData, OnCreateEnemy);
-            CharacterManager.I.CreateNewEnemy(_enemiesParent, CurrentRoundData, OnCreateEnemy);
-            CharacterManager.I.CreateNewEnemy(_enemiesParent, CurrentRoundData, OnCreateEnemy);
-            CharacterManager.I.CreateNewEnemy(_enemiesParent, CurrentRoundData, OnCreateEnemy);
+            _characterManager.CreateNewPlayer(_playerParent, OnCreatePlayer);
+            _characterManager.CreateNewEnemy(_enemiesParent, CurrentRoundData, OnCreateEnemy);
+            _characterManager.CreateNewEnemy(_enemiesParent, CurrentRoundData, OnCreateEnemy);
+            _characterManager.CreateNewEnemy(_enemiesParent, CurrentRoundData, OnCreateEnemy);
+            _characterManager.CreateNewEnemy(_enemiesParent, CurrentRoundData, OnCreateEnemy);
 
             StopBornEnemyCoroutine();
             _bornEnemyLoopCoroutine = StartCoroutine(BornEnemyLoop());
@@ -124,7 +126,7 @@ namespace CCG
                 var wait = new WaitForSeconds(random);
                 yield return wait;
 
-                CharacterManager.I.CreateNewEnemy(_enemiesParent, CurrentRoundData, OnCreateEnemy);
+                _characterManager.CreateNewEnemy(_enemiesParent, CurrentRoundData, OnCreateEnemy);
             }
 
             yield break;
@@ -165,7 +167,7 @@ namespace CCG
             player.SetCallRestart(Restart);
             player.SetInvincible(true);
 
-            CharacterManager.I.SetPlayer(player);
+            _characterManager.SetPlayer(player);
         }
 
         private void OnCreateEnemy(EnemyController enemy, EnemyMaster master)
