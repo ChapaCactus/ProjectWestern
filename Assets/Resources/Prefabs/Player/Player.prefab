@@ -130,6 +130,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _bulletPrefab: {fileID: 114138907940571394, guid: bf055936410fb4893a776a7f65010dc6,
     type: 2}
+  _boxCollder: {fileID: 61826880538313232}
 --- !u!212 &212674383578655448
 SpriteRenderer:
   m_ObjectHideFlags: 1

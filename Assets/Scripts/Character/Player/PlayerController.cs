@@ -11,6 +11,8 @@ namespace CCG
     {
         [SerializeField]
         private BulletController _bulletPrefab;
+        [SerializeField]
+        private BoxCollider2D _boxCollder;
 
         private Action _callRestart;
         private Action _onExitToNextGround;
@@ -41,6 +43,7 @@ namespace CCG
 
         public void Setup(UserData userData)
         {
+            SetIsTrigger(false);
         }
 
         public void Damage(int taken)
@@ -50,6 +53,11 @@ namespace CCG
 
         public void Kill()
         {
+        }
+
+        public void SetIsTrigger(bool isTrigger)
+        {
+            _boxCollder.isTrigger = isTrigger;
         }
 
         public void SetInvincible(bool isInvincible)

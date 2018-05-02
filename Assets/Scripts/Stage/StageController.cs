@@ -79,10 +79,26 @@ namespace CCG
         private void OnMoveToNextGround()
         {
             Player.SetCanMove(false);
+            Player.SetIsTrigger(true);
 
-            // 画面移動処理
+            var cameraTo = new Vector3(CurrentGround.transform.position.x, CurrentGround.transform.position.y, Camera.main.transform.position.z);
+            var playerTo = new Vector3(CurrentGround.transform.position.x, CurrentGround.transform.position.y, CurrentGround.transform.position.z);
+            Player.transform.DOMove(playerTo, 1);
+            MoveCamera(cameraTo, OnMoveRoundComplete);
+        }
+
+        private void MoveCamera(Vector3 to, Action onComplete)
+        {
+            Camera.main.transform.DOMove(to, 1)
+                  .OnComplete(() => onComplete());
+        }
+
+        private void OnMoveRoundComplete()
+        {
+            Debug.Log("OnMoveRoundComplete");
 
             Player.SetCanMove(true);
+            Player.SetIsTrigger(false);
         }
 
         private void StartRound()
@@ -100,7 +116,7 @@ namespace CCG
 
             Player.SetCanMove(true);
 
-            _stageCanvas.RoundTimer.StartTimer(10, StopBornEnemyCoroutine);
+            _stageCanvas.RoundTimer.StartTimer(3, StopBornEnemyCoroutine);
         }
 
         private void StopBornEnemyCoroutine()
@@ -169,23 +185,12 @@ namespace CCG
             _grounds.ForEach(ground => Destroy(ground.gameObject));
         }
 
-        private void OnExitNextGround()
-        {
-            var cameraTo = CurrentGround.transform.position;
-            MoveCamera(cameraTo, null);
-        }
-
-        private void MoveCamera(Vector3 to, Action onComplete)
-        {
-            Camera.main.transform.DOMove(to, 1);
-        }
-
         private void OnCreatePlayer(PlayerController player)
         {
             var userData = GetUserData();
             player.Setup(userData);
             player.SetCallRestart(Restart);
-            player.SetOnExitToNextGround(OnExitNextGround);
+            player.SetOnExitToNextGround(OnMoveToNextGround);
             player.SetInvincible(true);
 
             _characterManager.SetPlayer(player);
