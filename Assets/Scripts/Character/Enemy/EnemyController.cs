@@ -14,6 +14,7 @@ namespace CCG
 
         public string Name => _model.Name;
         public bool IsSleep { get; private set; } = false;
+        public bool IsDead => _model.IsDead;
 
         private EnemyModel _model { get; set; }
         private EnemyView _view { get; set; }
