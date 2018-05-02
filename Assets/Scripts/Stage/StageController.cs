@@ -15,6 +15,7 @@ namespace CCG
         private Transform _enemiesParent;
 
         private StageMaster _stageMaster;
+        private StageCanvas _stageCanvas;
         private Coroutine _bornEnemyLoopCoroutine;
         private List<Ground> _grounds;
 
@@ -38,9 +39,10 @@ namespace CCG
             onCreate.SafeCall(controller);
         }
 
-        public void Setup(StageMaster master)
+        public void Setup(StageMaster master, StageCanvas stageCanvas)
         {
             _stageMaster = master;
+            _stageCanvas = stageCanvas;
 
             CreateGround(master.RoundSettings, () => CurrentGround.ActivationColliders(true));
 
@@ -58,7 +60,7 @@ namespace CCG
         {
             CharacterManager.I.ResetCharacters();
 
-            Setup(_stageMaster);
+            Setup(_stageMaster, _stageCanvas);
         }
 
         protected override void Prepare()
@@ -94,7 +96,7 @@ namespace CCG
 
             Player.SetCanMove(true);
 
-            UIManager.I.RoundTimer.StartTimer(10, StopBornEnemyCoroutine);
+            _stageCanvas.RoundTimer.StartTimer(10, StopBornEnemyCoroutine);
         }
 
         private void StopBornEnemyCoroutine()

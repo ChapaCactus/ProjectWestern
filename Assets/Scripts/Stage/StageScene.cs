@@ -11,12 +11,16 @@ namespace CCG
         [SerializeField]
         private StageMaster _debugStageMaster;
 
+        private StageMaster _stageMaster;
         private StageController _stageController;
+        private StageCanvas _stageCanvas;
 
 		public void SetupStage(StageMaster master)
         {
+            _stageMaster = master;
+
+            UIManager.CreateStageCanvas(transform, OnCreateCanvas);
             CharacterManager.Create(transform, manager => manager.Init());
-            StageController.Create(transform, stage => stage.Setup(master));
         }
 
         protected override void PrepareScene()
@@ -31,8 +35,19 @@ namespace CCG
             }
         }
 
+        private void OnCreateCanvas(StageCanvas stageCanvas)
+        {
+            StageController.Create(transform, stage => stage.Setup(_stageMaster, stageCanvas));
+        }
+
         private void AddDispatchEvents()
         {
+            AddDispatchEvent<Action<StageCanvas>>("", GetStageCanvas);
+        }
+
+        private void GetStageCanvas(Action<StageCanvas> resfunc)
+        {
+            resfunc.SafeCall(_stageCanvas);
         }
     }
 }
