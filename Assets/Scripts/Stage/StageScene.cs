@@ -19,17 +19,16 @@ namespace CCG
 		public void SetupStage(StageMaster master)
         {
             _stageMaster = master;
-
-            UIManager.CreateStageCanvas(transform, c => _stageCanvas = c);
             StageController.Create(transform, stage => stage.Setup(_stageMaster));
-            CharacterManager.Create(transform, OnCreateCharacterManager);
         }
 
         protected override void PrepareScene()
         {
             GameManager.StartGame();
-
             AddDispatchEvents();
+
+            UIManager.CreateStageCanvas(transform, c => _stageCanvas = c);
+            CharacterManager.Create(transform, OnCreateCharacterManager);
 
             if (_debugStageMaster != null)
             {

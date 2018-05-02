@@ -42,9 +42,9 @@ namespace CCG
 
         public void Setup(StageMaster master)
         {
-            _stageMaster = master;
             DispatchEvent<Action<StageCanvas>>(StageEvents.RequestStageCanvas, c => _stageCanvas = c);
             DispatchEvent<Action<CharacterManager>>(StageEvents.RequestCharacterManager, c => _characterManager = c);
+            _stageMaster = master;
 
             CreateGround(master.RoundSettings, () => CurrentGround.ActivationColliders(true));
 
