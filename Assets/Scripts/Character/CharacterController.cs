@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace CCG
 {
-    public class CharacterController : MonoBehaviour, IKillable
+    public class CharacterController : MonoBehaviour
     {
         public CharacterDirection Direction { get; private set; } = new CharacterDirection();
 
@@ -19,11 +19,6 @@ namespace CCG
         {
             Transform = transform;
             Rigid2D = GetComponent<Rigidbody2D>();
-        }
-
-        public void Kill()
-        {
-            Destroy(gameObject);
         }
 
         public void SetCanMove(bool canMove)

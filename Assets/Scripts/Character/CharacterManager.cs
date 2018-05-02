@@ -50,7 +50,11 @@ namespace CCG
         {
             round.GetEnemyMasterAtRandom(master =>
             {
-                EnemyController.Create(parent, enemy => onCreate(enemy, master));
+                EnemyController.Create(parent, enemy =>
+                {
+                    enemy.SetOnKilledCallback(OnKilledEnemy);
+                    onCreate(enemy, master);
+                });
             });
         }
 

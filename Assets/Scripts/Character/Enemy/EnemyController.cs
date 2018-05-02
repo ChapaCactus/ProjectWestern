@@ -7,8 +7,10 @@ using UnityEngine;
 namespace CCG
 {
     [RequireComponent(typeof(EnemyView))]
-    public class EnemyController : CharacterController, IDamageable
+    public class EnemyController : CharacterController, IDamageable, IKillable
     {
+        private Action _onKilled;
+
         private static readonly string PrefabName = "Enemy";
         private static readonly string PrefabDirPath = "Prefabs/Enemy";
 
@@ -46,9 +48,20 @@ namespace CCG
             _model = new EnemyModel(master);
         }
 
+        public void SetOnKilledCallback(Action onKilled)
+        {
+            _onKilled = onKilled;
+        }
+
         public void Damage(int taken)
         {
             _model.Damage(taken, Kill);
+        }
+
+        public void Kill()
+        {
+            _onKilled.SafeCall();
+            gameObject.SetActive(false);
         }
 
         public void SetTarget(PlayerController player)
