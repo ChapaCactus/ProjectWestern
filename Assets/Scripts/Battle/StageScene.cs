@@ -13,7 +13,7 @@ namespace CCG
 
         private StageController _stage { get; set; }
 
-        public void SetupStage(StageMaster master)
+		public void SetupStage(StageMaster master)
         {
             CharacterManager.Create(transform, null);
             CreateStageController(stage => stage.Setup(master));
@@ -21,6 +21,8 @@ namespace CCG
 
         protected override void PrepareScene()
         {
+            GameManager.StartGame();
+
             AddDispatchEvents();
 
             if (_debugStageMaster != null)
