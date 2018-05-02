@@ -15,6 +15,7 @@ namespace CCG
 
         public void SetupStage(StageMaster master)
         {
+            CharacterManager.Create(transform, null);
             CreateStageController(stage => stage.Setup(master));
         }
 

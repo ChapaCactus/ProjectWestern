@@ -13,10 +13,20 @@ namespace CCG
 
         public Action _onKilledAllEnemies;
 
+        private static readonly string PrefabPath = "Prefabs/Manager/CharacterManager";
+
 		private void Awake()
 		{
             ResetCharacters();
 		}
+
+        public static void Create(Transform parent, Action<CharacterManager> onCreate)
+        {
+            var prefab = Resources.Load(PrefabPath) as GameObject;
+            var manager = Instantiate(prefab, parent).GetComponent<CharacterManager>();
+
+            onCreate.SafeCall(manager);
+        }
 
         public void CreateNewPlayer(Transform parent, Action<PlayerController> onCreate)
         {
