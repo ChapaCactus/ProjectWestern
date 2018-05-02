@@ -15,6 +15,14 @@
         UpRight = 9,
     }
 
+    public enum Direction
+    {
+        North,
+        South,
+        West,
+        East,
+    }
+
     public enum StageID
     {
         None = -1,

@@ -448,8 +448,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee7ebe4b7b0874f8da08e0dff4143ab2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _totalCoinText: {fileID: 0}
-  _roundTimer: {fileID: 0}
 --- !u!4 &2082387539
 Transform:
   m_ObjectHideFlags: 0
