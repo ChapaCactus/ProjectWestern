@@ -35,6 +35,10 @@ namespace CCG
         {
             Assert.IsNotNull(_popPoints);
             Assert.AreNotEqual(_popPoints.Count, 0);
+            Assert.IsNotNull(_playerStopNorth);
+            Assert.IsNotNull(_playerStopSouth);
+            Assert.IsNotNull(_playerStopWest);
+            Assert.IsNotNull(_playerStopEast);
             Assert.IsNotNull(_colliderOfExitToNorth);
             Assert.IsNotNull(_colliderOfExitToSouth);
             Assert.IsNotNull(_colliderOfExitToWest);
