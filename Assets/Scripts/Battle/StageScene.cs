@@ -15,8 +15,8 @@ namespace CCG
 
 		public void SetupStage(StageMaster master)
         {
-            CharacterManager.Create(transform, null);
-            CreateStageController(stage => stage.Setup(master));
+            CharacterManager.Create(transform, manager => manager.Init());
+            StageController.Create(transform, stage => stage.Setup(master));
         }
 
         protected override void PrepareScene()
@@ -33,11 +33,6 @@ namespace CCG
 
         private void AddDispatchEvents()
         {
-        }
-
-        private void CreateStageController(Action<StageController> onCreate)
-        {
-            StageController.Create(transform, onCreate.SafeCall);
         }
     }
 }

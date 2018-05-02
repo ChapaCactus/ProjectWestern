@@ -28,6 +28,17 @@ namespace CCG
             onCreate.SafeCall(manager);
         }
 
+        public void Init()
+        {
+            ResetCharacters();
+        }
+
+        public void ResetCharacters()
+        {
+            ClearPlayer();
+            ClearEnemies();
+        }
+
         public void CreateNewPlayer(Transform parent, Action<PlayerController> onCreate)
         {
             PlayerController.Create(parent, onCreate);
@@ -57,12 +68,6 @@ namespace CCG
             if (!UIManager.I.RoundTimer.IsRunning && Enemies.All(enemy => enemy.IsDead))
             {
             }
-        }
-
-        public void ResetCharacters()
-        {
-            ClearPlayer();
-            ClearEnemies();
         }
 
         public void ClearPlayer()
