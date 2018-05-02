@@ -11,7 +11,7 @@ namespace CCG
         [SerializeField]
         private StageMaster _debugStageMaster;
 
-        private StageController _stage { get; set; }
+        private StageController _stageController;
 
 		public void SetupStage(StageMaster master)
         {
