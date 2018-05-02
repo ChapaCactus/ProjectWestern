@@ -25,7 +25,6 @@ namespace CCG
         public List<EnemyController> Enemies => CharacterManager.I.Enemies;
 
         public bool IsRunning { get; private set; } = false;
-        public bool IsRoundTimerRunning => UIManager.I.RoundTimer.IsRunning;
 
         private static readonly float GroundSizeBase = 700;
         private static readonly string PrefabPath = "Prefabs/Stage/Stage";

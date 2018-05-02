@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +10,8 @@ namespace CCG
     {
         public PlayerController Player { get; private set; }
         public List<EnemyController> Enemies { get; private set; }
+
+        public Action _onKilledAllEnemies;
 
 		private void Awake()
 		{
@@ -36,6 +39,14 @@ namespace CCG
         public void SetEnemy(EnemyController enemy)
         {
             Enemies.Add(enemy);
+        }
+
+        public void OnKilledEnemy()
+        {
+            // タイマー停止状態かつ、生存している敵が見つからなければラウンドクリア
+            if (!UIManager.I.RoundTimer.IsRunning && Enemies.All(enemy => enemy.IsDead))
+            {
+            }
         }
 
         public void ResetCharacters()
