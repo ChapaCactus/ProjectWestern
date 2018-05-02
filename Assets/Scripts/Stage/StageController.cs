@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using CCG.Master;
+using DG.Tweening;
 
 namespace CCG
 {
@@ -170,11 +171,13 @@ namespace CCG
 
         private void OnExitNextGround()
         {
-            
+            var cameraTo = CurrentGround.transform.position;
+            MoveCamera(cameraTo, null);
         }
 
-        private void MoveCamera(Action onComplete)
+        private void MoveCamera(Vector3 to, Action onComplete)
         {
+            Camera.main.transform.DOMove(to, 1);
         }
 
         private void OnCreatePlayer(PlayerController player)
