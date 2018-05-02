@@ -13,6 +13,7 @@ namespace CCG
         private BulletController _bulletPrefab;
 
         private Action _callRestart;
+        private Action _onExitToNextGround;
 
         private static readonly string PrefabPath = "Prefabs/Player/Player";
 
@@ -62,6 +63,11 @@ namespace CCG
             _callRestart = callRestart;
         }
 
+        public void SetOnExitToNextGround(Action callback)
+        {
+            _onExitToNextGround = callback;
+        }
+
         public void Shot(BulletController bullet, Vector2 moveDir)
         {
             var startPos = transform.position;
@@ -76,7 +82,8 @@ namespace CCG
 
         private void OnCollisionEnter2D(Collision2D collision)
         {
-            if (collision.gameObject.CompareTag("Enemy"))
+            var hitGO = collision.gameObject;
+            if (hitGO.CompareTag("Enemy"))
             {
                 if (IsInvincible)
                 {
@@ -86,6 +93,9 @@ namespace CCG
                 {
                     _callRestart.SafeCall();
                 }
+            } else if(hitGO.CompareTag("Exit"))
+            {
+                _onExitToNextGround.SafeCall();
             }
         }
 

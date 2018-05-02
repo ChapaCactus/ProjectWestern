@@ -168,11 +168,21 @@ namespace CCG
             _grounds.ForEach(ground => Destroy(ground.gameObject));
         }
 
+        private void OnExitNextGround()
+        {
+            
+        }
+
+        private void MoveCamera(Action onComplete)
+        {
+        }
+
         private void OnCreatePlayer(PlayerController player)
         {
             var userData = GetUserData();
             player.Setup(userData);
             player.SetCallRestart(Restart);
+            player.SetOnExitToNextGround(OnExitNextGround);
             player.SetInvincible(true);
 
             _characterManager.SetPlayer(player);
