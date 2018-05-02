@@ -72,6 +72,7 @@ namespace CCG
 
         private void AddDispatchEvents()
         {
+            AddDispatchEvent(StageEvents.RoundComplete, RoundComplete);
         }
 
         private void OnMoveToNextGround()
@@ -109,7 +110,7 @@ namespace CCG
             _bornEnemyLoopCoroutine = null;
         }
 
-        private void CompleteRound()
+        private void RoundComplete()
         {
             RoundNum++;
         }
