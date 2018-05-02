@@ -5,17 +5,17 @@ namespace CCG
 {
     public static class DirectionConverter
     {
-        public static Vector2 ToVector2(Direction2D direction)
+        public static Vector2 ToVector2(Direction direction)
         {
             switch (direction)
             {
-                case Direction2D.Up:
+                case Direction.North:
                     return Vector2.up;
-                case Direction2D.Right:
+                case Direction.East:
                     return Vector2.right;
-                case Direction2D.Down:
+                case Direction.South:
                     return Vector2.down;
-                case Direction2D.Left:
+                case Direction.West:
                     return Vector2.left;
                 default:
                     return Vector2.zero;

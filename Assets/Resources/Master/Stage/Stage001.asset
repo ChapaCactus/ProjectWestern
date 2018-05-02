@@ -18,10 +18,10 @@ MonoBehaviour:
       type: 2}
     _nextRoundDirection: 2
   - _roundMaster: {fileID: 11400000, guid: d6b7691e76d984956b0f0c235f4eafe7, type: 2}
-    _groundPrefab: {fileID: 114110366280639268, guid: 747030a8419da4dd6a4a82901987d374,
+    _groundPrefab: {fileID: 114155808469343550, guid: 233402776a0624e71983c49e3cc21604,
       type: 2}
     _nextRoundDirection: 2
   - _roundMaster: {fileID: 11400000, guid: d6b7691e76d984956b0f0c235f4eafe7, type: 2}
-    _groundPrefab: {fileID: 114628985789655034, guid: 3f9f8acfc4b7b423a95ccd00733b72c2,
+    _groundPrefab: {fileID: 114155808469343550, guid: 233402776a0624e71983c49e3cc21604,
       type: 2}
-    _nextRoundDirection: 6
+    _nextRoundDirection: 0

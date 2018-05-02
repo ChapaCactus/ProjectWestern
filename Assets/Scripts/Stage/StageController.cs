@@ -114,6 +114,11 @@ namespace CCG
         {
             Debug.Log($"Round [{RoundNum}] Complete!!");
 
+            var beforeRoundNum = RoundNum;
+            var beforeGround = CurrentGround;
+            var nextDir = _stageMaster.RoundSettings[RoundNum].NextRoundDirection;
+            beforeGround.OpenExit(nextDir);
+
             RoundNum++;
         }
 
