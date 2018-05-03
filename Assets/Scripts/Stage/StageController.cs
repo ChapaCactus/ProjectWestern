@@ -142,10 +142,16 @@ namespace CCG
             beforeGround.OpenExit(nextDir);
 
             RoundNum++;
+
+            if(RoundNum >= _stageMaster.RoundSettings.Count)
+            {
+                CompleteStage();
+            }
         }
 
         private void CompleteStage()
         {
+            Debug.Log("Clear This Stage!!");
         }
 
         private IEnumerator BornEnemyLoop()
