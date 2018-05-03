@@ -106,8 +106,10 @@ namespace CCG
 
         private void StartRound()
         {
-            _characterManager.ClearEnemies();
+            CurrentGround.ActivationWalls(true);
+            _grounds.ForEach(c => c.CloseAllExit());
 
+            _characterManager.ClearEnemies();
             _characterManager.CreateNewPlayer(_playerParent, OnCreatePlayer);
             _characterManager.CreateNewEnemy(_enemiesParent, CurrentRoundData, OnCreateEnemy);
             _characterManager.CreateNewEnemy(_enemiesParent, CurrentRoundData, OnCreateEnemy);
@@ -173,6 +175,7 @@ namespace CCG
                 var offset = DirectionConverter.ToVector2(round.NextRoundDirection) * GroundSizeBase;
                 tempPos += offset;
                 ground.ActivationWalls(false);
+                ground.CloseAllExit();
 
                 _grounds.Add(ground);
             }

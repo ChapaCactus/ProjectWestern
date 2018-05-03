@@ -61,6 +61,14 @@ namespace CCG
             _wallColliders.ForEach(c => c.enabled = active);
         }
 
+        public void CloseAllExit()
+        {
+            _colliderOfExitToEast.enabled = false;
+            _colliderOfExitToWest.enabled = false;
+            _colliderOfExitToNorth.enabled = false;
+            _colliderOfExitToSouth.enabled = false;
+        }
+
         public void OpenExit(Direction dir)
         {
             switch(dir)
