@@ -31,6 +31,9 @@ namespace CCG
         [SerializeField]
         private BoxCollider2D _colliderOfExitToEast;
 
+        [SerializeField]
+        private List<BoxCollider2D> _wallColliders = new List<BoxCollider2D>();
+
         private void Awake()
         {
             Assert.IsNotNull(_popPoints);
@@ -43,6 +46,7 @@ namespace CCG
             Assert.IsNotNull(_colliderOfExitToSouth);
             Assert.IsNotNull(_colliderOfExitToWest);
             Assert.IsNotNull(_colliderOfExitToEast);
+            Assert.IsNotNull(_wallColliders);
         }
 
         public Vector3 GetRandomPosition()
