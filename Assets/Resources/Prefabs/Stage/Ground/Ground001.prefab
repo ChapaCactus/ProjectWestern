@@ -37,7 +37,7 @@ GameObject:
   - component: {fileID: 4937642640226458}
   - component: {fileID: 212718152247293096}
   - component: {fileID: 61609308917522404}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: Exit (South)
   m_TagString: Exit
   m_Icon: {fileID: 0}
@@ -199,7 +199,7 @@ GameObject:
   - component: {fileID: 4917541590579950}
   - component: {fileID: 212863173007272172}
   - component: {fileID: 61059590108631430}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: Exit (East)
   m_TagString: Exit
   m_Icon: {fileID: 0}
@@ -475,7 +475,7 @@ GameObject:
   - component: {fileID: 4145859948176526}
   - component: {fileID: 212125787091063844}
   - component: {fileID: 61955413549284506}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: Exit (North)
   m_TagString: Exit
   m_Icon: {fileID: 0}
@@ -492,7 +492,7 @@ GameObject:
   - component: {fileID: 4649142382042924}
   - component: {fileID: 212747349036444166}
   - component: {fileID: 61262547472291480}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: Exit (West)
   m_TagString: Exit
   m_Icon: {fileID: 0}

@@ -10,6 +10,7 @@ namespace CCG
     {
         public PlayerController Player { get; private set; }
         public List<EnemyController> Enemies { get; private set; }
+        public bool IsAllOfEnemiesDead => Enemies.All(enemy => enemy.IsDead);
 
         private Action _onKilledAllEnemies;
         private StageCanvas _stageCanvas;
@@ -65,7 +66,7 @@ namespace CCG
         public void OnKilledEnemy()
         {
             // タイマー停止状態かつ、生存している敵が見つからなければラウンドクリア
-            if (!_stageCanvas.RoundTimer.IsRunning && Enemies.All(enemy => enemy.IsDead))
+            if (!_stageCanvas.RoundTimer.IsRunning && IsAllOfEnemiesDead)
             {
                 DispatchEvent(StageEvents.RoundComplete);
             }
