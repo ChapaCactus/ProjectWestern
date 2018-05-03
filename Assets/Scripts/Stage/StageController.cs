@@ -30,7 +30,7 @@ namespace CCG
         public bool IsRunning { get; private set; } = false;
 
         private static readonly float GroundSizeBase = 700;
-        private static readonly string PrefabPath = "Prefabs/Stage/Stage";
+        private static readonly string PrefabPath = "Prefabs/Stage/StageController";
 
         public static void Create(Transform parent, Action<StageController> onCreate)
         {
