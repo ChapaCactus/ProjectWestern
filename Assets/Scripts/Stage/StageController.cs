@@ -47,7 +47,7 @@ namespace CCG
             DispatchEvent<Action<CharacterManager>>(StageEvents.RequestCharacterManager, c => _characterManager = c);
             _stageMaster = master;
 
-            CreateGround(master.RoundSettings, () => CurrentGround.ActivationColliders(true));
+            CreateGround(master.RoundSettings, () => CurrentGround.ActivationWalls(true));
 
             StartStage();
         }
@@ -169,7 +169,7 @@ namespace CCG
                 ground.transform.localPosition = tempPos;
                 var offset = DirectionConverter.ToVector2(round.NextRoundDirection) * GroundSizeBase;
                 tempPos += offset;
-                ground.ActivationColliders(false);
+                ground.ActivationWalls(false);
 
                 _grounds.Add(ground);
             }

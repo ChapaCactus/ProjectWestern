@@ -56,9 +56,9 @@ namespace CCG
             return point.GetPosition();
         }
 
-        public void ActivationColliders(bool active)
+        public void ActivationWalls(bool active)
         {
-            CollectAllBoxCollider2D(colliders => Array.ForEach(colliders, c => c.enabled = active));
+            _wallColliders.ForEach(c => c.enabled = active);
         }
 
         public void OpenExit(Direction dir)
@@ -82,12 +82,6 @@ namespace CCG
                     _colliderOfExitToEast.enabled = true;
                     break;
             }
-        }
-
-        private void CollectAllBoxCollider2D(Action<BoxCollider2D[]> resfunc)
-        {
-            var colliders = GetComponentsInChildren<BoxCollider2D>();
-            resfunc(colliders);
         }
     }
 }
