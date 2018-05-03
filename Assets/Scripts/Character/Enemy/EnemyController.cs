@@ -76,15 +76,5 @@ namespace CCG
             var dir = (targetPos - transform.position).normalized;
             transform.position += dir * (_model.MoveSpeed / 100);
         }
-
-        private void OnTriggerEnter2D(Collider2D collision)
-        {
-            if (collision.CompareTag("Bullet"))
-            {
-                var bullet = collision.GetComponent<BulletController>();
-                var power = bullet.Power;
-                Damage(power);
-            }
-        }
     }
 }
