@@ -69,7 +69,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4218186474437058}
   - component: {fileID: 61187024940131402}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Wall_L3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -182,7 +182,7 @@ GameObject:
   - component: {fileID: 4321183029167208}
   - component: {fileID: 212151575042287522}
   - component: {fileID: 61280565278342806}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: PlayerStop (North)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -247,7 +247,7 @@ GameObject:
   - component: {fileID: 4333659630217098}
   - component: {fileID: 212392531981992398}
   - component: {fileID: 61956555794358648}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: PlayerStop (West)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -263,7 +263,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4630562312528552}
   - component: {fileID: 61056340091757376}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Wall_D3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -296,7 +296,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4078134535038522}
   - component: {fileID: 61288615592045696}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Wall_L4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -312,7 +312,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4999152146149366}
   - component: {fileID: 61510568809800576}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Wall_R3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -328,7 +328,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4284406786780822}
   - component: {fileID: 61523988900633010}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Wall_D4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -345,7 +345,7 @@ GameObject:
   - component: {fileID: 4335161779135624}
   - component: {fileID: 212920710832179454}
   - component: {fileID: 61967213295652840}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: PlayerStop (South)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -378,7 +378,7 @@ GameObject:
   - component: {fileID: 4380392677556962}
   - component: {fileID: 212394633718671528}
   - component: {fileID: 61543893020414910}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: PlayerStop (East)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -394,7 +394,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4686224193919296}
   - component: {fileID: 61080252273966522}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Wall_U4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -410,7 +410,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4868518826883704}
   - component: {fileID: 61263377451790580}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Wall_U3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -426,7 +426,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4737830923732028}
   - component: {fileID: 61452838796274412}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Wall_R4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
