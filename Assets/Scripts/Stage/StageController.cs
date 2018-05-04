@@ -103,6 +103,8 @@ namespace CCG
 
             Player.SetCanMove(true);
             Player.SetIsTrigger(false);
+
+            StartRound();
         }
 
         private void StartRound()
@@ -111,7 +113,10 @@ namespace CCG
             _grounds.ForEach(c => c.CloseAllExit());
 
             _characterManager.ClearEnemies();
-            _characterManager.CreateNewPlayer(_playerParent, OnCreatePlayer);
+            if (Player == null)
+            {
+                _characterManager.CreateNewPlayer(_playerParent, OnCreatePlayer);
+            }
             _characterManager.CreateNewEnemy(_enemiesParent, CurrentRoundData, OnCreateEnemy);
             _characterManager.CreateNewEnemy(_enemiesParent, CurrentRoundData, OnCreateEnemy);
             _characterManager.CreateNewEnemy(_enemiesParent, CurrentRoundData, OnCreateEnemy);
