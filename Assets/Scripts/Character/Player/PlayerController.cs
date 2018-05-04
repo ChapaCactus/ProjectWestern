@@ -15,7 +15,7 @@ namespace CCG
         private BoxCollider2D _boxCollder;
 
         private Action _callRestart;
-        private Action _onExitToNextGround;
+        private Action _onHitExit;
 
         private static readonly string PrefabPath = "Prefabs/Player/Player";
 
@@ -71,9 +71,9 @@ namespace CCG
             _callRestart = callRestart;
         }
 
-        public void SetOnExitToNextGround(Action callback)
+        public void SetOnHitExitCallback(Action onHitExit)
         {
-            _onExitToNextGround = callback;
+            _onHitExit = onHitExit;
         }
 
         public void Shot(BulletController bullet, Vector2 moveDir)
@@ -103,7 +103,7 @@ namespace CCG
                 }
             } else if(hitGO.CompareTag("Exit"))
             {
-                _onExitToNextGround.SafeCall();
+                _onHitExit.SafeCall();
             }
         }
 

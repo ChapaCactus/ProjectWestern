@@ -204,7 +204,7 @@ namespace CCG
             var userData = GetUserData();
             player.Setup(userData);
             player.SetCallRestart(Restart);
-            player.SetOnExitToNextGround(OnMoveToNextGround);
+            player.SetOnHitExitCallback(OnMoveToNextGround);
             player.SetInvincible(true);
 
             _characterManager.SetPlayer(player);
