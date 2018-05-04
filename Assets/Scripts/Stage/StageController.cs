@@ -152,6 +152,8 @@ namespace CCG
         private void CompleteStage()
         {
             Debug.Log("Clear This Stage!!");
+
+            GameManager.ChangeScene(Enums.SceneName.StageSelect);
         }
 
         private IEnumerator BornEnemyLoop()
