@@ -16,6 +16,7 @@ namespace CCG.Master
 
         public string Title => _title;
         public List<RoundSetting> RoundSettings => _roundSettings;
+        public int RoundCount => RoundSettings.Count;
     }
 
     [Serializable]
