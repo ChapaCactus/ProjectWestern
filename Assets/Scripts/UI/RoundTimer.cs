@@ -11,10 +11,11 @@ namespace CCG
     public class RoundTimer : MonoBehaviour
     {
         private Slider _slider;
-        private float _timer = 0;
         private Action _onEndTimer;
 
-        public bool IsRunning => _timer > 0;
+        public float Timer { get; private set; }
+
+        public bool IsOver => Timer <= 0;
 
 		private void Awake()
 		{
@@ -24,14 +25,14 @@ namespace CCG
 
 		private void Update()
         {
-            if (_timer > 0)
+            if (Timer > 0)
             {
-                _timer -= Time.deltaTime;
-                _slider.value = _timer;
+                Timer -= Time.deltaTime;
+                _slider.value = Timer;
 
-                if (_timer <= 0)
+                if (Timer <= 0)
                 {
-                    _timer = 0;
+                    Timer = 0;
                     OnEndTimer();
                 }
             }
@@ -39,7 +40,7 @@ namespace CCG
 
         public void StartTimer(float time, Action onEndTimer)
         {
-            _timer = time;
+            Timer = time;
             _slider.maxValue = time;
             _slider.minValue = 0;
             _slider.value = time;
