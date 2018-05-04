@@ -79,6 +79,7 @@ namespace CCG
 
         private void OnMoveToNextGround()
         {
+            Debug.Log("OnMoveToNextGround");
             if (!IsRoundComplete) return;
 
             Player.SetCanMove(false);
