@@ -18,9 +18,7 @@ namespace CCG
         {
             Debug.Log("Game Started.");
 
-            SaveUserData();
             UserData = LoadUserData();
-
             UIManager.I.UpdateTotalCoinText($"{UserData.TotalCoin}");
         }
 
