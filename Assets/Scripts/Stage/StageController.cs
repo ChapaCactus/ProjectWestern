@@ -122,7 +122,6 @@ namespace CCG
             _characterManager.CreateNewEnemy(_enemiesParent, CurrentRoundData, OnCreateEnemy);
             _characterManager.CreateNewEnemy(_enemiesParent, CurrentRoundData, OnCreateEnemy);
 
-            StopBornEnemyCoroutine();
             _bornEnemyLoopCoroutine = StartCoroutine(BornEnemyLoop());
 
             Player.SetCanMove(true);
@@ -164,6 +163,8 @@ namespace CCG
 
         private IEnumerator BornEnemyLoop()
         {
+            StopBornEnemyCoroutine();
+
             while (IsRunning)
             {
                 var random = UnityEngine.Random.Range(1.0f, 5.0f);
