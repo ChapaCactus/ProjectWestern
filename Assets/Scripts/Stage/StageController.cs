@@ -28,7 +28,7 @@ namespace CCG
         public List<EnemyController> Enemies => _characterManager.Enemies;
 
         public bool IsRunning { get; private set; } = false;
-        public bool IsRoundComplete => !_stageCanvas.RoundTimer.IsOver && _characterManager.IsAllOfEnemiesDead;
+        public bool IsRoundComplete => _stageCanvas.RoundTimer.IsOver && _characterManager.IsAllOfEnemiesDead;
 
         private static readonly float GroundSizeBase = 700;
         private static readonly string PrefabPath = "Prefabs/Stage/StageController";

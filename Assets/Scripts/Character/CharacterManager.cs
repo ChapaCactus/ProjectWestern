@@ -66,7 +66,7 @@ namespace CCG
         public void OnKilledEnemy()
         {
             // タイマー停止状態かつ、生存している敵が見つからなければラウンドクリア
-            if (!_stageCanvas.RoundTimer.IsOver && IsAllOfEnemiesDead)
+            if (_stageCanvas.RoundTimer.IsOver && IsAllOfEnemiesDead)
             {
                 DispatchEvent(StageEvents.RoundComplete);
             }
