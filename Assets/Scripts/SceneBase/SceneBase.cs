@@ -13,7 +13,13 @@ namespace CCG
 
         private void Awake()
         {
-            PrepareScene();
+            if (!GameManager.IsGaming)
+            {
+                GameManager.StartGame();
+            } else
+            {
+                PrepareScene();
+            }
         }
 
 		private void Start()

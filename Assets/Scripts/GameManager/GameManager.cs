@@ -11,6 +11,7 @@ namespace CCG
     {
         public static readonly string UserData_SaveKey = "UserData";
 
+        public static bool IsGaming { get; private set; } = false;
         public static UserData UserData { get; private set; }
         public static StageMaster SelectedStageMaster { get; private set; }
 
@@ -20,6 +21,13 @@ namespace CCG
 
             UserData = LoadUserData();
             UIManager.I.UpdateTotalCoinText($"{UserData.TotalCoin}");
+
+            IsGaming = true;
+
+            if (SceneManager.GetActiveScene().name != "Title")
+            {
+                ChangeScene(SceneName.StageSelect);
+            }
         }
 
         public static void SetStageMaster(StageMaster master)
