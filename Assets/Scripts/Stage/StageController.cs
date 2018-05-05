@@ -86,7 +86,7 @@ namespace CCG
             Player.SetIsTrigger(true);
 
             var cameraTo = new Vector3(CurrentGround.transform.position.x, CurrentGround.transform.position.y, Camera.main.transform.position.z);
-            var playerTo = new Vector3(CurrentGround.transform.position.x, CurrentGround.transform.position.y, CurrentGround.transform.position.z);
+            var playerTo = CurrentGround.transform.position;
             Player.transform.DOMove(playerTo, 1);
             MoveCamera(cameraTo, OnMoveRoundComplete);
         }
