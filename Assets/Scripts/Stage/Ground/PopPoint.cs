@@ -33,7 +33,7 @@ namespace CCG
 
         public Vector2 GetPosition()
         {
-            return transform.localPosition;
+            return transform.position;
         }
 
         private void SetIsRunning(bool isRunning)
