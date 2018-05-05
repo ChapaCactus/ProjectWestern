@@ -115,19 +115,23 @@ namespace CCG
 
             _characterManager.ClearEnemies();
             if (Player == null)
-            {
                 _characterManager.CreateNewPlayer(_playerParent, OnCreatePlayer);
-            }
-            _characterManager.CreateNewEnemy(_enemiesParent, CurrentRoundData, OnCreateEnemy);
-            _characterManager.CreateNewEnemy(_enemiesParent, CurrentRoundData, OnCreateEnemy);
-            _characterManager.CreateNewEnemy(_enemiesParent, CurrentRoundData, OnCreateEnemy);
-            _characterManager.CreateNewEnemy(_enemiesParent, CurrentRoundData, OnCreateEnemy);
 
             _bornEnemyLoopCoroutine = StartCoroutine(BornEnemyLoop());
 
             Player.SetCanMove(true);
 
-            _stageCanvas.RoundTimer.StartTimer(3, StopBornEnemyCoroutine);
+            _stageCanvas.RoundTimer.StartTimer(3, OnEndTimer);
+        }
+
+        private void OnEndTimer()
+        {
+            StopBornEnemyCoroutine();
+
+            if(IsRoundComplete)
+            {
+                RoundComplete();
+            }
         }
 
         private void StopBornEnemyCoroutine()

@@ -10,7 +10,7 @@ namespace CCG
     {
         public PlayerController Player { get; private set; }
         public List<EnemyController> Enemies { get; private set; }
-        public bool IsAllOfEnemiesDead => Enemies.All(enemy => enemy.IsDead);
+        public bool IsAllOfEnemiesDead => Enemies.Count == 0 || Enemies.All(enemy => enemy.IsDead);
 
         private Action _onKilledAllEnemies;
         private StageCanvas _stageCanvas;
