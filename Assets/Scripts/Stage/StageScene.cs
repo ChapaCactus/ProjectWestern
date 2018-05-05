@@ -25,7 +25,6 @@ namespace CCG
 
         protected override void PrepareScene()
         {
-            GameManager.StartGame();
             AddDispatchEvents();
 
             UIManager.CreateStageCanvas(transform, c => _stageCanvas = c);
