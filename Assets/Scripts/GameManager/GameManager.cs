@@ -36,16 +36,12 @@ namespace CCG
 
         private static void SaveUserData()
         {
-            UserData = new UserData();
-
             ES3.Save<UserData>(UserData_SaveKey, UserData);
-
-            Debug.Log("SavedUserData.");
         }
 
         private static UserData LoadUserData()
         {
-            Debug.Log("Loading UserData.");
+            if (!ES3.KeyExists(UserData_SaveKey)) return new UserData();
 
             return ES3.Load<UserData>(UserData_SaveKey);
         }
