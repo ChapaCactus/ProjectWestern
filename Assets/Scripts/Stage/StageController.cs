@@ -109,8 +109,9 @@ namespace CCG
 
         private void StartRound()
         {
-            CurrentGround.ActivationWalls(true);
             _grounds.ForEach(c => c.CloseAllExit());
+            _grounds.ForEach(c => c.ActivationWalls(false));
+            CurrentGround.ActivationWalls(true);
 
             _characterManager.ClearEnemies();
             if (Player == null)
