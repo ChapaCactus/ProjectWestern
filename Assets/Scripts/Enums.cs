@@ -33,6 +33,7 @@
 
     public enum SceneName
     {
+        Title,
         StageSelect,
         Stage,
     }
