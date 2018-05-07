@@ -7,7 +7,7 @@ using UnityEngine.Assertions;
 
 namespace CCG
 {
-    public class UIManager : SingletonMonoBehaviour<UIManager>
+    public static class UIManager
     {
         private static readonly string CanvasPathHeader = "Prefabs/UI";
         private static readonly string TitleCanvasPrefabName = "TitleCanvas";
@@ -23,19 +23,19 @@ namespace CCG
             CreateCanvas<StageCanvas>(StageCanvasPrefabName, parent, onCreate);
         }
 
-        public void Init()
+        public static void Init()
         {
             Debug.Log("Start Initializing UI Manager.");
         }
 
-        public void UpdateTotalCoinText(string text)
+        public static void UpdateTotalCoinText(string text)
         {
         }
 
         private static void CreateCanvas<T>(string prefabName, Transform parent, Action<T> onCreate)
         {
             var prefab = Resources.Load($"{CanvasPathHeader}/{prefabName}") as GameObject;
-            var canvas = Instantiate(prefab, parent).GetComponent<T>();
+            var canvas = GameObject.Instantiate(prefab, parent).GetComponent<T>();
 
             onCreate.SafeCall(canvas);
         }
