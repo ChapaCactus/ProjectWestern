@@ -20,14 +20,11 @@ namespace CCG
             Debug.Log("Game Started.");
 
             UserData = LoadUserData();
-            UIManager.I.UpdateTotalCoinText($"{UserData.TotalCoin}");
+            UIManager.UpdateTotalCoinText($"{UserData.TotalCoin}");
 
             IsGaming = true;
 
-            if (SceneManager.GetActiveScene().name != "Title")
-            {
-                ChangeScene(SceneName.StageSelect);
-            }
+            ChangeScene(SceneName.Title);
         }
 
         public static void SetStageMaster(StageMaster master)
