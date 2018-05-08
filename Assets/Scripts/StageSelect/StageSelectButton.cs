@@ -22,6 +22,8 @@ namespace CCG
 
         private StageMaster _stageMaster;
 
+        public StageID StageID => _stageID;
+
         private void Awake()
         {
             Assert.IsNotNull(_button);

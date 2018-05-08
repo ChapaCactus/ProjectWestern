@@ -10,23 +10,33 @@ namespace CCG
     public static class UIManager
     {
         private static readonly string CanvasPathHeader = "Prefabs/UI";
-        private static readonly string TitleCanvasPrefabName = "TitleCanvas";
-        private static readonly string StageSelectCanvasPrefabName = "StageSelectCanvas";
-        private static readonly string StageCanvasPrefabName = "StageCanvas";
+        private static readonly string TitleCanvasPrbName = "TitleCanvas";
+        private static readonly string StageSelectCanvasPrbName = "StageSelectCanvas";
+        private static readonly string StageCanvasPrbName = "StageCanvas";
 
         public static void CreateTitleCanvas(Transform parent, Action<TitleCanvas> onCreate)
         {
-            CreateCanvas<TitleCanvas>(TitleCanvasPrefabName, parent, onCreate);
+            CreateCanvas<TitleCanvas>(TitleCanvasPrbName, parent, onCreate);
         }
 
         public static void CreateStageSelectCanvas(Transform parent, Action<StageSelectCanvas> onCreate)
         {
-            CreateCanvas<StageSelectCanvas>(StageSelectCanvasPrefabName, parent, onCreate);
+            CreateCanvas<StageSelectCanvas>(StageSelectCanvasPrbName, parent, onCreate);
         }
 
         public static void CreateStageCanvas(Transform parent, Action<StageCanvas> onCreate)
         {
-            CreateCanvas<StageCanvas>(StageCanvasPrefabName, parent, onCreate);
+            CreateCanvas<StageCanvas>(StageCanvasPrbName, parent, onCreate);
+        }
+
+        public static void CreateStageSelectMap(int mapID, Transform parent, Action<StageSelectMap> onCreate)
+        {
+            var path = $"Prefabs/Stage/StageSelectMap/{StageSelectMap.PrefabNamePrefix}_{mapID.ToString("D3")}";
+            Debug.Log(path);
+            var prefab = Resources.Load(path) as GameObject;
+            var map = GameObject.Instantiate(prefab, parent).GetComponent<StageSelectMap>();
+
+            onCreate.SafeCall(map);
         }
 
         public static void Init()

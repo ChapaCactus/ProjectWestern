@@ -19,6 +19,7 @@ namespace CCG
             _isStageChanging = false;
 
             UIManager.CreateStageSelectCanvas(transform, c => _canvas = c);
+            UIManager.CreateStageSelectMap(1, _canvas.transform, null);
 		}
 
 		public void OnSelectedStage(StageMaster selected)
