@@ -20,6 +20,7 @@ namespace CCG
         [SerializeField]
         private Text _stageNumText;
 
+        private StageSelectScene _stageSelect;
         private StageMaster _stageMaster;
 
         public StageID StageID => _stageID;
@@ -28,24 +29,26 @@ namespace CCG
         {
             Assert.IsNotNull(_button);
             Assert.IsNotNull(_stageNumText);
+        }
 
+        public void Setup(StageSelectScene stageSelect)
+        {
+            _stageSelect = stageSelect;
             _stageNumText.text = $"{(int)_stageID}";
-
             LoadStageMaster(_stageID, master => _stageMaster = master);
-
             _button.onClick.AddListener(OnClick);
         }
 
         private void LoadStageMaster(StageID id, Action<StageMaster> onLoad)
         {
-            //StageSelect.I.LoadStageMaster(id, onLoad);
+            _stageSelect.LoadStageMaster(id, onLoad);
         }
 
         private void OnClick()
         {
             Debug.Log($"OnClick StageID: {_stageID}, Master Title: {_stageMaster.Title}");
 
-            //StageSelect.I.OnSelectedStage(_stageMaster);
+            _stageSelect.OnSelectedStage(_stageMaster);
         }
     }
 }

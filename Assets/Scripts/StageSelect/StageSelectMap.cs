@@ -11,11 +11,12 @@ namespace CCG
 
         public static readonly string PrefabNamePrefix = "StageSelectMap";
 
-		private void Awake()
-		{
-            var buttons = FindObjectsOfType<StageSelectButton>();
+        public List<StageSelectButton> SearchStageSelectButtons()
+        {
+            var buttons = GetComponentsInChildren<StageSelectButton>();
             _stageSelectButtons = new List<StageSelectButton>(buttons);
-            _stageSelectButtons.OrderBy(b => b.StageID);
-		}
+
+            return _stageSelectButtons;
+        }
 	}
 }

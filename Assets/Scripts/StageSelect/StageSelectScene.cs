@@ -14,15 +14,19 @@ namespace CCG
 
         private static readonly string MasterDirPath = "Master/Stage";
 
-		protected override void PrepareScene()
-		{
+        protected override void PrepareScene()
+        {
             _isStageChanging = false;
 
             UIManager.CreateStageSelectCanvas(transform, c => _canvas = c);
-            UIManager.CreateStageSelectMap(1, _canvas.transform, null);
-		}
+            UIManager.CreateStageSelectMap(1, _canvas.transform, map =>
+            {
+                var buttons = map.SearchStageSelectButtons();
+                buttons.ForEach(button => button.Setup(this));
+            });
+        }
 
-		public void OnSelectedStage(StageMaster selected)
+        public void OnSelectedStage(StageMaster selected)
         {
             if (_isStageChanging) return;
 

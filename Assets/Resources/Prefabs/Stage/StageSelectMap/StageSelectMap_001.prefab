@@ -102,6 +102,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 224191790949953956}
+  - component: {fileID: 114657678566173136}
   m_Layer: 5
   m_Name: StageSelectMap_001
   m_TagString: Untagged
@@ -583,6 +584,17 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114657678566173136
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1477650526612172}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49e9b49c99e224623ae229aa0fd52f43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114806875510725364
 MonoBehaviour:
   m_ObjectHideFlags: 1
