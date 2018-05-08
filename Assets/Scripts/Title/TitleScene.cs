@@ -10,7 +10,16 @@ namespace CCG
 
 		protected override void PrepareScene()
 		{
-            UIManager.CreateTitleCanvas(transform, c => _titleCanvas = c);
+            UIManager.CreateTitleCanvas(transform, c =>
+            {
+                _titleCanvas = c;
+                c.SetOnClickTitleScreen(OnClickTitleScreen);
+            });
 		}
+
+        private void OnClickTitleScreen()
+        {
+            GameManager.ChangeScene(Enums.SceneName.StageSelect);
+        }
 	}
 }
