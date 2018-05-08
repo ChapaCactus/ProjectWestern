@@ -10,12 +10,15 @@ namespace CCG
     public class StageSelectScene : SceneBase
     {
         private bool _isStageChanging = false;
+        private StageSelectCanvas _canvas;
 
         private static readonly string MasterDirPath = "Master/Stage";
 
 		protected override void PrepareScene()
 		{
             _isStageChanging = false;
+
+            UIManager.CreateStageSelectCanvas(transform, c => _canvas = c);
 		}
 
 		public void OnSelectedStage(StageMaster selected)

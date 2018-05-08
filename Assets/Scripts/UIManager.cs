@@ -11,11 +11,17 @@ namespace CCG
     {
         private static readonly string CanvasPathHeader = "Prefabs/UI";
         private static readonly string TitleCanvasPrefabName = "TitleCanvas";
+        private static readonly string StageSelectCanvasPrefabName = "StageSelectCanvas";
         private static readonly string StageCanvasPrefabName = "StageCanvas";
 
         public static void CreateTitleCanvas(Transform parent, Action<TitleCanvas> onCreate)
         {
             CreateCanvas<TitleCanvas>(TitleCanvasPrefabName, parent, onCreate);
+        }
+
+        public static void CreateStageSelectCanvas(Transform parent, Action<StageSelectCanvas> onCreate)
+        {
+            CreateCanvas<StageSelectCanvas>(StageSelectCanvasPrefabName, parent, onCreate);
         }
 
         public static void CreateStageCanvas(Transform parent, Action<StageCanvas> onCreate)
