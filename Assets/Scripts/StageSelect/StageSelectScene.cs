@@ -7,13 +7,13 @@ using CCG.Enums;
 
 namespace CCG
 {
-    public class StageSelect : SingletonMonoBehaviour<StageSelect>
+    public class StageSelectScene : SceneBase
     {
         private bool _isStageChanging = false;
 
         private static readonly string MasterDirPath = "Master/Stage";
 
-		private void Awake()
+		protected override void PrepareScene()
 		{
             _isStageChanging = false;
 		}

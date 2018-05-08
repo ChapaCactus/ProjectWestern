@@ -36,14 +36,14 @@ namespace CCG
 
         private void LoadStageMaster(StageID id, Action<StageMaster> onLoad)
         {
-            StageSelect.I.LoadStageMaster(id, onLoad);
+            //StageSelect.I.LoadStageMaster(id, onLoad);
         }
 
         private void OnClick()
         {
             Debug.Log($"OnClick StageID: {_stageID}, Master Title: {_stageMaster.Title}");
 
-            StageSelect.I.OnSelectedStage(_stageMaster);
+            //StageSelect.I.OnSelectedStage(_stageMaster);
         }
     }
 }
