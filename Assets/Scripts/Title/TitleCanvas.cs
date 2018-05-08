@@ -3,6 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Assertions;
+using TMPro;
+using DG.Tweening;
 
 namespace CCG
 {
@@ -11,9 +14,29 @@ namespace CCG
         [SerializeField]
         private Button _titleScreenButton;
 
-        public void SetOnClickTitleScreen(Action onClick)
+        [SerializeField]
+        private TextMeshProUGUI _tapToStartText;
+
+		private void Awake()
+		{
+            Assert.IsNotNull(_titleScreenButton);
+            Assert.IsNotNull(_tapToStartText);
+
+            PlayTapToStartTextAnimation();
+		}
+
+		public void SetOnClickTitleScreen(Action onClick)
         {
             _titleScreenButton.onClick.AddListener(onClick.SafeCall);
+        }
+
+        private void PlayTapToStartTextAnimation()
+        {
+            _tapToStartText.alpha = 1;
+            _tapToStartText.DOFade(0.3f, 1)
+                           .SetLoops(-1, LoopType.Yoyo)
+                           .SetDelay(0.7f)
+                           .SetEase(Ease.InExpo);
         }
     }
 }
