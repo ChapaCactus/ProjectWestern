@@ -35,7 +35,13 @@ namespace CCG
 
         public static readonly string PrefabPath = "Prefabs/UI/StageInfoPanel";
 
-        public void Setup(StageMaster master)
+		protected override void Prepare()
+		{
+            AddDispatchEvent(StageSelectEvents.OpenStageInfo, Open);
+            AddDispatchEvent(StageSelectEvents.CloseStageInfo, Close);
+		}
+
+		public void Setup(StageMaster master)
         {
             _uiElement.StageTitle.text = master.Title;
             _uiElement.AreaName.text = master.Title;
@@ -46,6 +52,16 @@ namespace CCG
         private void OnStartClick()
         {
             DispatchEvent(StageSelectEvents.OnClickStart);
+        }
+
+        private void Open()
+        {
+            gameObject.SetActive(true);
+        }
+
+        private void Close()
+        {
+            gameObject.SetActive(false);
         }
     }
 }
