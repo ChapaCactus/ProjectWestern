@@ -8,6 +8,6 @@ namespace CCG
     {
         public static readonly string OpenStageInfo = "OpenStageInfo";
         public static readonly string CloseStageInfo = "CloseStageInfo";
-        public static readonly string OnClickStart = "OnClickStart";
+        public static readonly string OnStartClick = "OnStartClick";
     }
 }

@@ -40,8 +40,9 @@ namespace CCG
 
 		protected override void Prepare()
 		{
-            AddDispatchEvent(StageSelectEvents.OpenStageInfo, Open);
+            AddDispatchEvent<StageMaster>(StageSelectEvents.OpenStageInfo, Open);
             AddDispatchEvent(StageSelectEvents.CloseStageInfo, Close);
+            AddDispatchEvent(StageSelectEvents.OnStartClick, OnStartClick);
 
             Close();
 		}
@@ -56,11 +57,13 @@ namespace CCG
 
         private void OnStartClick()
         {
-            DispatchEvent(StageSelectEvents.OnClickStart);
+            DispatchEvent(StageSelectEvents.OnStartClick);
         }
 
-        private void Open()
+        private void Open(StageMaster master)
         {
+            Setup(master);
+
             if(_canvasGroup == null) _canvasGroup = GetComponent<CanvasGroup>();
 
             _canvasGroup.alpha = 1;

@@ -42,7 +42,7 @@ namespace CCG
 
         private void AddDispatchEvents()
         {
-            AddDispatchEvent(StageSelectEvents.OnClickStart, OnClickStart);
+            AddDispatchEvent(StageSelectEvents.OnStartClick, OnClickStart);
         }
 
         private void OnClickStart()
