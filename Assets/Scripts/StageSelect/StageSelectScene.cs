@@ -11,6 +11,7 @@ namespace CCG
     {
         private bool _isStageChanging = false;
         private StageSelectCanvas _canvas;
+        private StageInfoPanel _stageInfoPanel;
 
         private static readonly string MasterDirPath = "Master/Stage";
 
@@ -24,6 +25,7 @@ namespace CCG
                 var buttons = map.SearchStageSelectButtons();
                 buttons.ForEach(button => button.Setup(this));
             });
+            CreateStageInfoPanel(c => _stageInfoPanel = c);
         }
 
         public void OnSelectedStage(StageMaster selected)
@@ -49,6 +51,15 @@ namespace CCG
 
             _isStageChanging = true;
             GameManager.ChangeScene(SceneName.Stage);
+        }
+
+        private void CreateStageInfoPanel(Action<StageInfoPanel> onCreate)
+        {
+            var prefab = Resources.Load(StageInfoPanel.PrefabPath) as GameObject;
+            var stageInfo = Instantiate(prefab, _canvas.transform).GetComponent<StageInfoPanel>();
+            stageInfo.gameObject.SetActive(false);
+
+            onCreate.SafeCall(stageInfo);
         }
     }
 }
