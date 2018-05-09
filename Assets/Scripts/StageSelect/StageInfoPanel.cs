@@ -45,7 +45,7 @@ namespace CCG
 
         private void OnStartClick()
         {
-           // DispatchEvent();
+            DispatchEvent(StageSelectEvents.OnClickStart);
         }
     }
 }
