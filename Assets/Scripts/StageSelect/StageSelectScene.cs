@@ -28,7 +28,7 @@ namespace CCG
             CreateStageInfoPanel(c => _stageInfoPanel = c);
         }
 
-        public void OnSelectedStage(StageMaster selected)
+		public void OnSelectedStage(StageMaster selected)
         {
         }
 
@@ -57,7 +57,6 @@ namespace CCG
         {
             var prefab = Resources.Load(StageInfoPanel.PrefabPath) as GameObject;
             var stageInfo = Instantiate(prefab, _canvas.transform).GetComponent<StageInfoPanel>();
-            stageInfo.gameObject.SetActive(false);
 
             onCreate.SafeCall(stageInfo);
         }

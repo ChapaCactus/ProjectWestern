@@ -53,7 +53,9 @@ namespace CCG
 
         public void DispatchEvent(string key)
         {
+            Assert.IsNotNull(_dispatchEvents);
             if (_dispatchEvents == null) return;
+            Assert.IsTrue(_dispatchEvents.ContainsKey(key));
             if (!_dispatchEvents.ContainsKey(key)) return;
 
             var action = _dispatchEvents[key] as Action;

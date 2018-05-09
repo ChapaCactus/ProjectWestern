@@ -9,7 +9,7 @@ using CCG.Master;
 
 namespace CCG
 {
-    public class StageSelectButton : MonoBehaviour
+    public class StageSelectButton : SceneContentBase
     {
         [SerializeField]
         private StageID _stageID = StageID.None;
@@ -25,13 +25,13 @@ namespace CCG
 
         public StageID StageID => _stageID;
 
-        private void Awake()
-        {
+		protected override void Prepare()
+		{
             Assert.IsNotNull(_button);
             Assert.IsNotNull(_stageNumText);
-        }
+		}
 
-        public void Setup(StageSelectScene stageSelect)
+		public void Setup(StageSelectScene stageSelect)
         {
             _stageSelect = stageSelect;
             _stageNumText.text = $"{(int)_stageID}";
@@ -46,9 +46,8 @@ namespace CCG
 
         private void OnClick()
         {
-            Debug.Log($"OnClick StageID: {_stageID}, Master Title: {_stageMaster.Title}");
-
-            _stageSelect.OnSelectedStage(_stageMaster);
+            Debug.Log("OnClick");
+            DispatchEvent(StageSelectEvents.OpenStageInfo);
         }
     }
 }

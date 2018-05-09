@@ -14,22 +14,20 @@ namespace CCG
         protected void Awake()
         {
             FindSceneParent();
-
             Prepare();
         }
 
-        public Transform GetSceneParent(Transform parent)
+        public Transform GetSceneParent(Transform tf)
         {
-            var higherParent = parent.parent;
-
-            if (higherParent != null)
+            var parent = tf.parent;
+            if (parent != null)
             {
                 // 再帰的呼び出し
-                return GetSceneParent(higherParent);
+                return GetSceneParent(parent);
             }
             else
             {
-                return parent;
+                return tf;
             }
         }
 
@@ -39,8 +37,7 @@ namespace CCG
 
         private void FindSceneParent()
         {
-            var parent = transform.parent;
-            var sceneParent = GetSceneParent(parent).GetComponent<SceneBase>();
+            var sceneParent = GetSceneParent(transform).GetComponent<SceneBase>();
             _sceneBase = sceneParent;
         }
 
@@ -67,6 +64,7 @@ namespace CCG
 
         protected void DispatchEvent(string key)
         {
+            Assert.IsNotNull(_sceneBase);
             if (_sceneBase == null) return;
 
             _sceneBase.DispatchEvent(key);

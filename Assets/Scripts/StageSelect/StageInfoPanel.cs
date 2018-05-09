@@ -7,6 +7,7 @@ using CCG.Master;
 
 namespace CCG
 {
+    [RequireComponent(typeof(CanvasGroup))]
     public class StageInfoPanel : SceneContentBase
     {
         [System.Serializable]
@@ -33,12 +34,16 @@ namespace CCG
         [SerializeField]
         private StageInfoPanel.UIElement _uiElement;
 
+        private CanvasGroup _canvasGroup;
+
         public static readonly string PrefabPath = "Prefabs/UI/StageInfoPanel";
 
 		protected override void Prepare()
 		{
             AddDispatchEvent(StageSelectEvents.OpenStageInfo, Open);
             AddDispatchEvent(StageSelectEvents.CloseStageInfo, Close);
+
+            Close();
 		}
 
 		public void Setup(StageMaster master)
@@ -56,12 +61,20 @@ namespace CCG
 
         private void Open()
         {
-            gameObject.SetActive(true);
+            if(_canvasGroup == null) _canvasGroup = GetComponent<CanvasGroup>();
+
+            _canvasGroup.alpha = 1;
+            _canvasGroup.interactable = true;
+            _canvasGroup.blocksRaycasts = true;
         }
 
         private void Close()
         {
-            gameObject.SetActive(false);
+            if (_canvasGroup == null) _canvasGroup = GetComponent<CanvasGroup>();
+
+            _canvasGroup.alpha = 0;
+            _canvasGroup.interactable = false;
+            _canvasGroup.blocksRaycasts = false;
         }
     }
 }
