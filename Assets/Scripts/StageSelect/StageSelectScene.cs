@@ -28,10 +28,6 @@ namespace CCG
 
         public void OnSelectedStage(StageMaster selected)
         {
-            if (_isStageChanging) return;
-
-            _isStageChanging = true;
-            GameManager.ChangeScene(SceneName.Stage);
         }
 
         public void LoadStageMaster(StageID id, Action<StageMaster> onLoad)
@@ -40,6 +36,19 @@ namespace CCG
             var master = Resources.Load(path) as StageMaster;
 
             onLoad.SafeCall(master);
+        }
+
+        private void AddDispatchEvents()
+        {
+            AddDispatchEvent(StageSelectEvents.OnClickStart, OnClickStart);
+        }
+
+        private void OnClickStart()
+        {
+            if (_isStageChanging) return;
+
+            _isStageChanging = true;
+            GameManager.ChangeScene(SceneName.Stage);
         }
     }
 }
