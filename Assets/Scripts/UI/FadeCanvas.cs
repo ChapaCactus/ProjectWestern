@@ -20,7 +20,7 @@ namespace CCG.UI
 				_start = start;
 				_end = end;
 
-				ResetAlpha();
+				SetAlpha(0);
 			}
 
 			public void Play(System.Action onComplete)
@@ -30,9 +30,14 @@ namespace CCG.UI
 				      .OnComplete(onComplete.SafeCall);
 			}
 
+            private void SetAlpha(float alpha)
+			{
+				_image.color = new Color(_image.color.r, _image.color.g, _image.color.b, alpha);
+			}
+
             private void ResetAlpha()
 			{
-				_image.color = new Color(_image.color.r, _image.color.g, _image.color.b, _start);
+				SetAlpha(_start);
 			}
 		}
 
