@@ -47,6 +47,7 @@ namespace CCG
 
 		private static void ChangeScene(SceneName sceneName)
 		{
+			Debug.Log($"Start ChangeScene --> {sceneName}");
 			SceneManager.LoadScene($"{sceneName}");
 		}
 

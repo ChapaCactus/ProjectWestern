@@ -25,12 +25,13 @@ namespace CCG.UI
 
 			public void Play(System.Action onComplete)
 			{
+				Debug.Log($"Play Fading... [start {_start}, end {_end}");
 				ResetAlpha();
 				_image.DOFade(_end, 1)
-				      .OnComplete(onComplete.SafeCall);
+					  .OnComplete(onComplete.SafeCall);
 			}
 
-            private void SetAlpha(float alpha)
+			public void SetAlpha(float alpha)
 			{
 				_image.color = new Color(_image.color.r, _image.color.g, _image.color.b, alpha);
 			}
@@ -81,6 +82,8 @@ namespace CCG.UI
 		public void FadeOut(System.Action onComplete)
         {
 			if (_fadeOut == null) return;
+
+			_fadeIn.SetAlpha(0);
 			_fadeOut.Play(onComplete);
         }
 
