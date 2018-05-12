@@ -26,7 +26,7 @@ namespace CCG
 
             IsGaming = true;
             
-            ChangeScene(SceneName.Title, false);
+            CallChangeScene(SceneName.Title, false);
         }
 
         public static void SetStageMaster(StageMaster master)
@@ -34,16 +34,21 @@ namespace CCG
             SelectedStageMaster = master;
         }
 
-        public static void ChangeScene(SceneName stageName, bool isFade = true)
+		public static void CallChangeScene(SceneName sceneName, bool isFade = true)
         {
 			if (isFade)
 			{
-				UIManager.FadeCanvas.FadeInOut(() => SceneManager.LoadScene($"{stageName}"));
+				UIManager.FadeCanvas.FadeInOut(() => ChangeScene(sceneName));
 			} else
 			{
-				SceneManager.LoadScene($"{stageName}");
+				ChangeScene(sceneName);
 			}
         }
+
+		private static void ChangeScene(SceneName sceneName)
+		{
+			SceneManager.LoadScene($"{sceneName}");
+		}
 
         private static void SaveUserData()
         {

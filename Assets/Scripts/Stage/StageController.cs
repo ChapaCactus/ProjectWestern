@@ -163,7 +163,7 @@ namespace CCG
         {
             Debug.Log("Clear This Stage!!");
 
-            GameManager.ChangeScene(Enums.SceneName.StageSelect);
+            GameManager.CallChangeScene(Enums.SceneName.StageSelect);
         }
 
         private IEnumerator BornEnemyLoop()

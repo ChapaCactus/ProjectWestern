@@ -51,7 +51,7 @@ namespace CCG
             if (_isStageChanging) return;
 
             _isStageChanging = true;
-            GameManager.ChangeScene(SceneName.Stage);
+            GameManager.CallChangeScene(SceneName.Stage);
         }
 
         private void CreateStageInfoPanel(Action<StageInfoPanel> onCreate)

@@ -20,7 +20,7 @@ namespace CCG
 
         private void OnClickTitleScreen()
         {
-            GameManager.ChangeScene(Enums.SceneName.StageSelect);
+            GameManager.CallChangeScene(Enums.SceneName.StageSelect);
         }
 	}
 }
