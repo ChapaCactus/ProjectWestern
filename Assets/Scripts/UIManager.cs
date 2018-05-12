@@ -9,6 +9,8 @@ namespace CCG.UI
 {
     public static class UIManager
     {
+		public static FadeCanvas FadeCanvas { get; private set; }
+
         private static readonly string CanvasPathHeader = "Prefabs/UI";
 
         public static void CreateTitleCanvas(Transform parent, Action<TitleCanvas> onCreate)
@@ -40,6 +42,13 @@ namespace CCG.UI
 
             onCreate.SafeCall(map);
         }
+
+		public static void SetFadeCanvas(FadeCanvas fadeCanvas)
+		{
+			Assert.IsNull(FadeCanvas);
+
+			FadeCanvas = fadeCanvas;
+		}
 
         public static void Init()
         {

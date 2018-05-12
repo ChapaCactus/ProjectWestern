@@ -22,11 +22,11 @@ namespace CCG
 
             UserData = LoadUserData();
             UIManager.UpdateTotalCoinText($"{UserData.TotalCoin}");
-			UIManager.CreateFadeCanvas(null, c => {});
+			UIManager.CreateFadeCanvas(null, UIManager.SetFadeCanvas);
 
             IsGaming = true;
-
-            ChangeScene(SceneName.Title);
+            
+            ChangeScene(SceneName.Title, false);
         }
 
         public static void SetStageMaster(StageMaster master)
@@ -34,9 +34,15 @@ namespace CCG
             SelectedStageMaster = master;
         }
 
-        public static void ChangeScene(SceneName stageName)
+        public static void ChangeScene(SceneName stageName, bool isFade = true)
         {
-            SceneManager.LoadScene($"{stageName}");
+			if (isFade)
+			{
+				UIManager.FadeCanvas.FadeInOut(() => SceneManager.LoadScene($"{stageName}"));
+			} else
+			{
+				SceneManager.LoadScene($"{stageName}");
+			}
         }
 
         private static void SaveUserData()
