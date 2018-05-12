@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using CCG.Master;
 using CCG.Enums;
+using CCG.UI;
 
 namespace CCG
 {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace CCG
+namespace CCG.UI
 {
     public class StageCanvas : MonoBehaviour
     {
@@ -12,6 +12,8 @@ namespace CCG
 
         [SerializeField]
         private RoundTimer _roundTimer;
+
+		public static readonly string PrefabName = "StageCanvas";
 
         public Text TotalCoinText => _totalCoinText;
         public RoundTimer RoundTimer => _roundTimer;

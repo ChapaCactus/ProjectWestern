@@ -13,7 +13,7 @@ namespace CCG
         public bool IsAllOfEnemiesDead => Enemies.Count == 0 || Enemies.All(enemy => enemy.IsDead);
 
         private Action _onKilledAllEnemies;
-        private StageCanvas _stageCanvas;
+        private UI.StageCanvas _stageCanvas;
 
         private static readonly string PrefabPath = "Prefabs/Manager/CharacterManager";
 
@@ -24,10 +24,10 @@ namespace CCG
 
             onCreate.SafeCall(manager);
         }
-
+        
 		public void Init()
         {
-            DispatchEvent<Action<StageCanvas>>(StageEvents.RequestStageCanvas, c => _stageCanvas = c);
+            DispatchEvent<Action<UI.StageCanvas>>(StageEvents.RequestStageCanvas, c => _stageCanvas = c);
         }
 
         public void ResetCharacters()

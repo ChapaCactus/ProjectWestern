@@ -2,15 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StageSelectCanvas : MonoBehaviour {
-
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+namespace CCG.UI
+{
+	public class StageSelectCanvas : MonoBehaviour
+	{
+		public static readonly string PrefabName = "StageSelectCanvas";
 	}
 }

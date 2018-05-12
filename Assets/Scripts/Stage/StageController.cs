@@ -16,7 +16,7 @@ namespace CCG
         private Transform _enemiesParent;
 
         private StageMaster _stageMaster;
-        private StageCanvas _stageCanvas;
+        private UI.StageCanvas _stageCanvas;
         private CharacterManager _characterManager;
         private Coroutine _bornEnemyLoopCoroutine;
         private List<Ground> _grounds;
@@ -44,7 +44,7 @@ namespace CCG
 
         public void Setup(StageMaster master)
         {
-            DispatchEvent<Action<StageCanvas>>(StageEvents.RequestStageCanvas, c => _stageCanvas = c);
+            DispatchEvent<Action<UI.StageCanvas>>(StageEvents.RequestStageCanvas, c => _stageCanvas = c);
             DispatchEvent<Action<CharacterManager>>(StageEvents.RequestCharacterManager, c => _characterManager = c);
             _stageMaster = master;
 

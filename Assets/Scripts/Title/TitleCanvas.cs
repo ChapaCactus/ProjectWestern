@@ -7,7 +7,7 @@ using UnityEngine.Assertions;
 using TMPro;
 using DG.Tweening;
 
-namespace CCG
+namespace CCG.UI
 {
     public class TitleCanvas : MonoBehaviour
     {
@@ -16,6 +16,8 @@ namespace CCG
 
         [SerializeField]
         private TextMeshProUGUI _tapToStartText;
+
+		public static readonly string PrefabName = "TitleCanvas";
 
 		private void Awake()
 		{

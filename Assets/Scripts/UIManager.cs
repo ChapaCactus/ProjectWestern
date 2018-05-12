@@ -5,29 +5,31 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Assertions;
 
-namespace CCG
+namespace CCG.UI
 {
     public static class UIManager
     {
         private static readonly string CanvasPathHeader = "Prefabs/UI";
-        private static readonly string TitleCanvasPrbName = "TitleCanvas";
-        private static readonly string StageSelectCanvasPrbName = "StageSelectCanvas";
-        private static readonly string StageCanvasPrbName = "StageCanvas";
 
         public static void CreateTitleCanvas(Transform parent, Action<TitleCanvas> onCreate)
         {
-            CreateCanvas<TitleCanvas>(TitleCanvasPrbName, parent, onCreate);
+			CreateCanvas<TitleCanvas>(TitleCanvas.PrefabName, parent, onCreate);
         }
 
         public static void CreateStageSelectCanvas(Transform parent, Action<StageSelectCanvas> onCreate)
         {
-            CreateCanvas<StageSelectCanvas>(StageSelectCanvasPrbName, parent, onCreate);
+			CreateCanvas<StageSelectCanvas>(StageSelectCanvas.PrefabName, parent, onCreate);
         }
 
         public static void CreateStageCanvas(Transform parent, Action<StageCanvas> onCreate)
         {
-            CreateCanvas<StageCanvas>(StageCanvasPrbName, parent, onCreate);
+			CreateCanvas<StageCanvas>(StageCanvas.PrefabName, parent, onCreate);
         }
+
+		public static void CreateFadeCanvas(Transform parent, Action<FadeCanvas> onCreate)
+		{
+			CreateCanvas<FadeCanvas>(FadeCanvas.PrefabName, parent, onCreate);
+		}
 
         public static void CreateStageSelectMap(int mapID, Transform parent, Action<StageSelectMap> onCreate)
         {
