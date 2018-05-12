@@ -22,6 +22,7 @@ namespace CCG
 
             UserData = LoadUserData();
             UIManager.UpdateTotalCoinText($"{UserData.TotalCoin}");
+			UIManager.CreateFadeCanvas(null, c => {});
 
             IsGaming = true;
 
