@@ -57,6 +57,7 @@ namespace CCG.UI
 
 		private void Awake()
 		{
+			DontDestroyOnLoad(this);
 			_fadeIn = new Fade(_fadeInImage, 0, 1);
 			_fadeOut = new Fade(_fadeOutImage, 1, 0);
 		}
