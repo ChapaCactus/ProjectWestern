@@ -29,20 +29,17 @@ namespace CCG
             CreateStageInfoPanel(c => _stageInfoPanel = c);
         }
 
-		public void OnSelectedStage(StageMaster selected)
-        {
-        }
-
         public void LoadStageMaster(StageID id, Action<StageMaster> onLoad)
         {
             var path = $"{MasterDirPath}/{id}";
             var master = Resources.Load(path) as StageMaster;
-
+            
             onLoad.SafeCall(master);
         }
 
         private void AddDispatchEvents()
         {
+			AddDispatchEvent<StageMaster>(StageSelectEvents.OnSelectedStage, OnSelectedStage);
             AddDispatchEvent(StageSelectEvents.OnStartClick, OnClickStart);
         }
 
@@ -52,6 +49,11 @@ namespace CCG
 
             _isStageChanging = true;
             GameManager.CallChangeScene(SceneName.Stage);
+        }
+
+		private void OnSelectedStage(StageMaster selected)
+        {
+			GameManager.SetStageMaster(selected);
         }
 
         private void CreateStageInfoPanel(Action<StageInfoPanel> onCreate)
