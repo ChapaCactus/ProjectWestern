@@ -29,6 +29,8 @@ namespace CCG
 		{
             Assert.IsNotNull(_button);
             Assert.IsNotNull(_stageNumText);
+
+			base.Prepare();
 		}
 
 		public void Setup(StageSelectScene stageSelect)
@@ -39,7 +41,11 @@ namespace CCG
             _button.onClick.AddListener(OnClick);
         }
 
-        private void LoadStageMaster(StageID id, Action<StageMaster> onLoad)
+		protected override void AddDispatchEvents()
+		{
+		}
+
+		private void LoadStageMaster(StageID id, Action<StageMaster> onLoad)
         {
             _stageSelect.LoadStageMaster(id, onLoad);
         }

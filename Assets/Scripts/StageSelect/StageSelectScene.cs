@@ -18,6 +18,8 @@ namespace CCG
 
         protected override void PrepareScene()
         {
+			base.PrepareScene();
+
             _isStageChanging = false;
 
             UIManager.CreateStageSelectCanvas(transform, c => _canvas = c);
@@ -37,7 +39,7 @@ namespace CCG
             onLoad.SafeCall(master);
         }
 
-        private void AddDispatchEvents()
+		protected override void AddDispatchEvents()
         {
 			AddDispatchEvent<StageMaster>(StageSelectEvents.OnSelectedStage, OnSelectedStage);
             AddDispatchEvent(StageSelectEvents.OnStartClick, OnClickStart);
@@ -45,7 +47,7 @@ namespace CCG
 
         private void OnClickStart()
         {
-            if (_isStageChanging) return;
+			if (_isStageChanging) return;
 
             _isStageChanging = true;
             GameManager.CallChangeScene(SceneName.Stage);

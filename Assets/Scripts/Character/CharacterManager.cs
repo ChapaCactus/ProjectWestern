@@ -83,5 +83,9 @@ namespace CCG
             Enemies?.ForEach(enemy => Destroy(enemy.gameObject));
             Enemies = new List<EnemyController>();
         }
+
+		protected override void AddDispatchEvents()
+		{
+		}
 	}
 }

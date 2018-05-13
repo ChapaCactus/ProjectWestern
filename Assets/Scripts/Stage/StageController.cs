@@ -69,10 +69,12 @@ namespace CCG
 
         protected override void Prepare()
         {
+			base.Prepare();
+			
             AddDispatchEvents();
         }
 
-        private void AddDispatchEvents()
+		protected override void AddDispatchEvents()
         {
             AddDispatchEvent(StageEvents.RoundComplete, RoundComplete);
         }

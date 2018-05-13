@@ -40,9 +40,7 @@ namespace CCG
 
 		protected override void Prepare()
 		{
-            AddDispatchEvent<StageMaster>(StageSelectEvents.OpenStageInfo, Open);
-            AddDispatchEvent(StageSelectEvents.CloseStageInfo, Close);
-            AddDispatchEvent(StageSelectEvents.OnStartClick, OnStartClick);
+			base.Prepare();
 
             Close();
 		}
@@ -55,7 +53,14 @@ namespace CCG
             _uiElement.StartStage.onClick.AddListener(OnStartClick);
         }
 
-        private void OnStartClick()
+		protected override void AddDispatchEvents()
+		{
+			AddDispatchEvent<StageMaster>(StageSelectEvents.OpenStageInfo, Open);
+            AddDispatchEvent(StageSelectEvents.CloseStageInfo, Close);
+            AddDispatchEvent(StageSelectEvents.OnStartClick, OnStartClick);
+		}
+
+		private void OnStartClick()
         {
             DispatchEvent(StageSelectEvents.OnStartClick);
         }

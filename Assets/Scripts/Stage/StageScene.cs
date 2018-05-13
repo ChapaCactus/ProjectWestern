@@ -26,7 +26,7 @@ namespace CCG
 
         protected override void PrepareScene()
         {
-            AddDispatchEvents();
+			base.PrepareScene();
 
             UIManager.CreateStageCanvas(transform, c => _stageCanvas = c);
             CharacterManager.Create(transform, c => _characterManager = c);
@@ -42,7 +42,7 @@ namespace CCG
             _characterManager.Init();
 		}
 
-		private void AddDispatchEvents()
+		protected override void AddDispatchEvents()
         {
             AddDispatchEvent<Action<StageCanvas>>(StageEvents.RequestStageCanvas, RequestStageCanvas);
             AddDispatchEvent<Action<CharacterManager>>(StageEvents.RequestCharacterManager, RequestCharacterManager);

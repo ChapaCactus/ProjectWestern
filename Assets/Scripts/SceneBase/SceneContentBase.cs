@@ -7,7 +7,7 @@ using UnityEngine.Assertions;
 
 namespace CCG
 {
-    public class SceneContentBase : MonoBehaviour
+	public abstract class SceneContentBase : MonoBehaviour
     {
         private SceneBase _sceneBase = null;
 
@@ -33,6 +33,7 @@ namespace CCG
 
         protected virtual void Prepare()
         {
+			AddDispatchEvents();
         }
 
         private void FindSceneParent()
@@ -85,5 +86,7 @@ namespace CCG
 
             _sceneBase.DispatchEvent(key, param1, param2);
         }
+
+		protected abstract void AddDispatchEvents();
     }
 }
