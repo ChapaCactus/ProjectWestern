@@ -38,7 +38,7 @@ namespace CCG
         {
 			if (isFade)
 			{
-				UIManager.FadeCanvas.FadeIn(() => ChangeScene(sceneName));
+				UIManager.FadeCanvas.FadeOut(() => ChangeScene(sceneName));
 			} else
 			{
 				ChangeScene(sceneName);
