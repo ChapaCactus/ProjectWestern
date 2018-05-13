@@ -88,7 +88,6 @@ namespace CCG
 
 		protected virtual void StartScene()
 		{
-			UI.UIManager.FadeCanvas.FadeIn(null);
 		}
 
 		protected abstract void AddDispatchEvents();

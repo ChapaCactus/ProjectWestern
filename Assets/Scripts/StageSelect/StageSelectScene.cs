@@ -33,7 +33,9 @@ namespace CCG
 
 		protected override void StartScene()
 		{
-			base.StartScene();         
+			base.StartScene();
+
+			UIManager.FadeCanvas.FadeIn(null);
 		}
 
 		public void LoadStageMaster(StageID id, Action<StageMaster> onLoad)

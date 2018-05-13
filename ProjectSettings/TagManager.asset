@@ -57,3 +57,6 @@ TagManager:
   - name: Cover
     uniqueID: 553838667
     locked: 0
+  - name: Fade
+    uniqueID: 853909433
+    locked: 0

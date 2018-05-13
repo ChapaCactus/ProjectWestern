@@ -41,6 +41,7 @@ namespace CCG
 		{
 			base.StartScene();
 
+			UIManager.FadeCanvas.FadeIn(null);
             _characterManager.Init();
 		}
 

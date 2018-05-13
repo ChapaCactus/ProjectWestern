@@ -14,6 +14,8 @@ namespace CCG.UI
 			private float _start;
 			private float _end;
 
+			public float Alpha => _image.color.a;
+
 			public Fade(Image image, float start, float end)
 			{
 				_image = image;
@@ -25,7 +27,6 @@ namespace CCG.UI
 
 			public void Play(System.Action onComplete)
 			{
-				Debug.Log($"Play Fading... [start {_start}, end {_end}");
 				ResetAlpha();
 				_image.DOFade(_end, 1)
 				      .SetEase(Ease.Linear)
@@ -42,11 +43,9 @@ namespace CCG.UI
 				SetAlpha(_start);
 			}
 		}
-
+        
 		[SerializeField]
-        private Image _fadeOutImage;
-		[SerializeField]
-		private Image _fadeInImage;
+        private Image _fadeImage;
 
 		private Fade _fadeOut;
 		private Fade _fadeIn;
@@ -56,8 +55,8 @@ namespace CCG.UI
 		private void Awake()
 		{
 			DontDestroyOnLoad(this);
-			_fadeOut = new Fade(_fadeOutImage, 0, 1);
-			_fadeIn = new Fade(_fadeInImage, 1, 0);
+			_fadeOut = new Fade(_fadeImage, 0, 1);
+			_fadeIn = new Fade(_fadeImage, 1, 0);
 		}
 
 		public void FadeOutIn(System.Action onComplete)
@@ -70,14 +69,16 @@ namespace CCG.UI
 		public void FadeOut(System.Action onComplete)
         {
 			if (_fadeOut == null) return;
-
+			if (_fadeOut.Alpha == 1) return;
+            
 			_fadeOut.Play(onComplete);
         }
 
 		public void FadeIn(System.Action onComplete)
         {
 			if (_fadeIn == null) return;
-
+			if (_fadeIn.Alpha == 0) return;
+            
 			_fadeOut.SetAlpha(0);
 			_fadeIn.Play(onComplete);
         }

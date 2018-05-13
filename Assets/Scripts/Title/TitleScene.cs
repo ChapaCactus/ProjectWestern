@@ -23,6 +23,8 @@ namespace CCG
 		protected override void StartScene()
 		{
 			base.StartScene();
+
+			UIManager.FadeCanvas.FadeIn(null);
 		}
 
 		protected override void AddDispatchEvents()
