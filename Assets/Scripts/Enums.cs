@@ -28,7 +28,9 @@
     public enum StageID
     {
         None = -1,
-        Stage001 = 1,
+		Stage001 = 1,
+		Stage002,
+		Stage003,
     }
 
     public enum SceneName
