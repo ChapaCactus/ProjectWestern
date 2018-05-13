@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a21569e37bc1b4392ac8466126a1c896, type: 3}
+  m_Name: Stage003
+  m_EditorClassIdentifier: 
+  _title: "\u30AC\u30E4\u30AC\u30E4\u90FD\u4F1A"
+  _roundSettings:
+  - _roundMaster: {fileID: 11400000, guid: d6b7691e76d984956b0f0c235f4eafe7, type: 2}
+    _groundPrefab: {fileID: 114155808469343550, guid: 233402776a0624e71983c49e3cc21604,
+      type: 2}
+    _nextRoundDirection: 2
+  - _roundMaster: {fileID: 11400000, guid: d6b7691e76d984956b0f0c235f4eafe7, type: 2}
+    _groundPrefab: {fileID: 114155808469343550, guid: 233402776a0624e71983c49e3cc21604,
+      type: 2}
+    _nextRoundDirection: 2
+  - _roundMaster: {fileID: 11400000, guid: d6b7691e76d984956b0f0c235f4eafe7, type: 2}
+    _groundPrefab: {fileID: 114155808469343550, guid: 233402776a0624e71983c49e3cc21604,
+      type: 2}
+    _nextRoundDirection: 0
+  - _roundMaster: {fileID: 11400000, guid: d6b7691e76d984956b0f0c235f4eafe7, type: 2}
+    _groundPrefab: {fileID: 114155808469343550, guid: 233402776a0624e71983c49e3cc21604,
+      type: 2}
+    _nextRoundDirection: 0
+  - _roundMaster: {fileID: 11400000, guid: d6b7691e76d984956b0f0c235f4eafe7, type: 2}
+    _groundPrefab: {fileID: 114155808469343550, guid: 233402776a0624e71983c49e3cc21604,
+      type: 2}
+    _nextRoundDirection: 0
