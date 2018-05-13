@@ -25,10 +25,14 @@ namespace CCG
             [SerializeField]
             private Button _startStage;
 
+			[SerializeField]
+			private Button _closeBackArea;
+
             public Text StageTitle => _stageTitle;
             public Text AreaName => _areaName;
             public Text RoundLength => _roundLength;
             public Button StartStage => _startStage;
+			public Button CloseBackArea => _closeBackArea;
         }
 
         [SerializeField]
@@ -51,6 +55,7 @@ namespace CCG
             _uiElement.AreaName.text = master.Title;
             _uiElement.RoundLength.text = $"全{master.RoundCount} Round";
             _uiElement.StartStage.onClick.AddListener(OnStartClick);
+			_uiElement.CloseBackArea.onClick.AddListener(OnClickClose);
         }
 
 		protected override void AddDispatchEvents()
@@ -64,6 +69,11 @@ namespace CCG
         {
             DispatchEvent(StageSelectEvents.OnStartClick);
         }
+
+        private void OnClickClose()
+		{
+			Close();
+		}
 
         private void Open(StageMaster master)
         {
