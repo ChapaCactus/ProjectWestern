@@ -31,15 +31,15 @@ namespace CCG
             }
         }
 
-        protected virtual void Prepare()
-        {
-			AddDispatchEvents();
-        }
-
-        private void FindSceneParent()
+		private void FindSceneParent()
         {
             var sceneParent = GetSceneParent(transform).GetComponent<SceneBase>();
             _sceneBase = sceneParent;
+        }
+
+        protected virtual void Prepare()
+        {
+			AddDispatchEvents();
         }
 
         protected void AddDispatchEvent(string key, Action action)

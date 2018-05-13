@@ -85,6 +85,7 @@ namespace CCG
 		{
 			AddDispatchEvents();
 		}
+
 		protected virtual void StartScene() { }
 		protected abstract void AddDispatchEvents();
 	}
