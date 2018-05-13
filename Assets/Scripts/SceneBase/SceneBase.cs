@@ -80,13 +80,17 @@ namespace CCG
 			var action = _dispatchEvents[key] as Action<T1, T2>;
 			action(param1, param2);
 		}
-
+        
 		protected virtual void PrepareScene()
 		{
 			AddDispatchEvents();
 		}
 
-		protected virtual void StartScene() { }
+		protected virtual void StartScene()
+		{
+			UI.UIManager.FadeCanvas.FadeOut(null);
+		}
+
 		protected abstract void AddDispatchEvents();
 	}
 }

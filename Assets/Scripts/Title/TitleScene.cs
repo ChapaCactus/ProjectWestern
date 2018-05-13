@@ -20,6 +20,11 @@ namespace CCG
             });
 		}
 
+		protected override void StartScene()
+		{
+			base.StartScene();
+		}
+
 		protected override void AddDispatchEvents()
 		{
 		}

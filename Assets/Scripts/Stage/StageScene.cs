@@ -39,6 +39,8 @@ namespace CCG
 
 		protected override void StartScene()
 		{
+			base.StartScene();
+
             _characterManager.Init();
 		}
 

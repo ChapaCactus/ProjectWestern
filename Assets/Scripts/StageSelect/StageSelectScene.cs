@@ -31,7 +31,12 @@ namespace CCG
             CreateStageInfoPanel(c => _stageInfoPanel = c);
         }
 
-        public void LoadStageMaster(StageID id, Action<StageMaster> onLoad)
+		protected override void StartScene()
+		{
+			base.StartScene();         
+		}
+
+		public void LoadStageMaster(StageID id, Action<StageMaster> onLoad)
         {
             var path = $"{MasterDirPath}/{id}";
             var master = Resources.Load(path) as StageMaster;
