@@ -28,6 +28,7 @@ namespace CCG.UI
 				Debug.Log($"Play Fading... [start {_start}, end {_end}");
 				ResetAlpha();
 				_image.DOFade(_end, 1)
+				      .SetEase(Ease.Linear)
 					  .OnComplete(onComplete.SafeCall);
 			}
 
