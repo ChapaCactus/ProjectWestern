@@ -31,6 +31,11 @@ namespace CCG
 		{
 		}
 
+		protected override void PlayBGM()
+		{
+			DarkTonic.MasterAudio.MasterAudio.PlaySound("GB_01_Loop");
+		}
+
 		private void OnClickTitleScreen()
         {
             GameManager.CallChangeScene(Enums.SceneName.StageSelect);

@@ -38,6 +38,10 @@ namespace CCG
 			UIManager.FadeCanvas.FadeIn(null);
 		}
 
+		protected override void PlayBGM()
+		{
+		}
+
 		public void LoadStageMaster(StageID id, Action<StageMaster> onLoad)
         {
             var path = $"{MasterDirPath}/{id}";

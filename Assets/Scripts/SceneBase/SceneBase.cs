@@ -84,12 +84,14 @@ namespace CCG
 		protected virtual void PrepareScene()
 		{
 			AddDispatchEvents();
+			PlayBGM();
 		}
 
 		protected virtual void StartScene()
 		{
 		}
-
+        
 		protected abstract void AddDispatchEvents();
+		protected abstract void PlayBGM();
 	}
 }

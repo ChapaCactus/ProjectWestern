@@ -45,6 +45,10 @@ namespace CCG
             _characterManager.Init();
 		}
 
+		protected override void PlayBGM()
+		{
+		}
+
 		protected override void AddDispatchEvents()
         {
             AddDispatchEvent<Action<StageCanvas>>(StageEvents.RequestStageCanvas, RequestStageCanvas);
