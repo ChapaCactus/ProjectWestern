@@ -17,13 +17,6 @@ namespace CCG
         private StageCanvas _stageCanvas;
         private CharacterManager _characterManager;
 
-		public void SetupStage(StageMaster master)
-        {
-            _stageMaster = master;
-
-            StageController.Create(transform, stage => stage.Setup(_stageMaster));
-        }
-
         protected override void PrepareScene()
         {
 			base.PrepareScene();
@@ -44,6 +37,13 @@ namespace CCG
 			UIManager.FadeCanvas.FadeIn(null);
             _characterManager.Init();
 		}
+
+		public void SetupStage(StageMaster master)
+        {
+            _stageMaster = master;
+
+            StageController.Create(transform, stage => stage.Setup(_stageMaster));
+        }
 
 		protected override void PlayBGM()
 		{
