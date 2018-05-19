@@ -30,7 +30,7 @@ namespace CCG
 
         private void LateUpdate()
         {
-            Move(_target.transform.position);
+            Move();
         }
 
         public static void Create(Transform parent, Action<EnemyController> onCreate)
@@ -69,11 +69,11 @@ namespace CCG
             _target = player;
         }
 
-        private void Move(Vector3 targetPos)
+		private void Move()
         {
             if (_target == null) return;
 
-            var dir = (targetPos - transform.position).normalized;
+			var dir = (_target.transform.position - transform.position).normalized;
             transform.position += dir * (_model.MoveSpeed / 100);
         }
     }
