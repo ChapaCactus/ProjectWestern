@@ -1,19 +1,16 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using CCG.UI;
+﻿using UnityEngine;
 
 namespace CCG
 {
     public class TitleScene : SceneBase
     {
-        private TitleCanvas _titleCanvas;
+        private UI.TitleCanvas _titleCanvas;
 
 		protected override void PrepareScene()
 		{
 			base.PrepareScene();
-
-            UIManager.CreateTitleCanvas(transform, c =>
+            
+            UI.UIManager.CreateTitleCanvas(transform, c =>
             {
                 _titleCanvas = c;
                 c.SetOnClickTitleScreen(OnClickTitleScreen);
@@ -24,7 +21,7 @@ namespace CCG
 		{
 			base.StartScene();
 
-			UIManager.FadeCanvas.FadeIn(null);
+			UI.UIManager.FadeCanvas.FadeIn(null);
 		}
 
 		protected override void AddDispatchEvents()
