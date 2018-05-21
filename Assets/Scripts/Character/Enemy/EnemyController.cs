@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-
 using UnityEngine;
+using UnityEngine.Assertions;
 
 namespace CCG
 {
@@ -43,7 +43,12 @@ namespace CCG
 
         public void Setup(EnemyMaster master)
         {
-            _view.SetSprite(master.Sprites[0]);
+			Assert.IsNotNull(_view);
+
+			if (_view != null)
+			{
+				_view.SetSprite(master.Sprites[0]);
+			}
 
             _model = new EnemyModel(master);
         }
@@ -55,6 +60,8 @@ namespace CCG
 
         public void Damage(int taken)
         {
+			if (_model == null) return;
+
             _model.Damage(taken, Kill);
         }
 
