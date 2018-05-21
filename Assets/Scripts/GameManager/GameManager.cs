@@ -1,10 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.Assertions;
 using CCG.Master;
-using CCG.Enums;
-using CCG.UI;
 
 namespace CCG
 {
@@ -21,38 +19,41 @@ namespace CCG
             Debug.Log("Game Started.");
 
             UserData = LoadUserData();
-            UIManager.UpdateTotalCoinText($"{UserData.TotalCoin}");
-			UIManager.CreateFadeCanvas(null, UIManager.SetFadeCanvas);
+            UI.UIManager.UpdateTotalCoinText($"{UserData.TotalCoin}");
+			UI.UIManager.CreateFadeCanvas(null, UI.UIManager.SetFadeCanvas);
 
             IsGaming = true;
             
-            CallChangeScene(SceneName.Title, false);
+			CallChangeScene(Enums.SceneName.Title, false);
         }
 
-        public static void SetStageMaster(StageMaster master)
+		public static void SetStageMaster(StageMaster master)
         {
             SelectedStageMaster = master;
         }
-
-		public static void CallChangeScene(SceneName sceneName, bool isFade = true)
+        
+		public static void CallChangeScene(Enums.SceneName sceneName, bool isFade = true)
         {
 			if (isFade)
 			{
-				UIManager.FadeCanvas.FadeOut(() => ChangeScene(sceneName));
+				UI.UIManager.FadeCanvas.FadeOut(() => ChangeScene(sceneName));
 			} else
 			{
 				ChangeScene(sceneName);
 			}
         }
 
-		private static void ChangeScene(SceneName sceneName)
+		private static void ChangeScene(Enums.SceneName sceneName)
 		{
 			Debug.Log($"Start ChangeScene --> {sceneName}");
-			SceneManager.LoadScene($"{sceneName}");
+			UnityEngine.SceneManagement.SceneManager.LoadScene($"{sceneName}");
 		}
 
         private static void SaveUserData()
         {
+			Assert.IsNotNull(UserData);
+			if (UserData == null) return;
+
             ES3.Save<UserData>(UserData_SaveKey, UserData);
         }
 
